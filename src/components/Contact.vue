@@ -1,17 +1,77 @@
 <template>
-  <section id="contact" class="contact-section">
-    <h2 class="contact-title">Fale Conosco</h2>
-    <p class="contact-description">
-      Entre em contato agora mesmo e vamos criar algo incrível juntos.
-    </p>
-    <a 
-      href="https://wa.me/seunumerowhatsapp" 
-      target="_blank" 
-      class="contact-button"
-    >
-      Chamar no WhatsApp
-    </a>
-  </section>
+  <section class="contact section" id="contact"
+      aria-label="uma seção falando se interessou com o meu trabalho, entrar em contato.">
+      <div class="max-width">
+        <div data-aos="fade-down">
+          <h2 class="title">Contato</h2>
+        </div>
+
+        <div class="contact-content">
+          <div class="column left" data-aos="fade-down">
+            <div class="text">Se Interessou?</div>
+
+            <p>Obrigado por acompanhar minha trajetória até aqui! Que tal colocarmos a sua ideia no papel e darmos vida
+              a um novo projeto? Sinta-se à vontade para entrar em contato, e juntos vamos transformar ideias em
+              realidade!</p>
+
+
+            <div class="icons">
+              <div class="row info-icons">
+                <i class="fas fa-user"></i>
+                <div class="info">
+                  <div class="head">Nome</div>
+                  <div class="sub-title">Matheus Malena</div>
+                </div>
+              </div>
+
+              <div class="row info-icons">
+                <i class="fas fa-map-marker-alt"></i>
+                <div class="info">
+                  <div class="head">Endereço</div>
+                  <div class="sub-title">Peruibe - SP</div>
+                </div>
+              </div>
+
+              <div class="row info-icons">
+                <i class="fas fa-envelope"></i>
+                <div class="info">
+                  <div class="head">Email</div>
+                  <div class="sub-title">matheusmalena28@gmail.com</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="column right" data-aos="fade-up">
+            <div class="text">Fale comigo</div>
+
+            <form action="https://formsubmit.co/matheusmalena28@gmail.com" method="POST" class="input-area">
+              <div class="fields">
+                <div class="field ">
+                  <input type="text" name="nome" placeholder="Nome" required>
+                </div>
+                <div class="field number">
+                  <input type="tel" name="numero" placeholder="Numero" required>
+                </div>
+              </div>
+              <div class="field email">
+                <input type="email" name="email" placeholder="Email" required>
+              </div>
+              <div class="field">
+                <input type="text" name="assunto" placeholder="Assunto" required>
+              </div>
+              <div class="textarea">
+                <textarea cols="30" rows="10" name="mensagem" placeholder="Mensagem" required></textarea>
+              </div>
+              <div class="button">
+                <button type="submit">Enviar</button>
+              </div>
+              <input type="hidden" name="_subject" value="New submission!">
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
 </template>
 
 <script>
@@ -22,53 +82,154 @@ export default {
 
 <style scoped>
 /* -------- CONTACT SECTION -------- */
-.contact-section {
-  padding: 100px 40px;
-  background-color: var(--color-black);
-  text-align: center;
+.contact .title::after {
+  content: "mensagem";
+  color: var(--color-purple-light);
+  background: var(--color-black);
+  white-space: nowrap;
 }
 
-.contact-title {
-  color: var(--color-blue);
-  font-size: 2.8rem;
-  font-weight: 700;
-  margin-bottom: 30px;
-  position: relative;
+.contact .contact-content .column {
+  width: calc(50% - 30px);
 }
 
-.contact-title::after {
-  content: '';
-  display: block;
-  width: 70px;
-  height: 4px;
-  background-color: var(--color-purple);
-  margin: 10px auto 0;
-  border-radius: 10px;
-}
-
-.contact-description {
-  color: var(--color-gray);
-  max-width: 700px;
-  margin: 0 auto 40px;
-  font-size: 1.1rem;
-  line-height: 1.7;
-}
-
-.contact-button {
-  display: inline-block;
-  padding: 14px 40px;
-  background-color: var(--color-purple);
-  color: var(--color-white);
-  border-radius: 50px;
-  text-decoration: none;
+.contact .contact-content .text {
+  font-size: 26px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  background: linear-gradient(90deg, rgba(195, 236, 254, 1) 1%, rgba(70, 130, 180, 1) 38%, rgba(195, 236, 254, 1) 70%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
   font-weight: 500;
-  transition: background-color 0.4s ease, transform 0.4s ease, box-shadow 0.4s ease;
+  display: inline-block;
 }
 
-.contact-button:hover {
-  background-color: #5b21b6;
-  transform: translateY(-4px) scale(1.03);
-  box-shadow: 0 8px 20px rgba(124, 58, 237, 0.4);
+.contact .contact-content .left p {
+  text-align: justify;
+}
+
+.contact .contact-content .left .icons {
+  margin: 10px 0;
+}
+
+.contact .contact-content .right {
+  margin-bottom: 210px;
+}
+
+.contact .contact-content .row {
+  display: flex;
+  width: 90% !important;
+  height: 65px;
+  align-items: center;
+ }
+
+ .info-icons {
+  display: flex;
+  align-items: center !important;
+ }
+
+.contact .contact-content .row .info {
+  margin: -50px 0 0 25px;
+}
+
+.contact .contact-content .row i {
+  background: linear-gradient(90deg, rgba(195, 236, 254, 1) 1%, rgba(70, 130, 180, 1) 38%, rgba(195, 236, 254, 1) 70%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background 0.3s ease;
+  display: inline-block;
+}
+
+.contact .contact-content .info .head {
+  font-weight: 500;
+}
+
+.contact .contact-content .info .sub-title {
+  color: var(--color-clean-white);
+}
+
+.contact .contact-content .input-area input:focus,
+.contact .contact-content .input-area textarea:focus,
+.contact .contact-content .input-area input.active {
+  border: 2px solid var(--color-purple-light);
+}
+
+
+.contact .right form .fields {
+  display: flex;
+}
+
+.contact .right form .field,
+.contact .right form .fields .field {
+  height: 45px;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+.contact .right form .textarea {
+  height: 80px;
+  width: 100%;
+}
+
+.contact .right form .textarea {
+  height: 80px;
+  width: 100%;
+}
+
+.contact .right form .name {
+  margin-right: 10px;
+}
+
+.contact .right form .number {
+  margin-left: 10px;
+}
+
+.contact .right form .field input,
+.contact .right form .textarea textarea {
+  height: 100%;
+  width: 100%;
+  border: 2px solid var(--clean-light-gray); 
+  border-radius: 10px;
+  outline: none;
+  padding: 0 15px;
+  font-size: 17px;
+  font-family: 'poppins', sans-serif;
+}
+
+.contact .right form .textarea textarea {
+  padding-top: 10px;
+  resize: none;
+}
+
+.contact .right form .button {
+  height: 47px;
+  width: 170px;
+  margin-top: 15px;
+}
+
+.contact .right form .button button{
+  width: 100%;
+  height: 100%;
+  border: 2px solid var(--color-purple-light);
+  background: linear-gradient(90deg, rgba(195, 236, 254, 1) 1%, rgba(70, 130, 180, 1) 38%, rgba(195, 236, 254, 1) 70%);
+  background-size: 200% 100%;
+  background-position: 0 0;
+  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background-position 1.2s ease;
+  display: inline-block;
+  font-size: 20px;
+  font-weight: 500;
+  border-radius: 30px;
+  cursor: pointer;
+}
+
+.contact .right form .button button:hover {
+  background-position: 100% 0;
+  color: black;
+  -webkit-background-clip: unset;
+  -webkit-text-fill-color: unset;
 }
 
 /* -------- RESPONSIVO -------- */

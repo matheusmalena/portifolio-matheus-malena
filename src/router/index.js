@@ -6,6 +6,7 @@ import Contact from '../components/Contact.vue'
 import Projects from '../components/Projects.vue'
 import Skills from '../components/Skills.vue'
 import Certificates from '../components/Certificates.vue'
+import Timeline from '../components/Timeline.vue'
 
 const routes = [
   {
@@ -42,6 +43,11 @@ const routes = [
     path: '/certificates',
     name: 'Certificates',
     component: Certificates,
+  },
+  {
+    path: '/timeline',
+    name: 'Timeline',
+    component: Timeline,
   },
 ]
 
