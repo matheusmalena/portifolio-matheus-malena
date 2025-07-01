@@ -16,10 +16,6 @@
       <div class="skills-grid">
         <!-- Card Sobre com efeito de vidro -->
         <div class="about-card" data-aos="fade-right">
-          <div class="card-header">
-            <h3 class="about-title">Minha Jornada</h3>
-            <div class="accent-line"></div>
-          </div>
           
           <div class="about-content">
             <p class="about-description">
@@ -110,14 +106,8 @@ export default {
           icon: 'fas fa-database',
           title: 'Banco de Dados',
           description: 'Modelagem e otimização de estruturas de dados eficientes.',
-          tags: ['PostgreSQL', 'MySQL', 'MongoDB', 'Firebase']
+          tags: ['PostgreSQL','MongoDB', 'Firebase']
         },
-        {
-          icon: 'fas fa-tools',
-          title: 'Ferramentas',
-          description: 'Workflow profissional e colaboração em equipe.',
-          tags: ['Git', 'Docker', 'VS Code', 'Figma', 'Postman']
-        }
       ],
       skillCategories: [
         { id: 'all', name: 'Todas' },
@@ -475,7 +465,7 @@ export default {
   height: 100%;
   object-fit: contain;
   padding: 1rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(250, 250, 250, 0.1);
   border-radius: 16px;
   transition: all 0.3s ease;
   filter: grayscale(20%);

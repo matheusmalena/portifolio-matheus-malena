@@ -19,7 +19,7 @@
           </div>
           <h3 class="service-card-title">Projetos web</h3>
           <p class="service-card-desc">
-            Design e desenvolvimento de projetos web: sites, blogs, landing pages, portais, etc.
+            Design e desenvolvimento de projetos web: sites, landing pages, etc.
           </p>
         </div>
 
@@ -45,11 +45,11 @@
 
         <div class="service-card">
   <div class="service-icon">
-    <i class="fas fa-video"></i>
+    <i class="fas fa-laptop-code"></i>
   </div>
-  <h3 class="service-card-title">Vídeos Profissionais</h3>
+  <h3 class="service-card-title">Desenvolverdor Full Stack</h3>
   <p class="service-card-desc">
-    Produção de vídeos de alta qualidade para fortalecer sua marca e engajar seu público.
+    Desenvolvimento de soluções web com tecnologias modernas e eficientes.
   </p>
 </div>
 

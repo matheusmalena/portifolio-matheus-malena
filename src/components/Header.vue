@@ -15,9 +15,9 @@
       <router-link to="/#services" class="nav-link" @click="closeMenu">Serviços</router-link>
       <router-link to="/#about" class="nav-link" @click="closeMenu">Sobre</router-link>
       <router-link to="/#skills" class="nav-link" @click="closeMenu">Skills</router-link>
-      <router-link to="/#contact" class="nav-link" @click="closeMenu">Contato</router-link>
-      <router-link to="/projects" class="nav-link" @click="closeMenu">Projetos</router-link>
+      <router-link to="/#projects" class="nav-link" @click="closeMenu">Projetos</router-link>
       <router-link to="/#certificates" class="nav-link" @click="closeMenu">Certificados</router-link>
+       <router-link to="/#contact" class="nav-link" @click="closeMenu">Contato</router-link>
        <a class="btn-me mobile" href="http://wa.me/5513996958183" target="_blank" rel="noopener noreferrer"> <img
               class="icon-wpp" src="./src/img/whatsapp.png" alt=""> Fale comigo</a>
     </nav>

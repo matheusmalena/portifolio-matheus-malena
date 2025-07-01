@@ -281,10 +281,6 @@ export default {
   font-weight: 600;
 }
 
-#projects, #timeline {
-  background: transparent !important;
-}
-
 .timeline-content .skill-tag {
   background-color: #e9ecef;
   color: #495057;

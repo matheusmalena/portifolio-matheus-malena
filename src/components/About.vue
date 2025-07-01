@@ -1,44 +1,86 @@
 <template>
-  <section id="about" class="about-section">
+  <section id="about" class="about-section" aria-label="Seção sobre Matheus Malena e sua trajetória na programação.">
     <div class="about-container">
-      <!-- LADO ESQUERDO -->
-      <div class="about-text">
-        <small class="about-subtitle">Quem somos</small>
-        <h2 class="about-title">
-          Uma agência de marketing,<br />
-          com um único objetivo: <span class="highlight">atingir o seu!</span>
-        </h2>
-        <p class="about-paragraph">
-          A <a href="#" class="link-purple">Connext</a> é uma agência de Marketing Digital, com sede em Curvelo, que tem
-          experiência e excelência na busca para atingir os objetivos traçados pela sua empresa.
-        </p>
-        <p class="about-paragraph">
-          Com anos de experiência no mercado, atendemos diversos segmentos, traçando
-          as melhores estratégias que ajudam empresas a crescer e estabelecer a sua
-          presença digital no mercado.
-        </p>
-        <a href="#contact" class="about-link">Fale com um de nossos especialistas</a>
-
-        <div class="social-icons">
-          <a href="#"><i class="fab fa-whatsapp"></i></a>
-          <a href="#"><i class="fab fa-instagram"></i></a>
-          <a href="#"><i class="fab fa-facebook-f"></i></a>
+      <!-- LADO ESQUERDO - IMAGEM -->
+      <div class="about-image" ref="tiltContainer" @mousemove="handleTilt" @mouseleave="resetTilt">
+        <div class="image-wrapper" ref="imageWrapper">
+          <img src="../assets/img/perfil.jpeg" alt="Foto de Matheus Malena" class="profile-image" />
+          <div class="image-glow"></div>
         </div>
       </div>
 
-      <!-- LADO DIREITO -->
-      <div class="about-image">
-        <img src="" alt="Marketing Illustration" />
+      <!-- LADO DIREITO - TEXTO -->
+      <div class="about-text">
+        <small class="about-subtitle">Sobre mim</small>
+        <h2 class="about-title">Prazer, sou Matheus <span class="highlight">Malena</span></h2>
+
+        <p class="about-paragraph">
+          Tenho 20 anos e sou formado em Análise e Desenvolvimento de Sistemas pela Unisanta, com ensino médio técnico em Jogos Digitais.
+          Atualmente trabalho como desenvolvedor Full-Stack na
+          <a href="https://yupchat.com" target="_blank" class="link-purple">Yup Chat</a>.
+        </p>
+
+        <p class="about-paragraph">
+          Sou apaixonado por aprender e busco me atualizar constantemente com cursos na <strong>Alura</strong> e outras plataformas.
+        </p>
+
+        <a href="#timeline" class="about-link btn-trajetoria">
+          Conheça minha trajetória
+          <span class="material-symbols-outlined">conversion_path</span>
+        </a>
+
+        <div class="social-icons">
+          <a href="https://github.com/matheusmalena" target="_blank"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/matheusmalena" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.instagram.com/dev_malena" target="_blank"><i class="fab fa-instagram"></i></a>
+        </div>
       </div>
     </div>
   </section>
 </template>
 
+
 <script>
+import { ref, onMounted } from 'vue';
+
 export default {
-  name: 'About'
-}
+  name: 'About',
+  setup() {
+    const tiltContainer = ref(null);
+    const imageWrapper = ref(null);
+
+    const handleTilt = (e) => {
+      const container = tiltContainer.value;
+      const card = imageWrapper.value;
+
+      const rect = container.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      const y = e.clientY - rect.top;
+
+      const centerX = rect.width / 2;
+      const centerY = rect.height / 2;
+
+      const rotateX = ((y - centerY) / centerY) * -10;
+      const rotateY = ((x - centerX) / centerX) * 10;
+
+      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
+    };
+
+    const resetTilt = () => {
+      const card = imageWrapper.value;
+      card.style.transform = 'rotateX(0deg) rotateY(0deg) scale(1)';
+    };
+
+    return {
+      tiltContainer,
+      imageWrapper,
+      handleTilt,
+      resetTilt
+    };
+  }
+};
 </script>
+
 
 <style scoped>
 .about-section {
@@ -53,6 +95,7 @@ export default {
   flex-wrap: wrap;
   max-width: 1280px;
   margin: 0 auto;
+  gap: 40px;
 }
 
 .about-text {
@@ -67,10 +110,12 @@ export default {
   color: #111;
   margin-bottom: 12px;
   display: block;
+  text-transform: uppercase;
+  letter-spacing: 1px;
 }
 
 .about-title {
-  font-size: 2.8rem;
+  font-size: 2.5rem;
   font-weight: 800;
   color: #0a0a23;
   margin-bottom: 24px;
@@ -78,31 +123,41 @@ export default {
 }
 
 .highlight {
-  color: #1d4ed8;
+  color: var(--color-purple);
 }
 
 .about-paragraph {
   font-size: 1rem;
   line-height: 1.6;
-  color: #333;
+  color: #444;
   margin-bottom: 20px;
 }
 
 .link-purple {
-  color: #a855f7;
+  color: var(--color-purple);
+  font-weight: 500;
   text-decoration: none;
-}
-
-.link-purple:hover {
-  text-decoration: underline;
+  position: relative;
 }
 
 .about-link {
-  display: inline-block;
-  color: #1d4ed8;
-  font-weight: 500;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background-color: var(--color-purple);
+  color: white;
+  padding: 12px 20px;
+  border-radius: 8px;
   text-decoration: none;
-  margin-top: 10px;
+  font-weight: 600;
+  margin-top: 20px;
+  transition: all 0.3s ease;
+}
+
+.about-link:hover {
+  background-color: var(--color-purple-hover);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
 }
 
 .social-icons {
@@ -119,28 +174,65 @@ export default {
   height: 42px;
   background-color: #f3f4f6;
   border-radius: 8px;
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
   font-size: 18px;
   color: #1f2937;
-  text-decoration: none;
+  text-decoration: none !important;
 }
 
 .social-icons a:hover {
-  transform: scale(1.1);
+  transform: translateY(-3px);
   background-color: #e5e7eb;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+/* Estilos da imagem */
 .about-image {
   flex: 1;
   min-width: 300px;
-  text-align: center;
-  padding-top: 40px;
+  max-width: 450px;
+  position: relative;
 }
 
-.about-image img {
-  max-width: 100%;
+.image-wrapper {
+  transform-style: preserve-3d;
+  transition: transform 0.2s ease;
+  will-change: transform;
+  perspective: 1000px;
+}
+
+.profile-image {
+  width: 100%;
+  height: auto;
+  display: block;
   border-radius: 20px;
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  transition: transform 0.5s ease;
+  position: relative;
+  z-index: 2;
+  border: 4px solid white;
+}
+
+.image-glow {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle, rgba(99, 102, 241, 0.2) 0%, rgba(99, 102, 241, 0) 70%);
+  border-radius: 20px;
+  z-index: 1;
+  animation: pulse-glow 4s infinite alternate;
+}
+
+@keyframes pulse-glow {
+  0% {
+    transform: scale(0.98);
+    opacity: 0.6;
+  }
+  100% {
+    transform: scale(1.02);
+    opacity: 0.3;
+  }
 }
 
 /* Responsivo */
@@ -148,6 +240,7 @@ export default {
   .about-container {
     flex-direction: column;
     text-align: center;
+    gap: 30px;
   }
 
   .about-text,
@@ -157,6 +250,30 @@ export default {
 
   .about-title {
     font-size: 2rem;
+  }
+
+  .about-image {
+    order: -1;
+    padding-top: 0;
+  }
+
+  .about-link {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-section {
+    padding: 60px 20px;
+  }
+
+  .about-title {
+    font-size: 1.8rem;
   }
 }
 </style>

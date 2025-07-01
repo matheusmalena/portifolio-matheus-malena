@@ -370,7 +370,7 @@ export default {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.4rem 1.2rem;
+  padding: 0.8rem 1.2rem;
   border-radius: 30px;
   font-size: 0.8rem;
   font-weight: 500;
