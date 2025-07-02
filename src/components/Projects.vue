@@ -17,7 +17,7 @@
         <button 
           v-for="category in categories" 
           :key="category.id"
-          @click="activeCategory = category.id"
+          @click="changeCategory(category.id)"
           :class="{ active: activeCategory === category.id }"
           class="filter-btn"
         >
@@ -28,7 +28,7 @@
       <!-- Grid de projetos -->
       <div class="projects-grid">
         <div 
-          v-for="(project, index) in filteredProjects" 
+          v-for="(project, index) in paginatedProjects" 
           :key="project.id"
           class="project-card"
           data-aos="fade-up"
@@ -73,11 +73,19 @@
           </div>
         </div>
       </div>
+      <Pagination
+        v-if="filteredProjects.length > itemsPerPage"
+        :current-page="currentPage"
+        :total-pages="totalPages"
+        @page-changed="changePage"
+      />
     </div>
   </section>
 </template>
 
 <script>
+import Pagination from './Pagination.vue';
+
 import imgSweetGiftfy from '../assets/img/sweetgift.png';
 import imgPrevisaoDoTempo from '../assets/img/previsao-web.png';
 import imgEscola from '../assets/img/escola.png';
@@ -87,12 +95,18 @@ import imgTasklist from '../assets/img/task-list.png';
 import imgCafe from '../assets/img/cafe.png';
 import imgAdivinha from '../assets/img/jogonumero.png';
 import imgDipemat from '../assets/img/dipemat2.jpeg';
+import imgGameMemorie from '../assets/img/game-memorie.png';
 
 export default {
   name: 'Projects',
+  components: {
+    Pagination
+  },
   data() {
     return {
       activeCategory: 'all',
+      currentPage: 1,
+      itemsPerPage: 9,
       categories: [
         { id: 'all', name: 'Todos' },
         { id: 'web', name: 'Websites' },
@@ -147,6 +161,15 @@ export default {
           category: 'app'
         },
         {
+          id: 8,
+          title: 'Jogo da memória - Casal',
+          description: 'Jogo da memória com o fotos e mensagens fofas para cada carta.',
+          image: imgGameMemorie,
+          demoUrl: 'https://matheusmalena.github.io/memorie-love-game/',
+          techs: ['HTML5', 'CSS3', 'JavaScript'],
+          category: 'game'
+        },
+        {
           id: 5,
           title: 'Fokus Timer',
           description: 'Sistema de temporizador Pomodoro para melhorar a produtividade.',
@@ -189,6 +212,37 @@ export default {
     filteredProjects() {
       if (this.activeCategory === 'all') return this.projects;
       return this.projects.filter(project => project.category === this.activeCategory);
+    },
+    paginatedProjects() {
+      const start = (this.currentPage - 1) * this.itemsPerPage;
+      const end = start + this.itemsPerPage;
+      return this.filteredProjects.slice(start, end);
+    },
+    totalPages() {
+      return Math.ceil(this.filteredProjects.length / this.itemsPerPage);
+    }
+  },
+   methods: {
+    changeCategory(category) {
+      this.activeCategory = category;
+      this.currentPage = 1; // Resetar para a primeira página ao mudar de categoria
+    },
+    changePage(page) {
+      this.currentPage = page;
+      // Rolagem suave para o topo da seção
+      const element = document.getElementById('projects');
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+    }
+  },
+  watch: {
+    filteredProjects() {
+      // Se a página atual for maior que o total de páginas após filtrar,
+      // voltar para a última página disponível
+      if (this.currentPage > this.totalPages && this.totalPages > 0) {
+        this.currentPage = this.totalPages;
+      }
     }
   }
 }
