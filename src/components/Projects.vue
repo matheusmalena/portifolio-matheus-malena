@@ -115,7 +115,7 @@ export default {
           title: 'Site instituicional - Dipemat',
           description: 'Site instituicional para a empresa de material de contrução Dipemat.',
           image: imgDipemat,
-          demoUrl: 'https://matheusmalena.github.io/AppFokus/',
+          demoUrl: 'https://dipemat-website.vercel.app/',
           techs: ['Vue js'],
           category: 'web'
         },
