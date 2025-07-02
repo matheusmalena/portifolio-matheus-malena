@@ -242,7 +242,7 @@ export default {
   padding: 0 2rem;
   position: relative;
   z-index: 3;
-  box-sizing: border-box; /* Garante que padding não some à largura */
+  box-sizing: border-box;
 }
 
 /* ============= ANIMAÇÕES DE FUNDO ============= */
@@ -353,11 +353,6 @@ export default {
   line-height: 1.2;
   color: white;
   text-shadow: 0 0 20px rgba(76, 201, 240, 0.5);
-  background: linear-gradient(90deg, #4cc9f0, #4895ef);
-  background-size: 200% auto;
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   animation: shine 3s linear infinite;
 }
 
@@ -376,7 +371,7 @@ export default {
 }
 
 .profession-typing {
-  background: linear-gradient(90deg, #4cc9f0, #f72585);
+  background: var(--gradient-blue);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -394,7 +389,7 @@ export default {
   display: inline-flex;
   align-items: center;
   padding: 0.8rem 2rem;
-  background: linear-gradient(45deg, #4cc9f0, #4895ef);
+  background: var(--gradient-blue);
   color: white;
   border-radius: 50px;
   text-decoration: none;
@@ -416,7 +411,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(45deg, #4895ef, #4cc9f0);
+  background: var(--gradient-blue-hover);
   z-index: -1;
   opacity: 0;
   transition: opacity 0.3s ease;
@@ -462,7 +457,7 @@ export default {
   color: white;
   font-size: 1.2rem;
   transition: all 0.3s ease;
-  text-decoration: none;
+  text-decoration: none !important;
   position: relative;
   border: 1px solid rgba(255, 255, 255, 0.2);
 }

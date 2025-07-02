@@ -6,7 +6,12 @@
   --color-purple-hover: rgb(56, 108, 151);
   --color-white: #fff;
   --color-gray: #d1d5db;
-  --gradient-blue: linear-gradient(90deg, rgba(195, 236, 254, 1) 1%, rgba(70, 130, 180, 1) 38%, rgba(195, 236, 254, 1) 70%);
+  --gradient-blue: linear-gradient(90deg, rgb(171, 221, 243), rgba(70, 130, 180, 1));
+  --gradient-blue-hover: linear-gradient(90deg, rgba(195, 236, 254, 1), rgba(70, 130, 180, 1));
+  --gradient-blue-pink: linear-gradient(90deg, #4cc9f0, #f72585);
+  --gradient-blue-pink-hover: linear-gradient(90deg, #42b6da, #eb237d);
+  --gradient-dark-blue: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  --gradient-dark-blue-hover: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
 }
 
 /* Reset básico */

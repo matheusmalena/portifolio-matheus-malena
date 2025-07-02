@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <p>&copy; 2025 <span>AgênciaPro</span> — Todos os direitos reservados.</p>
+    <p>&copy; 2025 <span>Matheus Malena</span> — Todos os direitos reservados.</p>
   </footer>
 </template>
 
@@ -22,7 +22,10 @@ export default {
 }
 
 .footer span {
-  color: var(--color-purple);
+  background: var(--gradient-blue);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   font-weight: 500;
 }
 

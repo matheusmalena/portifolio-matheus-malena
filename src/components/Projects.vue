@@ -86,6 +86,7 @@ import imgFokus from '../assets/img/fokus.png';
 import imgTasklist from '../assets/img/task-list.png';
 import imgCafe from '../assets/img/cafe.png';
 import imgAdivinha from '../assets/img/jogonumero.png';
+import imgDipemat from '../assets/img/dipemat2.jpeg';
 
 export default {
   name: 'Projects',
@@ -107,6 +108,15 @@ export default {
           image: imgSweetGiftfy,
           demoUrl: 'https://sweetgiftfy.com',
           techs: ['Vue.js', 'Supabase', 'CSS3'],
+          category: 'web'
+        },
+        {
+          id: 9,
+          title: 'Site instituicional - Dipemat',
+          description: 'Site instituicional para a empresa de material de contrução Dipemat.',
+          image: imgDipemat,
+          demoUrl: 'https://matheusmalena.github.io/AppFokus/',
+          techs: ['Vue js'],
           category: 'web'
         },
         {
@@ -187,7 +197,7 @@ export default {
 <style scoped>
 .projects-section {
   padding: 6rem 0;
-  background: black;
+  background: var(--color-black);
   color: white;
 }
 

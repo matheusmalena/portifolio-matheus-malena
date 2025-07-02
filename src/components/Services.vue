@@ -98,7 +98,10 @@ export default {
   font-weight: 700;
   line-height: 1.1;
   margin-bottom: 25px;
-  color: var(--color-purple);
+  background: var(--gradient-blue);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .services-description {
@@ -109,7 +112,7 @@ export default {
 }
 
 .services-button {
-  background-color: var(--color-purple);
+  background: var(--gradient-blue);
   color: var(--color-black);
   font-weight: 700;
   border: none;
@@ -157,9 +160,15 @@ export default {
   justify-content: center;
   align-items: center;
   margin-bottom: 15px;
-  color: var(--color-purple);
   font-size: 1.5rem;
   transition: transform 0.4s ease, background-color 0.4s ease;
+}
+
+.service-icon i {
+  background: var(--gradient-blue);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .service-card-title {
@@ -171,7 +180,10 @@ export default {
 }
 
 .service-card:hover .service-card-title {
-  color: var(--color-purple);
+  background: var(--gradient-blue);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .service-card-desc {

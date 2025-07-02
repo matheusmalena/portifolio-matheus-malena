@@ -137,7 +137,7 @@ export default {
 
 <style scoped>
 .timeline-section {
-  background: var(--color-white);
+   background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   min-height: 100vh;
   padding: 100px 15px;
 }
@@ -160,7 +160,7 @@ export default {
   position: absolute;
   width: 50px;
   height: 4px;
-  background-color: var(--color-purple);
+  background: var(--gradient-blue);
   bottom: -10px;
   left: 0;
   right: 0;
@@ -180,7 +180,7 @@ export default {
   position: absolute;
   width: 2px;
   height: 100%;
-  background-color: var(--color-purple);
+  background: var(--gradient-blue);
   left: calc(50% - 1px);
 }
 
@@ -206,7 +206,7 @@ export default {
 .timeline-dot {
   height: 16px;
   width: 16px;
-  background-color: var(--color-purple);
+  background: var(--gradient-blue);
   position: absolute;
   left: calc(50% - 8px);
   border-radius: 50%;
@@ -215,7 +215,7 @@ export default {
 
 .timeline-date {
   font-size: 18px;
-  color: var(--color-purple);
+  color: var(--color-white);
   margin: 6px 0 15px;
   font-weight: 600;
 }
@@ -234,7 +234,10 @@ export default {
 
 .timeline-content h3 {
   font-size: 20px;
-  color: var(--color-purple);
+  background: var(--gradient-blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   margin: 0 0 10px;
   text-transform: capitalize;
   font-weight: 700;

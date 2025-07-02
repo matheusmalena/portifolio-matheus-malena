@@ -123,7 +123,10 @@ export default {
 }
 
 .highlight {
-  color: var(--color-purple);
+  background: var(--gradient-blue);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .about-paragraph {
@@ -134,7 +137,10 @@ export default {
 }
 
 .link-purple {
-  color: var(--color-purple);
+  background: var(--gradient-blue);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
   font-weight: 500;
   text-decoration: none;
   position: relative;
@@ -144,7 +150,7 @@ export default {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background-color: var(--color-purple);
+  background: var(--gradient-blue);
   color: white;
   padding: 12px 20px;
   border-radius: 8px;

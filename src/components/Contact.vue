@@ -1,77 +1,56 @@
 <template>
-  <section class="contact section" id="contact"
-      aria-label="uma seção falando se interessou com o meu trabalho, entrar em contato.">
-      <div class="max-width">
-        <div data-aos="fade-down">
-          <h2 class="title">Contato</h2>
-        </div>
+  <section class="contact-section" id="contact" aria-label="Entre em contato através das redes sociais ou WhatsApp">
+    <div class="contact-container">
+      <div class="contact-header" data-aos="fade-down">
+        <h2 class="contact-title">Vamos Conversar?</h2>
+        <div class="title-decoration"></div>
+        <p class="contact-subtitle">Estou disponível para colaborações e novos projetos</p>
+      </div>
 
-        <div class="contact-content">
-          <div class="column left" data-aos="fade-down">
-            <div class="text">Se Interessou?</div>
-
-            <p>Obrigado por acompanhar minha trajetória até aqui! Que tal colocarmos a sua ideia no papel e darmos vida
-              a um novo projeto? Sinta-se à vontade para entrar em contato, e juntos vamos transformar ideias em
-              realidade!</p>
-
-
-            <div class="icons">
-              <div class="row info-icons">
-                <i class="fas fa-user"></i>
-                <div class="info">
-                  <div class="head">Nome</div>
-                  <div class="sub-title">Matheus Malena</div>
-                </div>
-              </div>
-
-              <div class="row info-icons">
-                <i class="fas fa-map-marker-alt"></i>
-                <div class="info">
-                  <div class="head">Endereço</div>
-                  <div class="sub-title">Peruibe - SP</div>
-                </div>
-              </div>
-
-              <div class="row info-icons">
-                <i class="fas fa-envelope"></i>
-                <div class="info">
-                  <div class="head">Email</div>
-                  <div class="sub-title">matheusmalena28@gmail.com</div>
-                </div>
-              </div>
+      <div class="contact-content">
+        <div class="contact-info">
+          <div class="info-card">
+            <i class="fas fa-envelope contact-icon"></i>
+            <div class="info-text">
+              <h3>Email</h3>
+              <a href="mailto:matheusmalena28@gmail.com" class="info-link">matheusmalena28@gmail.com</a>
             </div>
           </div>
 
-          <div class="column right" data-aos="fade-up">
-            <div class="text">Fale comigo</div>
-
-            <form action="https://formsubmit.co/matheusmalena28@gmail.com" method="POST" class="input-area">
-              <div class="fields">
-                <div class="field ">
-                  <input type="text" name="nome" placeholder="Nome" required>
-                </div>
-                <div class="field number">
-                  <input type="tel" name="numero" placeholder="Numero" required>
-                </div>
-              </div>
-              <div class="field email">
-                <input type="email" name="email" placeholder="Email" required>
-              </div>
-              <div class="field">
-                <input type="text" name="assunto" placeholder="Assunto" required>
-              </div>
-              <div class="textarea">
-                <textarea cols="30" rows="10" name="mensagem" placeholder="Mensagem" required></textarea>
-              </div>
-              <div class="button">
-                <button type="submit">Enviar</button>
-              </div>
-              <input type="hidden" name="_subject" value="New submission!">
-            </form>
+          <div class="info-card">
+            <i class="fas fa-map-marker-alt contact-icon"></i>
+            <div class="info-text">
+              <h3>Localização</h3>
+              <p>Peruíbe - SP, Brasil</p>
+            </div>
           </div>
         </div>
+
+        <div class="social-container">
+          <h3 class="social-title">Minhas Redes</h3>
+          <div class="social-media">
+            <a href="https://github.com/matheusmalena" target="_blank" class="social-link" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+              <span class="social-tooltip">GitHub</span>
+            </a>
+            <a href="https://www.linkedin.com/in/matheusmalena" target="_blank" class="social-link" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+              <span class="social-tooltip">LinkedIn</span>
+            </a>
+            <a href="https://www.instagram.com/dev_malena" target="_blank" class="social-link" aria-label="Instagram">
+              <i class="fab fa-instagram"></i>
+              <span class="social-tooltip">Instagram</span>
+            </a>
+          </div>
+        </div>
+
+        <a href="http://wa.me/5513996958183" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
+          <i class="fab fa-whatsapp"></i>
+          <span>Fale comigo pelo WhatsApp</span>
+        </a>
       </div>
-    </section>
+    </div>
+  </section>
 </template>
 
 <script>
@@ -81,165 +60,266 @@ export default {
 </script>
 
 <style scoped>
-/* -------- CONTACT SECTION -------- */
-.contact .title::after {
-  content: "mensagem";
-  color: var(--color-purple-light);
-  background: var(--color-black);
+
+/* -------- SEÇÃO CONTATO -------- */
+.contact-section {
+  background-color: var(--color-bg);
+  padding: 5rem 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.contact-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.contact-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.contact-title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-white);
+  margin-bottom: 1rem;
+  background: var(--gradient-blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.title-decoration {
+  width: 80px;
+  height: 4px;
+  background: linear-gradient(to right, var(--color-primary), var(--color-primary-light));
+  margin: 0 auto 1.5rem;
+  border-radius: 2px;
+}
+
+.contact-subtitle {
+  color: var(--color-text-light);
+  font-size: 1.2rem;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.6;
+}
+
+/* -------- INFORMAÇÕES DE CONTATO -------- */
+.contact-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2.5rem;
+}
+
+.contact-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 800px;
+}
+
+.info-card {
+  background: var(--color-card);
+  padding: 1.5rem 2rem;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  width: 100%;
+  max-width: 350px;
+}
+
+.info-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+}
+
+.contact-icon {
+  font-size: 1.8rem;
+  color: var(--color-primary);
+  background: rgba(124, 58, 237, 0.1);
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.info-text h3 {
+  color: var(--color-text-light);
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+  font-weight: 500;
+}
+
+.info-link, .info-text p {
+  color: var(--color-text);
+  font-size: 1.1rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.info-link:hover {
+  color: var(--color-primary);
+}
+
+/* -------- REDES SOCIAIS -------- */
+.social-container {
+  text-align: center;
+  width: 100%;
+}
+
+.social-title {
+  color: var(--color-text-light);
+  font-size: 1.2rem;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
+
+.social-media {
+  display: flex;
+  justify-content: center;
+  gap: 1.5rem;
+  margin-bottom: 2rem;
+}
+
+.social-link {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.3rem;
+  position: relative;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  text-decoration: none !important;
+}
+
+.social-link:hover {
+  transform: translateY(-5px);
+}
+
+.social-link i {
+  transition: transform 0.3s ease;
+}
+
+.social-link:hover i {
+  transform: scale(1.2);
+}
+
+.social-tooltip {
+  position: absolute;
+  bottom: -30px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-card);
+  color: var(--color-text);
+  padding: 0.3rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.8rem;
+  opacity: 0;
+  visibility: hidden;
+  transition: all 0.3s ease;
   white-space: nowrap;
 }
 
-.contact .contact-content .column {
-  width: calc(50% - 30px);
+.social-link:hover .social-tooltip {
+  opacity: 1;
+  visibility: visible;
+  bottom: -40px;
 }
 
-.contact .contact-content .text {
-  font-size: 26px;
-  font-weight: 600;
-  margin-bottom: 10px;
-  background: linear-gradient(90deg, rgba(195, 236, 254, 1) 1%, rgba(70, 130, 180, 1) 38%, rgba(195, 236, 254, 1) 70%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  font-weight: 500;
-  display: inline-block;
+/* Cores específicas para cada rede social */
+.social-link:nth-child(1) {
+  background-color: #333;
+}
+.social-link:nth-child(2) {
+  background-color: #0077B5;
+}
+.social-link:nth-child(3) {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
 }
 
-.contact .contact-content .left p {
-  text-align: justify;
-}
-
-.contact .contact-content .left .icons {
-  margin: 10px 0;
-}
-
-.contact .contact-content .right {
-  margin-bottom: 210px;
-}
-
-.contact .contact-content .row {
-  display: flex;
-  width: 90% !important;
-  height: 65px;
+/* -------- BOTÃO WHATSAPP -------- */
+.whatsapp-btn {
+  display: inline-flex;
   align-items: center;
- }
-
- .info-icons {
-  display: flex;
-  align-items: center !important;
- }
-
-.contact .contact-content .row .info {
-  margin: -50px 0 0 25px;
+  gap: 0.8rem;
+  padding: 1rem 2rem;
+  background-color:#25D366;
+  color: white;
+  border-radius: 50px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+  margin-top: 1rem;
 }
 
-.contact .contact-content .row i {
-  background: linear-gradient(90deg, rgba(195, 236, 254, 1) 1%, rgba(70, 130, 180, 1) 38%, rgba(195, 236, 254, 1) 70%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  transition: background 0.3s ease;
-  display: inline-block;
+.whatsapp-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+  background-color: #23c55e;
 }
 
-.contact .contact-content .info .head {
-  font-weight: 500;
+.whatsapp-btn i {
+  font-size: 1.4rem;
 }
 
-.contact .contact-content .info .sub-title {
-  color: var(--color-clean-white);
-}
-
-.contact .contact-content .input-area input:focus,
-.contact .contact-content .input-area textarea:focus,
-.contact .contact-content .input-area input.active {
-  border: 2px solid var(--color-purple-light);
-}
-
-
-.contact .right form .fields {
-  display: flex;
-}
-
-.contact .right form .field,
-.contact .right form .fields .field {
-  height: 45px;
-  width: 100%;
-  margin-bottom: 10px;
-}
-
-.contact .right form .textarea {
-  height: 80px;
-  width: 100%;
-}
-
-.contact .right form .textarea {
-  height: 80px;
-  width: 100%;
-}
-
-.contact .right form .name {
-  margin-right: 10px;
-}
-
-.contact .right form .number {
-  margin-left: 10px;
-}
-
-.contact .right form .field input,
-.contact .right form .textarea textarea {
-  height: 100%;
-  width: 100%;
-  border: 2px solid var(--clean-light-gray); 
-  border-radius: 10px;
-  outline: none;
-  padding: 0 15px;
-  font-size: 17px;
-  font-family: 'poppins', sans-serif;
-}
-
-.contact .right form .textarea textarea {
-  padding-top: 10px;
-  resize: none;
-}
-
-.contact .right form .button {
-  height: 47px;
-  width: 170px;
-  margin-top: 15px;
-}
-
-.contact .right form .button button{
-  width: 100%;
-  height: 100%;
-  border: 2px solid var(--color-purple-light);
-  background: linear-gradient(90deg, rgba(195, 236, 254, 1) 1%, rgba(70, 130, 180, 1) 38%, rgba(195, 236, 254, 1) 70%);
-  background-size: 200% 100%;
-  background-position: 0 0;
-  color: transparent;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  transition: background-position 1.2s ease;
-  display: inline-block;
-  font-size: 20px;
-  font-weight: 500;
-  border-radius: 30px;
-  cursor: pointer;
-}
-
-.contact .right form .button button:hover {
-  background-position: 100% 0;
-  color: black;
-  -webkit-background-clip: unset;
-  -webkit-text-fill-color: unset;
-}
-
-/* -------- RESPONSIVO -------- */
+/* -------- RESPONSIVIDADE -------- */
 @media (max-width: 768px) {
   .contact-title {
-    font-size: 2.2rem;
+    font-size: 2rem;
   }
-
-  .contact-description {
+  
+  .contact-subtitle {
     font-size: 1rem;
+  }
+  
+  .info-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 1.5rem;
+  }
+  
+  .contact-icon {
+    margin-bottom: 1rem;
+  }
+  
+  .social-media {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .contact-container {
+    padding: 0 1.5rem;
+  }
+  
+  .contact-title {
+    font-size: 1.8rem;
+  }
+  
+  .info-card {
+    max-width: 100%;
+  }
+  
+  .whatsapp-btn {
+    width: 100%;
+    justify-content: center;
   }
 }
 </style>

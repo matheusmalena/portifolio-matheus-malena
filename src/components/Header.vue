@@ -1,5 +1,5 @@
 <template>
-  <header class="header">
+  <header :class="['header', { scrolled: isScrolled }]">
     <div class="logo">
           <a class="portfolio-title" href="#">Portfo<span>lio</span></a>
         </div>
@@ -18,13 +18,11 @@
       <router-link to="/#projects" class="nav-link" @click="closeMenu">Projetos</router-link>
       <router-link to="/#certificates" class="nav-link" @click="closeMenu">Certificados</router-link>
        <router-link to="/#contact" class="nav-link" @click="closeMenu">Contato</router-link>
-       <a class="btn-me mobile" href="http://wa.me/5513996958183" target="_blank" rel="noopener noreferrer"> <img
-              class="icon-wpp" src="./src/img/whatsapp.png" alt=""> Fale comigo</a>
+       <a class="btn-whatsapp  mobile" href="http://wa.me/5513996958183" target="_blank" rel="noopener noreferrer"> Fale comigo</a>
     </nav>
 
     <div>
-          <a class="btn-me desktop" href="http://wa.me/5513996958183" target="_blank" rel="noopener noreferrer"> <img
-              class="icon-wpp" src="./src/img/whatsapp.png" alt=""> Fale comigo</a>
+          <a class="btn-whatsapp  desktop" href="http://wa.me/5513996958183" target="_blank" rel="noopener noreferrer"> <i class="fab fa-whatsapp"></i>  Fale comigo</a>
         </div>
   </header>
 </template>
@@ -34,7 +32,8 @@ export default {
   name: 'Header',
   data() {
     return {
-      isOpen: false
+      isOpen: false,
+      isScrolled: false
     };
   },
   methods: {
@@ -43,18 +42,21 @@ export default {
     },
     closeMenu() {
       this.isOpen = false;
+    },
+    handleScroll() {
+      this.isScrolled = window.scrollY > 20;
     }
+  },
+  mounted() {
+    window.addEventListener("scroll", this.handleScroll);
+  },
+  beforeUnmount() {
+    window.removeEventListener("scroll", this.handleScroll);
   }
 };
 </script>
 
 <style scoped>
-/* -------- CORES -------- */
-:root {
-  --color-black: #000;
-  --color-white: #fff;
-  --color-purple: #7c3aed;
-}
 
 /* -------- HEADER -------- */
 .header {
@@ -62,13 +64,23 @@ export default {
   justify-content: space-between;
   align-items: center;
   padding: 20px 60px;
-  background-color: var(--color-black);
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
   transition: background-color 0.3s ease;
+}
+
+.header {
+  background-color: transparent;
+  transition: background-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: none;
+}
+
+.header.scrolled {
+  background-color: var(--color-black);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
 }
 
 .logo {
@@ -158,24 +170,66 @@ export default {
   transform: rotate(-45deg) translateY(-8px);
 }
 
-.btn-me-wpp, .btn-me {
-  padding: 0.5rem !important;
-  background-color: var(--color-white) !important;
+.btn-whatsapp {
+  padding: 0.6rem 1.2rem;
+  background-color: #25D366;
   text-decoration: none;
-  border: 1px solid var(--color-white) !important;
-  border-radius: 1rem !important;
-  color: var(--color-black) !important;
-  font-family: 'Ubuntu', sans-serif;
-  display: flex;
+  border: none;
+  border-radius: 2rem;
+  color: white;
+  font-family: 'Inter', sans-serif;
+  font-weight: 600;
+  display: inline-flex;
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
 }
 
-.btn-me-wpp:hover, .btn-me:hover  {
-  background-color: rgba(255, 255, 255, 0.95) !important; /* Mais claro */
-  border: 1px solid rgba(255, 255, 255, 0.95) !important;
-  transform: scale(1.05);
+.btn-whatsapp:hover {
+  background-color: #24c25e; /* Cor mais escura no hover */
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
+}
+
+.btn-whatsapp:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 5px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.2),
+    transparent
+  );
+  transition: 0.5s;
+}
+
+.btn-whatsapp:hover::before {
+  left: 100%;
+}
+
+.icon-wpp {
+  width: 1.2rem;
+  height: 1.2rem;
+  filter: drop-shadow(0 1px 1px rgba(0, 0, 0, 0.1));
+  transition: transform 0.3s ease;
+}
+
+.btn-whatsapp:hover .icon-wpp {
+  transform: scale(1.1) rotate(5deg);
 }
 
 .mobile {

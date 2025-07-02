@@ -4,11 +4,10 @@
       <!-- Header com animação -->
       <div class="section-header" data-aos="fade-up">
         <h2 class="section-title">
-          <span class="title-text">Minhas</span>
-          <span class="highlight-wrapper">
+          <span class="title-text">Minhas <span class="highlight-wrapper">
             <span class="highlight">Conquistas</span>
             <span class="highlight-accent"></span>
-          </span>
+          </span></span>
         </h2>
         <p class="section-subtitle">Certificados que comprovam minha jornada de aprendizado contínuo</p>
       </div>
@@ -187,7 +186,7 @@ export default {
 <style scoped>
 .certificates-section {
   padding: 6rem 0;
-  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background: white;
   color: white;
   position: relative;
   overflow: hidden;
@@ -217,7 +216,10 @@ export default {
 }
 
 .title-text {
-  color: rgba(255, 255, 255, 0.9);
+  background: var(--gradient-dark-blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
 .highlight-wrapper {
@@ -226,7 +228,10 @@ export default {
 }
 
 .highlight {
-  color: var(--accent-color);
+background: var(--gradient-dark-blue);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
   position: relative;
   z-index: 2;
 }
