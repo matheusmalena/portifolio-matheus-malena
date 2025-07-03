@@ -219,7 +219,7 @@ export default {
 <style scoped>
 /* ============= ESTILOS GERAIS ============= */
 .home {
-  overflow-x: hidden; /* Impede vazamento horizontal */
+  overflow-x: hidden;
 }
 
 .hero-section {
@@ -490,6 +490,20 @@ export default {
   opacity: 1;
   visibility: visible;
   bottom: -35px;
+}
+
+.social-link i {
+  color: var(--color-white);
+}
+
+.social-link:nth-child(1):hover {
+  background-color: #333;
+}
+.social-link:nth-child(2):hover {
+  background-color: #0077B5;
+}
+.social-link:nth-child(3):hover {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
 }
 
 /* ============= RESPONSIVIDADE ============= */

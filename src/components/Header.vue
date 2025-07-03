@@ -1,5 +1,5 @@
 <template>
-  <header :class="['header', { scrolled: isScrolled }]">
+  <header :class="['header', { scrolled: isScrolled || isOpen }]">
     <div class="logo">
           <a class="portfolio-title" href="#">Portfo<span>lio</span></a>
         </div>
@@ -172,7 +172,7 @@ export default {
 
 .btn-whatsapp {
   padding: 0.6rem 1.2rem;
-  background-color: #25D366;
+  background-color: #23c45e;
   text-decoration: none;
   border: none;
   border-radius: 2rem;

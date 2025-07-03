@@ -192,6 +192,10 @@ export default {
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
+.social-icons a i {
+  color: #1f2937;
+}
+
 /* Estilos da imagem */
 .about-image {
   flex: 1;

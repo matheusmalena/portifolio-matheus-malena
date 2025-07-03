@@ -9,7 +9,7 @@
         <p class="services-description">
           Expertise e capacidade de criar estratégias personalizadas, que resultam em um aumento significativo e qualitativo da presença online.
         </p>
-        <button class="services-button">Faça um orçamento</button>
+        <button @click="redirectToWhatsapp" class="services-button">Faça um orçamento</button>
       </div>
 
       <div class="services-cards">
@@ -58,10 +58,10 @@
   </section>
 </template>
 
-<script>
-export default {
-  name: "Services",
-};
+<script setup>
+function redirectToWhatsapp() {
+  window.open('http://wa.me/5513996958183', '_blank');
+}
 </script>
 
 <style scoped>

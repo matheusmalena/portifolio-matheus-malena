@@ -7,6 +7,13 @@
         <p class="contact-subtitle">Estou disponível para colaborações e novos projetos</p>
       </div>
 
+      <div class="whatsapp-container" >
+         <a href="http://wa.me/5513996958183" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
+          <i class="fab fa-whatsapp"></i>
+          <span>Fale comigo pelo WhatsApp</span>
+        </a>
+      </div>
+
       <div class="contact-content">
         <div class="contact-info">
           <div class="info-card">
@@ -43,11 +50,6 @@
             </a>
           </div>
         </div>
-
-        <a href="http://wa.me/5513996958183" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
-          <i class="fab fa-whatsapp"></i>
-          <span>Fale comigo pelo WhatsApp</span>
-        </a>
       </div>
     </div>
   </section>
@@ -214,6 +216,7 @@ export default {
 
 .social-link i {
   transition: transform 0.3s ease;
+   color: var(--color-white);
 }
 
 .social-link:hover i {
@@ -259,7 +262,7 @@ export default {
   align-items: center;
   gap: 0.8rem;
   padding: 1rem 2rem;
-  background-color:#25D366;
+  background-color:#23c45e;
   color: white;
   border-radius: 50px;
   font-weight: 600;
@@ -279,47 +282,123 @@ export default {
   font-size: 1.4rem;
 }
 
+.whatsapp-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem 2rem 2rem 2rem;
+}
+
 /* -------- RESPONSIVIDADE -------- */
+@media (max-width: 1024px) {
+  .contact-title {
+    font-size: 2.2rem;
+  }
+
+  .info-card {
+    flex: 1 1 100%;
+    max-width: 100%;
+  }
+
+  .contact-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .social-media {
+    gap: 1rem;
+  }
+
+  .whatsapp-btn {
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+  }
+}
+
 @media (max-width: 768px) {
   .contact-title {
     font-size: 2rem;
   }
-  
+
   .contact-subtitle {
     font-size: 1rem;
   }
-  
+
+  .contact-content {
+    gap: 2rem;
+  }
+
   .info-card {
     flex-direction: column;
     text-align: center;
     padding: 1.5rem;
+    align-items: center;
   }
-  
+
   .contact-icon {
     margin-bottom: 1rem;
   }
-  
-  .social-media {
-    gap: 1rem;
-  }
-}
 
-@media (max-width: 480px) {
-  .contact-container {
-    padding: 0 1.5rem;
+  .info-text h3 {
+    font-size: 1rem;
   }
-  
-  .contact-title {
-    font-size: 1.8rem;
+
+  .info-link,
+  .info-text p {
+    font-size: 1rem;
   }
-  
-  .info-card {
-    max-width: 100%;
+
+  .social-link {
+    width: 45px;
+    height: 45px;
+    font-size: 1.1rem;
   }
-  
+
+  .social-tooltip {
+    font-size: 0.7rem;
+    padding: 0.2rem 0.6rem;
+  }
+
   .whatsapp-btn {
     width: 100%;
     justify-content: center;
   }
 }
+
+@media (max-width: 480px) {
+  .contact-container {
+    padding: 0 1rem;
+  }
+
+  .contact-title {
+    font-size: 1.8rem;
+  }
+
+  .contact-subtitle {
+    font-size: 0.95rem;
+    line-height: 1.4;
+  }
+
+  .info-card {
+    max-width: 100%;
+    padding: 1.2rem;
+  }
+
+  .contact-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.4rem;
+  }
+
+  .whatsapp-btn {
+    font-size: 0.95rem;
+    padding: 0.8rem 1.2rem;
+  }
+
+  .social-link {
+    width: 40px;
+    height: 40px;
+    font-size: 1rem;
+  }
+}
+
 </style>

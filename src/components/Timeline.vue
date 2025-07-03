@@ -292,4 +292,45 @@ export default {
   border-radius: 20px;
   display: inline-block;
 }
+
+@media (max-width: 768px) {
+  .timeline-items::before {
+    left: 8px;
+  }
+
+  .timeline-item {
+    padding-left: 30px !important;
+    padding-right: 0 !important;
+    text-align: left !important;
+  }
+
+  .timeline-dot {
+    left: 0;
+  }
+
+  .timeline-content {
+    padding: 20px;
+  }
+
+  .timeline-content h3 {
+    font-size: 18px;
+  }
+
+  .timeline-date {
+    font-size: 16px;
+  }
+
+  .timeline-section .section-title h2 {
+    font-size: 28px;
+  }
+
+  .timeline-content p {
+    font-size: 14px;
+  }
+
+  .timeline-content .skills {
+    justify-content: flex-start;
+  }
+}
+
 </style>
