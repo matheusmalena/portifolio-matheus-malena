@@ -132,7 +132,10 @@ export default {
 }
 
 .nav-link:hover {
-  color: var(--color-purple);
+   background: var(--gradient-blue);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .nav-link:hover::after {
