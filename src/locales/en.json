@@ -1,0 +1,167 @@
+{
+  "header": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "skills": "Skills",
+    "projects": "Projects",
+    "certificates": "Certificates",
+    "timeline": "Timeline",
+    "contact": "Contact",
+    "talk_to_me": "Talk to me"
+  },
+  "home": {
+    "greeting": "Hello, I am",
+    "cta_button": "Let's talk",
+    "titles": {
+      "devFull": "Full Stack Developer",
+      "systemAnalyst": "Systems Analyst",
+      "trafficManager": "Traffic Manager",
+      "surfer": "Surfer in my free time"
+    }
+  },
+  "services": {
+    "subtitle": "My services",
+    "title": "What <br /> I offer",
+    "description": "Expertise and ability to create personalized strategies, resulting in a significant and qualitative increase in online presence.",
+    "button": "Request a quote",
+    "web_projects_title": "Web projects",
+    "web_projects_desc": "Design and development of web projects: websites, landing pages, etc.",
+    "marketing_title": "Digital marketing",
+    "marketing_desc": "Planning and actions in digital marketing to increase your brand presence.",
+    "branding_title": "Visual identity",
+    "branding_desc": "Creation of visual identity, brand manuals, and support graphic materials.",
+    "fullstack_title": "Full Stack Developer",
+    "fullstack_desc": "Development of web solutions with modern and efficient technologies."
+  },
+  "about": {
+    "subtitle": "About me",
+    "title": "Nice to meet you, I'm Matheus",
+    "paragraph_1": "I am 20 years old and graduated in Systems Analysis and Development from Unisanta, with a technical high school degree in Digital Games. I currently work as a Full-Stack developer at",
+    "paragraph_2": "I am passionate about learning and constantly update myself with courses on Alura and other platforms.",
+    "trajectory_button": "Check out my journey"
+  },
+  "contact": {
+    "title": "Let's Talk?",
+    "subtitle": "I am available for collaborations and new projects",
+    "whatsapp": "Talk to me on WhatsApp",
+    "email_label": "Email",
+    "email_value": "matheusmalena28@gmail.com",
+    "location_label": "Location",
+    "location_value": "Peruíbe - SP, Brazil",
+    "social_title": "My Socials",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "instagram": "Instagram"
+  },
+  "footer": {
+    "text": "All rights reserved."
+  },
+  "projects": {
+    "section_title": "My Projects",
+    "section_subtitle": "Works that demonstrate my evolution as a developer",
+    "visit_demo": "Visit",
+    "view_code": "Code",
+    "categories": {
+      "all": "All",
+      "web": "Websites",
+      "app": "Apps",
+      "tool": "Tools",
+      "game": "Games"
+    },
+    "list": {
+      "1": {
+        "title": "Sweet Giftfy",
+        "description": "Custom websites to gift someone special with photos, music, and messages."
+      },
+      "9": {
+        "title": "Institutional Site - Dipemat",
+        "description": "Institutional site for the construction materials company Dipemat."
+      },
+      "2": {
+        "title": "Escola Árvore da Vida",
+        "description": "Professional website for an educational institution with academic information."
+      },
+      "3": {
+        "title": "Weather Forecast",
+        "description": "App that displays real-time weather data using the OpenWeather API."
+      },
+      "4": {
+        "title": "Cookin Up",
+        "description": "Platform to explore recipes based on available ingredients."
+      },
+      "8": {
+        "title": "Memory Game - Couple",
+        "description": "Memory game with cute photos and messages on each card."
+      },
+      "5": {
+        "title": "Fokus Timer",
+        "description": "Pomodoro timer system to improve productivity."
+      },
+      "6": {
+        "title": "Task List",
+        "description": "Task management app with complete CRUD functionality."
+      },
+      "7": {
+        "title": "Guess the Number",
+        "description": "Guessing game with voice recognition."
+      },
+      "8b": {
+        "title": "Modern Coffee Shop",
+        "description": "Landing page for a coffee shop with elegant design."
+      }
+    }
+  },
+  "certificates": {
+    "title": "My",
+    "highlight": "Conquests",
+    "certificates": "Certificates"
+  },
+  "timeline": {
+    "title": "Career",
+    "description": "Follow the evolution of my career in technology, from my initial studies to my most recent professional experiences.",
+    "jobs": {
+      "software_dev": {
+        "title": "Junior Software Developer",
+        "company": "Yup Chat",
+        "description": "Currently working at Yup Chat, where I am enhancing my Full-Stack development skills. I collaborate with multidisciplinary teams to create innovative and scalable technological solutions."
+      },
+      "support": {
+        "title": "IT Support",
+        "company": "Yup Chat",
+        "description": "Worked in IT support, solving technical issues, meeting user needs, and ensuring systems run smoothly. This experience gave me deeper understanding of end-user requirements."
+      },
+      "college": {
+        "title": "Systems Analysis and Development",
+        "company": "Unisanta",
+        "description": "Completed my higher education in Systems Analysis and Development at Unisanta, where I gained solid knowledge in programming, databases, systems analysis, and software development methodologies."
+      },
+      "internship": {
+        "title": "Intern",
+        "company": "Yup Chat",
+        "description": "Started my professional journey at Yup Chat as an intern, applying knowledge acquired in college and developing practical skills in a real business environment, participating in projects and learning from experienced professionals."
+      },
+      "technical_course": {
+        "title": "Technical Course in Digital Games",
+        "company": "ETEC",
+        "description": "During high school, I attended a technical course in Digital Games at ETEC, where I had my first contact with programming and software development. This experience was fundamental in defining my path in technology."
+      }
+    }
+  },
+  "skills": {
+    "title": "My Skills",
+    "subtitle": "Technologies I use in my daily work",
+    "description": "Full-Stack developer with a degree in Systems Analysis and Development. Specialized in creating complete solutions, from modern interfaces to APIs.",
+    "programming": "Programming",
+    "database": "Database",
+    "software_engineering": "Software Engineering",
+    "agile_methodologies": "Agile Methodologies",
+    "technical_support": "Technical Support",
+    "problem_solving": "Problem Solving",
+    "customer_service": "Customer Service",
+    "web_development": "Web Development",
+    "teamwork": "Teamwork",
+    "logic_programming": "Logic Programming",
+    "development_fundamentals": "Development Fundamentals"
+  }
+}

@@ -1,16 +1,25 @@
 <template>
-  <section class="contact-section" id="contact" aria-label="Entre em contato através das redes sociais ou WhatsApp">
+  <section
+    class="contact-section"
+    id="contact"
+    aria-label="Entre em contato através das redes sociais ou WhatsApp"
+  >
     <div class="contact-container">
       <div class="contact-header" data-aos="fade-down">
-        <h2 class="contact-title">Vamos Conversar?</h2>
+        <h2 class="contact-title">{{ $t('contact.title') }}</h2>
         <div class="title-decoration"></div>
-        <p class="contact-subtitle">Estou disponível para colaborações e novos projetos</p>
+        <p class="contact-subtitle">{{ $t('contact.subtitle') }}</p>
       </div>
 
-      <div class="whatsapp-container" >
-         <a href="http://wa.me/5513996958183" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
+      <div class="whatsapp-container">
+        <a
+          href="http://wa.me/5513996958183"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="whatsapp-btn"
+        >
           <i class="fab fa-whatsapp"></i>
-          <span>Fale comigo pelo WhatsApp</span>
+          <span>{{ $t('contact.whatsapp') }}</span>
         </a>
       </div>
 
@@ -19,32 +28,49 @@
           <div class="info-card">
             <i class="fas fa-envelope contact-icon"></i>
             <div class="info-text">
-              <h3>Email</h3>
-              <a href="mailto:matheusmalena28@gmail.com" class="info-link">matheusmalena28@gmail.com</a>
+              <h3>{{ $t('contact.email_label') }}</h3>
+              <a href="mailto:matheusmalena28@gmail.com" class="info-link">
+                {{ $t('contact.email_value') }}
+              </a>
             </div>
           </div>
 
           <div class="info-card">
             <i class="fas fa-map-marker-alt contact-icon"></i>
             <div class="info-text">
-              <h3>Localização</h3>
-              <p>Peruíbe - SP, Brasil</p>
+              <h3>{{ $t('contact.location_label') }}</h3>
+              <p>{{ $t('contact.location_value') }}</p>
             </div>
           </div>
         </div>
 
         <div class="social-container">
-          <h3 class="social-title">Minhas Redes</h3>
+          <h3 class="social-title">{{ $t('contact.social_title') }}</h3>
           <div class="social-media">
-            <a href="https://github.com/matheusmalena" target="_blank" class="social-link" aria-label="GitHub">
+            <a
+              href="https://github.com/matheusmalena"
+              target="_blank"
+              class="social-link"
+              aria-label="GitHub"
+            >
               <i class="fab fa-github"></i>
               <span class="social-tooltip">GitHub</span>
             </a>
-            <a href="https://www.linkedin.com/in/matheusmalena" target="_blank" class="social-link" aria-label="LinkedIn">
+            <a
+              href="https://www.linkedin.com/in/matheusmalena"
+              target="_blank"
+              class="social-link"
+              aria-label="LinkedIn"
+            >
               <i class="fab fa-linkedin-in"></i>
               <span class="social-tooltip">LinkedIn</span>
             </a>
-            <a href="https://www.instagram.com/dev_malena" target="_blank" class="social-link" aria-label="Instagram">
+            <a
+              href="https://www.instagram.com/dev_malena"
+              target="_blank"
+              class="social-link"
+              aria-label="Instagram"
+            >
               <i class="fab fa-instagram"></i>
               <span class="social-tooltip">Instagram</span>
             </a>
@@ -54,6 +80,7 @@
     </div>
   </section>
 </template>
+
 
 <script>
 export default {

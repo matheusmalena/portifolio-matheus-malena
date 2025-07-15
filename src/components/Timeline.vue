@@ -2,19 +2,19 @@
   <!-- TIMELINE SECTION -->
   <section id="timeline" class="timeline-section">
     <div class="section-title">
-      <h2>Trajetória de carreira</h2>
-      <p>Acompanhe a evolução da minha trajetória na área de tecnologia, desde meus estudos iniciais até minhas experiências profissionais mais recentes.</p>
+      <h2>{{ $t('timeline.title') }}</h2>
+      <p>{{ $t('timeline.description') }}</p>
     </div>
 
     <div class="timeline-items">
-      <!-- Yup Chat -->
+      <!-- Yup Chat - Software Junior Developer -->
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-date">2025 - Atual</div>
+        <div class="timeline-date">2025 - {{ $t('timeline.jobs.software_dev.title') ? 'Atual' : '' }}</div>
         <div class="timeline-content">
-          <h3>Software Junior Developer</h3>
-          <div class="company">Yup Chat</div>
-          <p>Atualmente trabalho na Yup Chat, onde estou aprimorando minhas habilidades em desenvolvimento Full-Stack. Colaboro com equipes multidisciplinares para criar soluções tecnológicas inovadoras e escaláveis.</p>
+          <h3>{{ $t('timeline.jobs.software_dev.title') }}</h3>
+          <div class="company">{{ $t('timeline.jobs.software_dev.company') }}</div>
+          <p>{{ $t('timeline.jobs.software_dev.description') }}</p>
           <div class="skills">
             <span class="skill-tag">Vue.js</span>
             <span class="skill-tag">Node.js</span>
@@ -30,14 +30,14 @@
         <div class="timeline-dot"></div>
         <div class="timeline-date">2024</div>
         <div class="timeline-content">
-          <h3>Suporte TI</h3>
-          <div class="company">Yup Chat</div>
-          <p>Atuei na área de suporte de TI, resolvendo problemas técnicos, atendendo às necessidades dos usuários e garantindo o funcionamento adequado dos sistemas. Esta experiência me proporcionou um entendimento mais profundo das necessidades dos usuários finais.</p>
+          <h3>{{ $t('timeline.jobs.support.title') }}</h3>
+          <div class="company">{{ $t('timeline.jobs.support.company') }}</div>
+          <p>{{ $t('timeline.jobs.support.description') }}</p>
           <div class="skills">
-            <span class="skill-tag">Suporte Técnico</span>
-            <span class="skill-tag">Resolução de Problemas</span>
-            <span class="skill-tag">Banco de Dados</span>
-            <span class="skill-tag">Atendimento ao Cliente</span>
+            <span class="skill-tag">{{ $t('skills.technical_support') }}</span>
+            <span class="skill-tag">{{ $t('skills.problem_solving') }}</span>
+            <span class="skill-tag">{{ $t('skills.database') }}</span>
+            <span class="skill-tag">{{ $t('skills.customer_service') }}</span>
           </div>
         </div>
       </div>
@@ -47,14 +47,14 @@
         <div class="timeline-dot"></div>
         <div class="timeline-date">2022 - 2024</div>
         <div class="timeline-content">
-          <h3>Análise e Desenvolvimento de Sistemas</h3>
-          <div class="company">Unisanta</div>
-          <p>Concluí minha formação superior em Análise e Desenvolvimento de Sistemas na Unisanta, onde adquiri conhecimentos sólidos em programação, banco de dados, análise de sistemas e metodologias de desenvolvimento de software.</p>
+          <h3>{{ $t('timeline.jobs.college.title') }}</h3>
+          <div class="company">{{ $t('timeline.jobs.college.company') }}</div>
+          <p>{{ $t('timeline.jobs.college.description') }}</p>
           <div class="skills">
-            <span class="skill-tag">Programação</span>
-            <span class="skill-tag">Banco de Dados</span>
-            <span class="skill-tag">Engenharia de Software</span>
-            <span class="skill-tag">Metodologias Ágeis</span>
+            <span class="skill-tag">{{ $t('skills.programming') }}</span>
+            <span class="skill-tag">{{ $t('skills.database') }}</span>
+            <span class="skill-tag">{{ $t('skills.software_engineering') }}</span>
+            <span class="skill-tag">{{ $t('skills.agile_methodologies') }}</span>
           </div>
         </div>
       </div>
@@ -64,15 +64,15 @@
         <div class="timeline-dot"></div>
         <div class="timeline-date">2021 - 2024</div>
         <div class="timeline-content">
-          <h3>Estagiário</h3>
-          <div class="company">Yup Chat</div>
-          <p>Iniciei minha jornada profissional na Yup Chat como estagiário, onde pude aplicar os conhecimentos adquiridos na faculdade e desenvolver minhas habilidades práticas em um ambiente empresarial real, participando de projetos e aprendendo com profissionais experientes.</p>
+          <h3>{{ $t('timeline.jobs.internship.title') }}</h3>
+          <div class="company">{{ $t('timeline.jobs.internship.company') }}</div>
+          <p>{{ $t('timeline.jobs.internship.description') }}</p>
           <div class="skills">
-            <span class="skill-tag">Desenvolvimento Web</span>
+<span class="skill-tag">{{ $t('skills.web_development') }}</span>
             <span class="skill-tag">Front-end</span>
             <span class="skill-tag">HTML/CSS</span>
             <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">Trabalho em Equipe</span>
+            <span class="skill-tag">{{ $t('skills.teamwork') }}</span>
           </div>
         </div>
       </div>
@@ -82,13 +82,13 @@
         <div class="timeline-dot"></div>
         <div class="timeline-date">2019 - 2021</div>
         <div class="timeline-content">
-          <h3>Técnico em Jogos Digitais</h3>
-          <div class="company">ETEC</div>
-          <p>Durante o ensino médio, cursei o técnico em Jogos Digitais na ETEC, onde tive meu primeiro contato com programação e desenvolvimento de software. Esta experiência foi fundamental para definir minha trajetória na área de tecnologia.</p>
+          <h3>{{ $t('timeline.jobs.technical_course.title') }}</h3>
+          <div class="company">{{ $t('timeline.jobs.technical_course.company') }}</div>
+          <p>{{ $t('timeline.jobs.technical_course.description') }}</p>
           <div class="skills">
-            <span class="skill-tag">Lógica de Programação</span>
+            <span class="skill-tag">{{ $t('skills.logic_programming') }}</span>
             <span class="skill-tag">Game Design</span>
-            <span class="skill-tag">Fundamentos de Desenvolvimento</span>
+            <span class="skill-tag">{{ $t('skills.development_fundamentals') }}</span>
           </div>
         </div>
       </div>

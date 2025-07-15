@@ -3,13 +3,8 @@
     <div class="container">
       <!-- Header com animação -->
       <div class="section-header" data-aos="fade-up">
-        <h2 class="section-title">
-          <span class="title-text">Meus <span class="highlight-wrapper">
-            <span class="highlight">Projetos</span>
-            <span class="highlight-accent"></span>
-          </span></span>
-        </h2>
-        <p class="section-subtitle">Trabalhos que demonstram minha evolução como desenvolvedor</p>
+        <h2 class="section-title" v-html="$t('projects.section_title')"></h2>
+        <p class="section-subtitle">{{ $t('projects.section_subtitle') }}</p>
       </div>
 
       <!-- Filtros -->
@@ -21,7 +16,7 @@
           :class="{ active: activeCategory === category.id }"
           class="filter-btn"
         >
-          {{ category.name }}
+          {{ $t(`projects.categories.${category.id}`) }}
         </button>
       </div>
 
@@ -37,11 +32,11 @@
           <div class="project-image-wrapper">
             <img :src="project.image" :alt="project.title" class="project-image" />
             <div class="project-hover-content">
-              <div class="project-tags">
-                <span v-for="tag in project.tags" :key="tag" class="project-tag">
+              <!-- <div class="project-tags">
+                <span v-for="tag in project.techs" :key="tag" class="project-tag">
                   {{ tag }}
                 </span>
-              </div>
+              </div> -->
               <h3 class="project-title">{{ project.title }}</h3>
               <p class="project-description">{{ project.description }}</p>
               <div class="project-links">
@@ -52,7 +47,7 @@
                   class="project-link demo"
                   aria-label="Ver demonstração"
                 >
-                  <i class="fas fa-external-link-alt"></i> Visitar
+                  <i class="fas fa-external-link-alt"></i> {{ this.$t('projects.visit_demo') }}
                 </a>
                 <a 
                   v-if="project.codeUrl" 
@@ -61,7 +56,7 @@
                   class="project-link code"
                   aria-label="Ver código fonte"
                 >
-                  <i class="fab fa-github"></i> Código
+                  <i class="fab fa-github"></i> {{ this.$t('projects.view_code') }}
                 </a>
               </div>
             </div>
@@ -73,6 +68,7 @@
           </div>
         </div>
       </div>
+
       <Pagination
         v-if="filteredProjects.length > itemsPerPage"
         :current-page="currentPage"
@@ -108,17 +104,17 @@ export default {
       currentPage: 1,
       itemsPerPage: 9,
       categories: [
-        { id: 'all', name: 'Todos' },
-        { id: 'web', name: 'Websites' },
-        { id: 'app', name: 'Aplicativos' },
-        { id: 'tool', name: 'Ferramentas' },
-        { id: 'game', name: 'Jogos' }
+        { id: 'all', name: 'all' },
+        { id: 'web', name: 'web' },
+        { id: 'app', name: 'app' },
+        { id: 'tool', name: 'tool' },
+        { id: 'game', name: 'game' }
       ],
       projects: [
         {
           id: 1,
-          title: 'Sweet Giftfy',
-          description: 'Sites personalizados para presentear alguém especial com fotos, música e mensagens.',
+          title: this.$t('projects.list.1.title'),
+          description: this.$t('projects.list.1.description'),
           image: imgSweetGiftfy,
           demoUrl: 'https://sweetgiftfy.com',
           techs: ['Vue.js', 'Supabase', 'CSS3'],
@@ -126,17 +122,17 @@ export default {
         },
         {
           id: 9,
-          title: 'Site instituicional - Dipemat',
-          description: 'Site instituicional para a empresa de material de contrução Dipemat.',
+          title: this.$t('projects.list.9.title'),
+          description: this.$t('projects.list.9.description'),
           image: imgDipemat,
           demoUrl: 'https://dipemat-website.vercel.app/',
-          techs: ['Vue js'],
+          techs: ['Vue.js'],
           category: 'web'
         },
         {
           id: 2,
-          title: 'Escola Árvore da Vida',
-          description: 'Website profissional para instituição de ensino com informações acadêmicas.',
+          title: this.$t('projects.list.2.title'),
+          description: this.$t('projects.list.2.description'),
           image: imgEscola,
           demoUrl: 'https://arvoredavidaperuibe.com.br',
           techs: ['Vue.js', 'JavaScript'],
@@ -144,8 +140,8 @@ export default {
         },
         {
           id: 3,
-          title: 'Previsão do Tempo',
-          description: 'Aplicativo que exibe dados meteorológicos em tempo real usando API da OpenWeather.',
+          title: this.$t('projects.list.3.title'),
+          description: this.$t('projects.list.3.description'),
           image: imgPrevisaoDoTempo,
           demoUrl: 'https://matheusmalena.github.io/AppPrevisaoDoTempo/',
           techs: ['JavaScript', 'API REST'],
@@ -153,8 +149,8 @@ export default {
         },
         {
           id: 4,
-          title: 'Cookin Up',
-          description: 'Plataforma para explorar receitas com base nos ingredientes disponíveis.',
+          title: this.$t('projects.list.4.title'),
+          description: this.$t('projects.list.4.description'),
           image: imgCookinUp,
           demoUrl: 'https://cookin-up-website.vercel.app/',
           techs: ['Vue.js', 'Node.js'],
@@ -162,8 +158,8 @@ export default {
         },
         {
           id: 8,
-          title: 'Jogo da memória - Casal',
-          description: 'Jogo da memória com o fotos e mensagens fofas para cada carta.',
+          title: this.$t('projects.list.8.title'),
+          description: this.$t('projects.list.8.description'),
           image: imgGameMemorie,
           demoUrl: 'https://matheusmalena.github.io/memorie-love-game/',
           techs: ['HTML5', 'CSS3', 'JavaScript'],
@@ -171,8 +167,8 @@ export default {
         },
         {
           id: 5,
-          title: 'Fokus Timer',
-          description: 'Sistema de temporizador Pomodoro para melhorar a produtividade.',
+          title: this.$t('projects.list.5.title'),
+          description: this.$t('projects.list.5.description'),
           image: imgFokus,
           demoUrl: 'https://matheusmalena.github.io/Fokus/',
           techs: ['JavaScript', 'CSS3'],
@@ -180,8 +176,8 @@ export default {
         },
         {
           id: 6,
-          title: 'Task List',
-          description: 'Aplicativo de gerenciamento de tarefas com CRUD completo.',
+          title: this.$t('projects.list.6.title'),
+          description: this.$t('projects.list.6.description'),
           image: imgTasklist,
           demoUrl: 'https://task-list-surf.vercel.app',
           techs: ['Vue.js', 'LocalStorage'],
@@ -189,8 +185,8 @@ export default {
         },
         {
           id: 7,
-          title: 'Adivinha Número',
-          description: 'Jogo de adivinhação com reconhecimento de voz.',
+          title: this.$t('projects.list.7.title'),
+          description: this.$t('projects.list.7.description'),
           image: imgAdivinha,
           demoUrl: 'https://jogo-numero-secreto-voz-three.vercel.app/',
           techs: ['JavaScript', 'Web Speech API'],
@@ -198,15 +194,15 @@ export default {
         },
         {
           id: 8,
-          title: 'Cafeteria Moderna',
-          description: 'Landing page para cafeteria com design elegante.',
+          title: this.$t('projects.list.8b.title'),
+          description: this.$t('projects.list.8b.description'),
           image: imgCafe,
           demoUrl: 'https://matheusmalena.github.io/landing-page_cafeteria/',
           techs: ['HTML5', 'CSS3'],
           category: 'web'
         }
       ]
-    }
+    };
   },
   computed: {
     filteredProjects() {

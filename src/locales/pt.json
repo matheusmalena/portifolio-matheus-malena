@@ -1,0 +1,167 @@
+{
+  "header": {
+    "home": "Home",
+    "services": "Serviços",
+    "about": "Sobre",
+    "skills": "Skills",
+    "projects": "Projetos",
+    "certificates": "Certificados",
+    "timeline": "Timeline",
+    "contact": "Contato",
+    "talk_to_me": "Fale comigo"
+  },
+  "home": {
+    "greeting": "Olá, eu sou",
+    "cta_button": "Vamos conversar",
+    "titles": {
+      "devFull": "Desenvolvedor Full Stack",
+      "systemAnalyst": "Analista de Sistemas",
+      "trafficManager": "Gestor de tráfego",
+      "surfer": "Surfista nas horas vagas"
+    }
+  },
+  "services": {
+    "subtitle": "Meu serviços",
+    "title": "O que <br /> presto",
+    "description": "Expertise e capacidade de criar estratégias personalizadas, que resultam em um aumento significativo e qualitativo da presença online.",
+    "button": "Faça um orçamento",
+    "web_projects_title": "Projetos web",
+    "web_projects_desc": "Design e desenvolvimento de projetos web: sites, landing pages, etc.",
+    "marketing_title": "Marketing digital",
+    "marketing_desc": "Planejamento e ações de marketing digital para aumentar a presença da sua marca.",
+    "branding_title": "Identidade visual",
+    "branding_desc": "Criação de identidade visual, manual de marca e material gráfico de apoio.",
+    "fullstack_title": "Desenvolverdor Full Stack",
+    "fullstack_desc": "Desenvolvimento de soluções web com tecnologias modernas e eficientes."
+  },
+  "about": {
+    "subtitle": "Sobre mim",
+    "title": "Prazer, sou Matheus",
+    "paragraph_1": "Tenho 20 anos e sou formado em Análise e Desenvolvimento de Sistemas pela Unisanta, com ensino médio técnico em Jogos Digitais. Atualmente trabalho como desenvolvedor Full-Stack na",
+    "paragraph_2": "Sou apaixonado por aprender e busco me atualizar constantemente com cursos na Alura e outras plataformas.",
+    "trajectory_button": "Conheça minha trajetória"
+  },
+  "contact": {
+    "title": "Vamos Conversar?",
+    "subtitle": "Estou disponível para colaborações e novos projetos",
+    "whatsapp": "Fale comigo pelo WhatsApp",
+    "email_label": "Email",
+    "email_value": "matheusmalena28@gmail.com",
+    "location_label": "Localização",
+    "location_value": "Peruíbe - SP, Brasil",
+    "social_title": "Minhas Redes",
+    "github": "GitHub",
+    "linkedin": "LinkedIn",
+    "instagram": "Instagram"
+  },
+  "footer": {
+    "text": "Todos os direitos reservados."
+  },
+  "projects": {
+    "section_title": "Meus Projetos",
+    "section_subtitle": "Trabalhos que demonstram minha evolução como desenvolvedor",
+    "visit_demo": "Visitar",
+    "view_code": "Código",
+    "categories": {
+      "all": "Todos",
+      "web": "Websites",
+      "app": "Aplicativos",
+      "tool": "Ferramentas",
+      "game": "Jogos"
+    },
+    "list": {
+      "1": {
+        "title": "Sweet Giftfy",
+        "description": "Sites personalizados para presentear alguém especial com fotos, música e mensagens."
+      },
+      "9": {
+        "title": "Site instituicional - Dipemat",
+        "description": "Site instituicional para a empresa de material de contrução Dipemat."
+      },
+      "2": {
+        "title": "Escola Árvore da Vida",
+        "description": "Website profissional para instituição de ensino com informações acadêmicas."
+      },
+      "3": {
+        "title": "Previsão do Tempo",
+        "description": "Aplicativo que exibe dados meteorológicos em tempo real usando API da OpenWeather."
+      },
+      "4": {
+        "title": "Cookin Up",
+        "description": "Plataforma para explorar receitas com base nos ingredientes disponíveis."
+      },
+      "8": {
+        "title": "Jogo da memória - Casal",
+        "description": "Jogo da memória com o fotos e mensagens fofas para cada carta."
+      },
+      "5": {
+        "title": "Fokus Timer",
+        "description": "Sistema de temporizador Pomodoro para melhorar a produtividade."
+      },
+      "6": {
+        "title": "Task List",
+        "description": "Aplicativo de gerenciamento de tarefas com CRUD completo."
+      },
+      "7": {
+        "title": "Adivinha Número",
+        "description": "Jogo de adivinhação com reconhecimento de voz."
+      },
+      "8b": {
+        "title": "Cafeteria Moderna",
+        "description": "Landing page para cafeteria com design elegante."
+      }
+    }
+  },
+  "certificates": {
+    "title": "Minhas",
+    "highlight": "Conquistas",
+    "certificates": "Certificados"
+  },
+  "timeline": {
+    "title": "Trajetória de carreira",
+    "description": "Acompanhe a evolução da minha trajetória na área de tecnologia, desde meus estudos iniciais até minhas experiências profissionais mais recentes.",
+    "jobs": {
+      "software_dev": {
+        "title": "Software Junior Developer",
+        "company": "Yup Chat",
+        "description": "Atualmente trabalho na Yup Chat, onde estou aprimorando minhas habilidades em desenvolvimento Full-Stack. Colaboro com equipes multidisciplinares para criar soluções tecnológicas inovadoras e escaláveis."
+      },
+      "support": {
+        "title": "Suporte TI",
+        "company": "Yup Chat",
+        "description": "Atuei na área de suporte de TI, resolvendo problemas técnicos, atendendo às necessidades dos usuários e garantindo o funcionamento adequado dos sistemas. Esta experiência me proporcionou um entendimento mais profundo das necessidades dos usuários finais."
+      },
+      "college": {
+        "title": "Análise e Desenvolvimento de Sistemas",
+        "company": "Unisanta",
+        "description": "Concluí minha formação superior em Análise e Desenvolvimento de Sistemas na Unisanta, onde adquiri conhecimentos sólidos em programação, banco de dados, análise de sistemas e metodologias de desenvolvimento de software."
+      },
+      "internship": {
+        "title": "Estagiário",
+        "company": "Yup Chat",
+        "description": "Iniciei minha jornada profissional na Yup Chat como estagiário, onde pude aplicar os conhecimentos adquiridos na faculdade e desenvolver minhas habilidades práticas em um ambiente empresarial real, participando de projetos e aprendendo com profissionais experientes."
+      },
+      "technical_course": {
+        "title": "Técnico em Jogos Digitais",
+        "company": "ETEC",
+        "description": "Durante o ensino médio, cursei o técnico em Jogos Digitais na ETEC, onde tive meu primeiro contato com programação e desenvolvimento de software. Esta experiência foi fundamental para definir minha trajetória na área de tecnologia."
+      }
+    }
+  },
+  "skills": {
+    "title": "Minhas Habilidades",
+    "subtitle": "Tecnologias que utilizo no meu dia a dia",
+    "description": "Desenvolvedor Full-Stack com formação em Análise e Desenvolvimento de Sistemas. Especializado em criar soluções completas, desde interfaces modernas até APIs.",
+    "programming": "Programação",
+    "database": "Banco de Dados",
+    "software_engineering": "Engenharia de Software",
+    "agile_methodologies": "Metodologias Ágeis",
+    "technical_support": "Suporte Técnico",
+    "problem_solving": "Resolução de Problemas",
+    "customer_service": "Atendimento ao Cliente",
+    "web_development": "Desenvolvimento Web",
+    "teamwork": "Trabalho em Equipe",
+    "logic_programming": "Lógica de Programação",
+    "development_fundamentals": "Fundamentos de Desenvolvimento"
+  }
+}

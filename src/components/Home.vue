@@ -11,7 +11,7 @@
         <div class="home-content">
           <!-- Textos principais -->
           <div class="text-content">
-            <div class="greeting-text">Olá, eu sou</div>
+            <div class="greeting-text">{{ $t('home.greeting') }}</div>
             <h1 class="name-text">Matheus Malena</h1>
             <div class="profession-text">
               <span ref="typingRef" class="profession-typing"></span>
@@ -20,14 +20,14 @@
             
             <!-- Botão de ação principal -->
             <a href="#contact" class="cta-button">
-              Vamos conversar
+              {{ $t('home.cta_button') }}
               <i class="fas fa-arrow-right"></i>
             </a>
           </div>
 
           <div class="profile-container">
             <div class="profile-image-wrapper">
-              <img src="../assets/img/perfil.jpeg" alt="Matheus Malena" class="profile-image">
+              <img src="../assets/img/perfil.jpeg" alt="Matheus Malena" class="profile-image" />
               <div class="profile-glow"></div>
             </div>
           </div>
@@ -83,19 +83,7 @@ export default {
     Skills
   },
   mounted() {
-    // Configuração do Typed.js
-    const options = {
-      strings: [
-        'Desenvolvedor Full Stack',
-        'Analista de Sistemas',
-        'Gestor de tráfego',
-        'Surfista nas horas vagas',
-      ],
-      typeSpeed: 100,
-      backSpeed: 70,
-      loop: true,
-    };
-    this.typed = new Typed(this.$refs.typingRef, options);
+    this.initTyped();
 
     // Carrega partículas.js se estiver disponível
     if (typeof window !== 'undefined' && window.particlesJS) {
@@ -108,7 +96,30 @@ export default {
       document.head.appendChild(script);
     }
   },
+  watch: {
+    // Sempre que o idioma mudar, reinicia o Typed.js com as novas traduções
+    '$i18n.locale'() {
+      if (this.typed) {
+        this.typed.destroy();
+      }
+      this.initTyped();
+    }
+  },
   methods: {
+    initTyped() {
+      const options = {
+        strings: [
+          this.$t('home.titles.devFull'),
+          this.$t('home.titles.systemAnalyst'),
+          this.$t('home.titles.trafficManager'),
+          this.$t('home.titles.surfer'),
+        ],
+        typeSpeed: 100,
+        backSpeed: 70,
+        loop: true,
+      };
+      this.typed = new Typed(this.$refs.typingRef, options);
+    },
     initParticles() {
       particlesJS('particles-js', {
         "particles": {
@@ -370,6 +381,10 @@ export default {
   align-items: center;
 }
 
+.profession-text::-webkit-scrollbar {
+  display: none; /* Chrome/Safari */
+}
+
 .profession-typing {
   background: var(--gradient-blue);
   -webkit-background-clip: text;
@@ -558,6 +573,10 @@ export default {
   
   .max-width {
     padding: 0 1.5rem;
+  }
+
+  .typed-cursor {
+    display: none !important;
   }
 }
 

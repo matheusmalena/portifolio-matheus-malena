@@ -1,38 +1,37 @@
 <template>
-  <section id="about" class="about-section" aria-label="Seção sobre Matheus Malena e sua trajetória na programação.">
+  <section id="about" class="about-section" aria-label="Section about Matheus Malena and his programming journey.">
     <div class="about-container">
-      <!-- LADO ESQUERDO - IMAGEM -->
+      <!-- LEFT SIDE - IMAGE -->
       <div class="about-image" ref="tiltContainer" @mousemove="handleTilt" @mouseleave="resetTilt">
         <div class="image-wrapper" ref="imageWrapper">
-          <img src="../assets/img/perfil.jpeg" alt="Foto de Matheus Malena" class="profile-image" />
+          <img src="../assets/img/perfil.jpeg" alt="Photo of Matheus Malena" class="profile-image" />
           <div class="image-glow"></div>
         </div>
       </div>
 
-      <!-- LADO DIREITO - TEXTO -->
+      <!-- RIGHT SIDE - TEXT -->
       <div class="about-text">
-        <small class="about-subtitle">Sobre mim</small>
-        <h2 class="about-title">Prazer, sou Matheus <span class="highlight">Malena</span></h2>
+        <small class="about-subtitle">{{ $t('about.subtitle') }}</small>
+         <h2 class="about-title">{{ $t('about.title') }} <span class="highlight">Malena</span></h2>
 
         <p class="about-paragraph">
-          Tenho 20 anos e sou formado em Análise e Desenvolvimento de Sistemas pela Unisanta, com ensino médio técnico em Jogos Digitais.
-          Atualmente trabalho como desenvolvedor Full-Stack na
+          {{ $t('about.paragraph_1') }}
           <a href="https://yupchat.com" target="_blank" class="link-purple">Yup Chat</a>.
         </p>
 
         <p class="about-paragraph">
-          Sou apaixonado por aprender e busco me atualizar constantemente com cursos na <strong>Alura</strong> e outras plataformas.
+          {{ $t('about.paragraph_2') }}
         </p>
 
         <a href="#timeline" class="about-link btn-trajetoria">
-          Conheça minha trajetória
+          {{ $t('about.trajectory_button') }}
           <span class="material-symbols-outlined">conversion_path</span>
         </a>
 
         <div class="social-icons">
-          <a href="https://github.com/matheusmalena" target="_blank"><i class="fab fa-github"></i></a>
-          <a href="https://www.linkedin.com/in/matheusmalena" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-          <a href="https://www.instagram.com/dev_malena" target="_blank"><i class="fab fa-instagram"></i></a>
+          <a href="https://github.com/matheusmalena" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+          <a href="https://www.linkedin.com/in/matheusmalena" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+          <a href="https://www.instagram.com/dev_malena" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
         </div>
       </div>
     </div>

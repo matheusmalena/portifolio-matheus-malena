@@ -4,8 +4,8 @@
       <!-- Header com animação -->
       <div class="section-header" data-aos="fade-up">
         <h2 class="section-title">
-          <span class="title-text">Minhas <span class="highlight-wrapper">
-            <span class="highlight">Conquistas</span>
+          <span class="title-text">{{ $t('certificates.title') }} <span class="highlight-wrapper">
+            <span class="highlight">{{ $t('certificates.highlight') }}</span>
             <span class="highlight-accent"></span>
           </span></span>
         </h2>

@@ -1,6 +1,6 @@
 <template>
   <footer class="footer">
-    <p>&copy; 2025 <span>Matheus Malena</span> — Todos os direitos reservados.</p>
+    <p>&copy; 2025 <span>Matheus Malena</span> - {{ $t('footer.text')}}</p>
   </footer>
 </template>
 

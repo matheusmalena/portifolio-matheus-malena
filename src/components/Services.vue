@@ -2,14 +2,10 @@
   <section id="services" class="services-section">
     <div class="services-wrapper">
       <div class="services-info">
-        <small class="services-subtitle">Meu serviços</small>
-        <h2 class="services-title">
-          O que <br /> faço
-        </h2>
-        <p class="services-description">
-          Expertise e capacidade de criar estratégias personalizadas, que resultam em um aumento significativo e qualitativo da presença online.
-        </p>
-        <button @click="redirectToWhatsapp" class="services-button">Faça um orçamento</button>
+        <small class="services-subtitle">{{ $t('services.subtitle') }}</small>
+        <h2 class="services-title" v-html="$t('services.title').replace('\n', '<br />')"></h2>
+        <p class="services-description">{{ $t('services.description') }}</p>
+        <button @click="redirectToWhatsapp" class="services-button">{{ $t('services.button') }}</button>
       </div>
 
       <div class="services-cards">
@@ -17,42 +13,33 @@
           <div class="service-icon">
             <i class="fas fa-laptop-code"></i>
           </div>
-          <h3 class="service-card-title">Projetos web</h3>
-          <p class="service-card-desc">
-            Design e desenvolvimento de projetos web: sites, landing pages, etc.
-          </p>
+          <h3 class="service-card-title">{{ $t('services.web_projects_title') }}</h3>
+          <p class="service-card-desc">{{ $t('services.web_projects_desc') }}</p>
         </div>
 
         <div class="service-card">
           <div class="service-icon">
             <i class="fas fa-bullseye"></i>
           </div>
-          <h3 class="service-card-title">Marketing digital</h3>
-          <p class="service-card-desc">
-            Planejamento e ações de marketing digital para aumentar a presença da sua marca.
-          </p>
+          <h3 class="service-card-title">{{ $t('services.marketing_title') }}</h3>
+          <p class="service-card-desc">{{ $t('services.marketing_desc') }}</p>
         </div>
 
         <div class="service-card">
           <div class="service-icon">
             <i class="fas fa-shapes"></i>
           </div>
-          <h3 class="service-card-title">Identidade visual</h3>
-          <p class="service-card-desc">
-            Criação de identidade visual, manual de marca e material gráfico de apoio.
-          </p>
+          <h3 class="service-card-title">{{ $t('services.branding_title') }}</h3>
+          <p class="service-card-desc">{{ $t('services.branding_desc') }}</p>
         </div>
 
         <div class="service-card">
-  <div class="service-icon">
-    <i class="fas fa-laptop-code"></i>
-  </div>
-  <h3 class="service-card-title">Desenvolverdor Full Stack</h3>
-  <p class="service-card-desc">
-    Desenvolvimento de soluções web com tecnologias modernas e eficientes.
-  </p>
-</div>
-
+          <div class="service-icon">
+            <i class="fas fa-laptop-code"></i>
+          </div>
+          <h3 class="service-card-title">{{ $t('services.fullstack_title') }}</h3>
+          <p class="service-card-desc">{{ $t('services.fullstack_desc') }}</p>
+        </div>
       </div>
     </div>
   </section>

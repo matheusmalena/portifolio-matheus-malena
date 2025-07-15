@@ -32,18 +32,6 @@ body {
 }
 
 /* -------- HEADER -------- */
-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 60px;
-  background-color: var(--color-black);
-  position: fixed;
-  width: 100%;
-  top: 0;
-  z-index: 999;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.5);
-}
 
 header .logo a{
   font-size: 1.8rem;
@@ -214,10 +202,6 @@ footer p {
 
 /* -------- RESPONSIVO -------- */
 @media (max-width: 768px) {
-  header {
-    padding: 20px 30px;
-    flex-direction: column;
-  }
 
   header nav {
     margin-top: 10px;
