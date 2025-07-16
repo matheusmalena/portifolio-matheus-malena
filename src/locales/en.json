@@ -29,8 +29,8 @@
     "web_projects_desc": "Design and development of web projects: websites, landing pages, etc.",
     "marketing_title": "Digital marketing",
     "marketing_desc": "Planning and actions in digital marketing to increase your brand presence.",
-    "branding_title": "Visual identity",
-    "branding_desc": "Creation of visual identity, brand manuals, and support graphic materials.",
+    "branding_title": "Paid Traffic",
+    "branding_desc": "Management of sponsored campaigns to attract clients, increase conversions, and boost results.",
     "fullstack_title": "Full Stack Developer",
     "fullstack_desc": "Development of web solutions with modern and efficient technologies."
   },
@@ -115,16 +115,19 @@
   "certificates": {
     "title": "My",
     "highlight": "Conquests",
-    "certificates": "Certificates"
+    "certificates": "Certificates",
+    "subtitle": "Certificates that reflect my dedication to continuous learning",
+     "view_certificate": "View Certificate"
   },
   "timeline": {
     "title": "Career",
     "description": "Follow the evolution of my career in technology, from my initial studies to my most recent professional experiences.",
+    "current ": "Current",
     "jobs": {
       "software_dev": {
         "title": "Junior Software Developer",
         "company": "Yup Chat",
-        "description": "Currently working at Yup Chat, where I am enhancing my Full-Stack development skills. I collaborate with multidisciplinary teams to create innovative and scalable technological solutions."
+        "description": "Currently I work as a Full-Stack Developer at Yup Chat, contributing to the development of new features, bug fixes, code refactoring, and performance improvements. I collaborate with a multidisciplinary team focused on scalable and innovative solutions."
       },
       "support": {
         "title": "IT Support",

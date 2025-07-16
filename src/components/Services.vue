@@ -27,7 +27,7 @@
 
         <div class="service-card">
           <div class="service-icon">
-            <i class="fas fa-shapes"></i>
+           <i class="fa-solid fa-square-poll-vertical"></i>
           </div>
           <h3 class="service-card-title">{{ $t('services.branding_title') }}</h3>
           <p class="service-card-desc">{{ $t('services.branding_desc') }}</p>

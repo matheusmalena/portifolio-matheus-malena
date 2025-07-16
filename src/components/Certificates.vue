@@ -1,15 +1,23 @@
 <template>
-  <section class="certificates-section" id="certificates" aria-label="Certificados e conquistas acadêmicas">
+  <section
+    class="certificates-section"
+    id="certificates"
+    aria-label="Certificados e conquistas acadêmicas"
+  >
     <div class="container">
       <!-- Header com animação -->
       <div class="section-header" data-aos="fade-up">
         <h2 class="section-title">
-          <span class="title-text">{{ $t('certificates.title') }} <span class="highlight-wrapper">
-            <span class="highlight">{{ $t('certificates.highlight') }}</span>
-            <span class="highlight-accent"></span>
-          </span></span>
+          <span class="title-text"
+            >{{ $t("certificates.title") }}
+            <span class="highlight-wrapper">
+              <span class="highlight">{{ $t("certificates.highlight") }}</span>
+              <span class="highlight-accent"></span> </span
+          ></span>
         </h2>
-        <p class="section-subtitle">Certificados que comprovam minha jornada de aprendizado contínuo</p>
+        <p class="section-subtitle">
+          {{ $t('certificates.subtitle') }}
+        </p>
       </div>
 
       <!-- Carrossel de certificados -->
@@ -21,39 +29,39 @@
           :pagination="{ clickable: true, dynamicBullets: true }"
           :navigation="{
             nextEl: '.swiper-button-next',
-            prevEl: '.swiper-button-prev'
+            prevEl: '.swiper-button-prev',
           }"
           :autoplay="{
             delay: 5000,
-            disableOnInteraction: false
+            disableOnInteraction: false,
           }"
           :breakpoints="{
             0: { slidesPerView: 1 },
             640: { slidesPerView: 2 },
-            1024: { slidesPerView: 2 }
+            1024: { slidesPerView: 2 },
           }"
           class="certificates-carousel"
         >
           <SwiperSlide v-for="(certificate, index) in certificates" :key="index">
             <div class="certificate-card">
-              <a 
-                :href="certificate.link" 
-                target="_blank" 
+              <a
+                :href="certificate.link"
+                target="_blank"
                 rel="noopener noreferrer"
                 class="certificate-link"
                 :aria-label="'Ver certificado de ' + certificate.alt"
               >
-                <img 
-                  :src="certificate.image" 
-                  :alt="certificate.alt" 
-                  class="certificate-image" 
+                <img
+                  :src="certificate.image"
+                  :alt="certificate.alt"
+                  class="certificate-image"
                   loading="lazy"
                 />
                 <div class="certificate-overlay">
                   <div class="certificate-info">
                     <h3 class="certificate-title">{{ certificate.alt }}</h3>
                     <div class="certificate-cta">
-                      Ver Certificado
+                     {{ $t('certificates.view_certificate') }}
                       <i class="fas fa-external-link-alt"></i>
                     </div>
                   </div>
@@ -61,7 +69,7 @@
               </a>
             </div>
           </SwiperSlide>
-          
+
           <!-- Navegação customizada -->
           <div class="swiper-button-prev"></div>
           <div class="swiper-button-next"></div>
@@ -69,117 +77,126 @@
       </div>
 
       <!-- Contador de certificados -->
-      <div class="certificates-counter" data-aos="fade-up" data-aos-delay="200">
+      <!-- <div class="certificates-counter" data-aos="fade-up" data-aos-delay="200">
         <span class="current-slide">1</span>
         <span class="divider">/</span>
         <span class="total-slides">{{ certificates.length }}</span>
-      </div>
+      </div> -->
     </div>
   </section>
 </template>
 
 <script>
-import { Swiper, SwiperSlide } from 'swiper/vue';
-import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-import 'swiper/css';
-import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import 'swiper/css/autoplay';
+import { Swiper, SwiperSlide } from "swiper/vue";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/autoplay";
 
 // Importações das imagens
-import certificateFacul from '../assets/img/facul.png';
-import certificateVue from '../assets/img/vue.png';
-import certificateJs from '../assets/img/certificado-js.png';
-import certificateHtml from '../assets/img/certificado-html.png';
-import certificateGit from '../assets/img/certificado-git.png';
-import certificateLinux from '../assets/img/certificado-linux.png';
-import certificateBootstrap from '../assets/img/certificado-bootstrap.png';
-import certificatePc from '../assets/img/certificado-pc-funcionavel.png';
-import certificateDns from '../assets/img/certificado-dns.png';
-import certificateJogo from '../assets/img/certificado-jogo.png';
+import certificateFacul from "../assets/img/facul.png";
+import certificateVue from "../assets/img/vue.png";
+import certificateJs from "../assets/img/certificado-js.png";
+import certificateHtml from "../assets/img/certificado-html.png";
+import certificateGit from "../assets/img/certificado-git.png";
+import certificateLinux from "../assets/img/certificado-linux.png";
+import certificateBootstrap from "../assets/img/certificado-bootstrap.png";
+import certificatePc from "../assets/img/certificado-pc-funcionavel.png";
+import certificateDns from "../assets/img/certificado-dns.png";
+import certificateJogo from "../assets/img/certificado-jogo.png";
 
 export default {
-  name: 'Certificates',
+  name: "Certificates",
   components: { Swiper, SwiperSlide },
   data() {
     return {
       modules: [Navigation, Pagination, Autoplay],
       certificates: [
-        { 
-          image: certificateFacul, 
-          link: '#', 
-          alt: 'Formação em Análise e Desenvolvimento de Sistemas',
-          institution: 'Unisanta'
+        {
+          image: certificateFacul,
+          link: "#",
+          alt: "Formação em Análise e Desenvolvimento de Sistemas",
+          institution: "Unisanta",
         },
-        { 
-          image: certificateVue, 
-          link: 'https://cursos.alura.com.br/degree/certificate/d69b699c-c9ed-4ec6-86d3-444713833708', 
-          alt: 'Formação Vue.js',
-          institution: 'Alura'
+        {
+          image: certificateVue,
+          link:
+            "https://cursos.alura.com.br/degree/certificate/d69b699c-c9ed-4ec6-86d3-444713833708",
+          alt: "Formação Vue.js",
+          institution: "Alura",
         },
-        { 
-          image: certificateJs, 
-          link: 'https://cursos.alura.com.br/degree/certificate/f36bf34c-fd7e-4326-9d59-45b03c4ff385', 
-          alt: 'Formação JavaScript',
-          institution: 'Alura'
+        {
+          image: certificateJs,
+          link:
+            "https://cursos.alura.com.br/degree/certificate/f36bf34c-fd7e-4326-9d59-45b03c4ff385",
+          alt: "Formação JavaScript",
+          institution: "Alura",
         },
-        { 
-          image: certificateHtml, 
-          link: 'https://cursos.alura.com.br/degree/certificate/1244f4a2-7b6b-4cfa-a0e9-7a07bed262bb', 
-          alt: 'Formação HTML e CSS',
-          institution: 'Alura'
+        {
+          image: certificateHtml,
+          link:
+            "https://cursos.alura.com.br/degree/certificate/1244f4a2-7b6b-4cfa-a0e9-7a07bed262bb",
+          alt: "Formação HTML e CSS",
+          institution: "Alura",
         },
-        { 
-          image: certificateGit, 
-          link: 'https://cursos.alura.com.br/certificate/e77a674a-4527-4715-95a4-71b145fce611', 
-          alt: 'Git e GitHub',
-          institution: 'Alura'
+        {
+          image: certificateGit,
+          link:
+            "https://cursos.alura.com.br/certificate/e77a674a-4527-4715-95a4-71b145fce611",
+          alt: "Git e GitHub",
+          institution: "Alura",
         },
-        { 
-          image: certificateLinux, 
-          link: 'https://cursos.alura.com.br/degree/certificate/6f36049a-25b7-4b6a-ab98-42e3324faa3a', 
-          alt: 'Linux',
-          institution: 'Alura'
+        {
+          image: certificateLinux,
+          link:
+            "https://cursos.alura.com.br/degree/certificate/6f36049a-25b7-4b6a-ab98-42e3324faa3a",
+          alt: "Linux",
+          institution: "Alura",
         },
-        { 
-          image: certificateBootstrap, 
-          link: 'https://cursos.alura.com.br/degree/certificate/4a40261c-7c41-476f-8397-b67c1b830da0', 
-          alt: 'Bootstrap',
-          institution: 'Alura'
+        {
+          image: certificateBootstrap,
+          link:
+            "https://cursos.alura.com.br/degree/certificate/4a40261c-7c41-476f-8397-b67c1b830da0",
+          alt: "Bootstrap",
+          institution: "Alura",
         },
-        { 
-          image: certificatePc, 
-          link: 'https://cursos.alura.com.br/certificate/matheus-tew-one/arquitetura-computadores-funcionamento-programa', 
-          alt: 'Arquitetura de Computadores',
-          institution: 'Alura'
+        {
+          image: certificatePc,
+          link:
+            "https://cursos.alura.com.br/certificate/matheus-tew-one/arquitetura-computadores-funcionamento-programa",
+          alt: "Arquitetura de Computadores",
+          institution: "Alura",
         },
-        { 
-          image: certificateDns, 
-          link: 'https://cursos.alura.com.br/certificate/df42bfc0-c7d5-4cf4-b7a5-7e768eb1c281', 
-          alt: 'DNS',
-          institution: 'Alura'
+        {
+          image: certificateDns,
+          link:
+            "https://cursos.alura.com.br/certificate/df42bfc0-c7d5-4cf4-b7a5-7e768eb1c281",
+          alt: "DNS",
+          institution: "Alura",
         },
-        { 
-          image: certificateJogo, 
-          link: 'https://cursos.alura.com.br/certificate/matheus-tew-one/logica-programacao-javascript-html', 
-          alt: 'Lógica de Programação',
-          institution: 'Alura'
+        {
+          image: certificateJogo,
+          link:
+            "https://cursos.alura.com.br/certificate/matheus-tew-one/logica-programacao-javascript-html",
+          alt: "Lógica de Programação",
+          institution: "Alura",
         },
-      ]
+      ],
     };
   },
   mounted() {
     // Atualiza o contador de slides
-    const swiper = document.querySelector('.certificates-carousel').swiper;
-    const currentSlide = document.querySelector('.current-slide');
-    const totalSlides = document.querySelector('.total-slides');
-    
-    totalSlides.textContent = this.certificates.length;
-    
-    swiper.on('slideChange', () => {
-      currentSlide.textContent = swiper.realIndex + 1;
-    });
-  }
+    const swiper = document.querySelector(".certificates-carousel").swiper;
+    const currentSlide = document.querySelector(".current-slide");
+    const totalSlides = document.querySelector(".total-slides");
+
+    // totalSlides.textContent = this.certificates.length;
+
+    // swiper.on("slideChange", () => {
+    //   currentSlide.textContent = swiper.realIndex + 1;
+    // });
+  },
 };
 </script>
 
@@ -228,7 +245,7 @@ export default {
 }
 
 .highlight {
-background: var(--gradient-dark-blue);
+  background: var(--gradient-dark-blue);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -250,7 +267,7 @@ background: var(--gradient-dark-blue);
 
 .section-subtitle {
   font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(24, 24, 24, 0.7);
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
@@ -289,7 +306,12 @@ background: var(--gradient-dark-blue);
   bottom: 0;
   left: 0;
   right: 0;
-  background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 70%, transparent 100%);
+  background: linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.9) 0%,
+    rgba(0, 0, 0, 0.5) 70%,
+    transparent 100%
+  );
   padding: 1.5rem;
   transform: translateY(100%);
   transition: transform 0.4s ease;
@@ -369,32 +391,13 @@ background: var(--gradient-dark-blue);
   border-radius: 10px;
 }
 
-/* Contador de slides */
-.certificates-counter {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  margin-top: 2rem;
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.8);
-}
-
-.current-slide {
-  color: var(--accent-color);
-  font-weight: 600;
-}
-
 .divider {
   opacity: 0.5;
 }
 
 /* Responsividade */
 @media (max-width: 1024px) {
-  .certificates-carousel-wrapper {
-    padding: 0 2rem;
-  }
-  
+
   .certificate-image {
     height: 280px;
   }
@@ -404,19 +407,19 @@ background: var(--gradient-dark-blue);
   .section-title {
     font-size: 2.2rem;
   }
-  
+
   .section-subtitle {
     font-size: 1rem;
   }
-  
+
   .certificates-carousel-wrapper {
-    padding: 0 1rem;
+    padding: 0 0rem;
   }
-  
+
   .certificate-overlay {
     padding: 1rem;
   }
-  
+
   .certificate-title {
     font-size: 1rem;
   }
@@ -426,15 +429,16 @@ background: var(--gradient-dark-blue);
   .certificates-section {
     padding: 4rem 0;
   }
-  
+
   .section-title {
     font-size: 1.8rem;
   }
-  
+
   .certificate-image {
-    height: 220px;
+    height: auto;
+    width: 100%;
   }
-  
+
   .swiper-button-prev,
   .swiper-button-next {
     width: 30px;

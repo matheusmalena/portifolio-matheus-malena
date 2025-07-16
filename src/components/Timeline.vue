@@ -2,25 +2,31 @@
   <!-- TIMELINE SECTION -->
   <section id="timeline" class="timeline-section">
     <div class="section-title">
-      <h2>{{ $t('timeline.title') }}</h2>
-      <p>{{ $t('timeline.description') }}</p>
+      <h2>{{ $t("timeline.title") }}</h2>
+      <p>{{ $t("timeline.description") }}</p>
     </div>
 
     <div class="timeline-items">
       <!-- Yup Chat - Software Junior Developer -->
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-date">2025 - {{ $t('timeline.jobs.software_dev.title') ? 'Atual' : '' }}</div>
+        <div class="timeline-date">
+          2025 -
+          {{ $t("timeline.jobs.software_dev.title") ? "Atual" : $t("timeline.current") }}
+        </div>
         <div class="timeline-content">
-          <h3>{{ $t('timeline.jobs.software_dev.title') }}</h3>
-          <div class="company">{{ $t('timeline.jobs.software_dev.company') }}</div>
-          <p>{{ $t('timeline.jobs.software_dev.description') }}</p>
+          <h3>{{ $t("timeline.jobs.software_dev.title") }}</h3>
+          <div class="company">{{ $t("timeline.jobs.software_dev.company") }}</div>
+          <p>{{ $t("timeline.jobs.software_dev.description") }}</p>
           <div class="skills">
             <span class="skill-tag">Vue.js</span>
             <span class="skill-tag">Node.js</span>
             <span class="skill-tag">JavaScript</span>
             <span class="skill-tag">SQL</span>
             <span class="skill-tag">PHP</span>
+            <span class="skill-tag">Scrum</span>
+            <span class="skill-tag">Kanban</span>
+            <span class="skill-tag">{{ $t("skills.agile_methodologies") }}</span>
           </div>
         </div>
       </div>
@@ -30,14 +36,14 @@
         <div class="timeline-dot"></div>
         <div class="timeline-date">2024</div>
         <div class="timeline-content">
-          <h3>{{ $t('timeline.jobs.support.title') }}</h3>
-          <div class="company">{{ $t('timeline.jobs.support.company') }}</div>
-          <p>{{ $t('timeline.jobs.support.description') }}</p>
+          <h3>{{ $t("timeline.jobs.support.title") }}</h3>
+          <div class="company">{{ $t("timeline.jobs.support.company") }}</div>
+          <p>{{ $t("timeline.jobs.support.description") }}</p>
           <div class="skills">
-            <span class="skill-tag">{{ $t('skills.technical_support') }}</span>
-            <span class="skill-tag">{{ $t('skills.problem_solving') }}</span>
-            <span class="skill-tag">{{ $t('skills.database') }}</span>
-            <span class="skill-tag">{{ $t('skills.customer_service') }}</span>
+            <span class="skill-tag">{{ $t("skills.technical_support") }}</span>
+            <span class="skill-tag">{{ $t("skills.problem_solving") }}</span>
+            <span class="skill-tag">{{ $t("skills.database") }}</span>
+            <span class="skill-tag">{{ $t("skills.customer_service") }}</span>
           </div>
         </div>
       </div>
@@ -47,14 +53,14 @@
         <div class="timeline-dot"></div>
         <div class="timeline-date">2022 - 2024</div>
         <div class="timeline-content">
-          <h3>{{ $t('timeline.jobs.college.title') }}</h3>
-          <div class="company">{{ $t('timeline.jobs.college.company') }}</div>
-          <p>{{ $t('timeline.jobs.college.description') }}</p>
+          <h3>{{ $t("timeline.jobs.college.title") }}</h3>
+          <div class="company">{{ $t("timeline.jobs.college.company") }}</div>
+          <p>{{ $t("timeline.jobs.college.description") }}</p>
           <div class="skills">
-            <span class="skill-tag">{{ $t('skills.programming') }}</span>
-            <span class="skill-tag">{{ $t('skills.database') }}</span>
-            <span class="skill-tag">{{ $t('skills.software_engineering') }}</span>
-            <span class="skill-tag">{{ $t('skills.agile_methodologies') }}</span>
+            <span class="skill-tag">{{ $t("skills.programming") }}</span>
+            <span class="skill-tag">{{ $t("skills.database") }}</span>
+            <span class="skill-tag">{{ $t("skills.software_engineering") }}</span>
+            <span class="skill-tag">{{ $t("skills.agile_methodologies") }}</span>
           </div>
         </div>
       </div>
@@ -62,17 +68,17 @@
       <!-- Yup Chat - Estagiário -->
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-date">2021 - 2024</div>
+        <div class="timeline-date">2021 - 2023</div>
         <div class="timeline-content">
-          <h3>{{ $t('timeline.jobs.internship.title') }}</h3>
-          <div class="company">{{ $t('timeline.jobs.internship.company') }}</div>
-          <p>{{ $t('timeline.jobs.internship.description') }}</p>
+          <h3>{{ $t("timeline.jobs.internship.title") }}</h3>
+          <div class="company">{{ $t("timeline.jobs.internship.company") }}</div>
+          <p>{{ $t("timeline.jobs.internship.description") }}</p>
           <div class="skills">
-<span class="skill-tag">{{ $t('skills.web_development') }}</span>
+            <span class="skill-tag">{{ $t("skills.web_development") }}</span>
             <span class="skill-tag">Front-end</span>
             <span class="skill-tag">HTML/CSS</span>
             <span class="skill-tag">JavaScript</span>
-            <span class="skill-tag">{{ $t('skills.teamwork') }}</span>
+            <span class="skill-tag">{{ $t("skills.teamwork") }}</span>
           </div>
         </div>
       </div>
@@ -82,13 +88,13 @@
         <div class="timeline-dot"></div>
         <div class="timeline-date">2019 - 2021</div>
         <div class="timeline-content">
-          <h3>{{ $t('timeline.jobs.technical_course.title') }}</h3>
-          <div class="company">{{ $t('timeline.jobs.technical_course.company') }}</div>
-          <p>{{ $t('timeline.jobs.technical_course.description') }}</p>
+          <h3>{{ $t("timeline.jobs.technical_course.title") }}</h3>
+          <div class="company">{{ $t("timeline.jobs.technical_course.company") }}</div>
+          <p>{{ $t("timeline.jobs.technical_course.description") }}</p>
           <div class="skills">
-            <span class="skill-tag">{{ $t('skills.logic_programming') }}</span>
+            <span class="skill-tag">{{ $t("skills.logic_programming") }}</span>
             <span class="skill-tag">Game Design</span>
-            <span class="skill-tag">{{ $t('skills.development_fundamentals') }}</span>
+            <span class="skill-tag">{{ $t("skills.development_fundamentals") }}</span>
           </div>
         </div>
       </div>
@@ -97,47 +103,46 @@
 </template>
 
 <script>
-import { onMounted } from 'vue';
+import { onMounted } from "vue";
 
 export default {
-  name: 'Timeline',
+  name: "Timeline",
   setup() {
     onMounted(() => {
-      const timelineItems = document.querySelectorAll('.timeline-item');
+      const timelineItems = document.querySelectorAll(".timeline-item");
 
       function checkVisibility() {
-        timelineItems.forEach(item => {
+        timelineItems.forEach((item) => {
           const rect = item.getBoundingClientRect();
           const isVisible = rect.top < window.innerHeight - 100;
 
           if (isVisible) {
-            item.style.opacity = '1';
-            item.style.transform = 'translateY(0)';
+            item.style.opacity = "1";
+            item.style.transform = "translateY(0)";
           }
         });
       }
 
       // Inicializa estilos
-      timelineItems.forEach(item => {
-        item.style.opacity = '0';
-        item.style.transform = 'translateY(50px)';
-        item.style.transition = 'all 0.8s ease';
+      timelineItems.forEach((item) => {
+        item.style.opacity = "0";
+        item.style.transform = "translateY(50px)";
+        item.style.transition = "all 0.8s ease";
       });
 
       // Verifica visibilidade inicial
       checkVisibility();
 
       // Escuta rolagem da página
-      window.addEventListener('scroll', checkVisibility);
+      window.addEventListener("scroll", checkVisibility);
     });
-  }
+  },
 };
 </script>
 
-
 <style scoped>
 .timeline-section {
-   background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   min-height: 100vh;
   padding: 100px 15px;
 }
@@ -156,7 +161,7 @@ export default {
 }
 
 .timeline-section .section-title h2:after {
-  content: '';
+  content: "";
   position: absolute;
   width: 50px;
   height: 4px;
@@ -176,7 +181,7 @@ export default {
 }
 
 .timeline-items::before {
-  content: '';
+  content: "";
   position: absolute;
   width: 2px;
   height: 100%;
@@ -268,7 +273,12 @@ export default {
 }
 
 .fundo-project-timeline {
-  background: linear-gradient(0deg,rgba(242, 242, 242, 1) 48%, rgba(183, 212, 230, 1) 62%, rgba(142, 191, 222, 1) 84%);
+  background: linear-gradient(
+    0deg,
+    rgba(242, 242, 242, 1) 48%,
+    rgba(183, 212, 230, 1) 62%,
+    rgba(142, 191, 222, 1) 84%
+  );
 }
 
 .btn-trajetoria {
@@ -280,7 +290,7 @@ export default {
   border-radius: 1rem;
   padding: 0.5rem;
   text-decoration: none;
-  font-family: 'Ubuntu', sans-serif;
+  font-family: "Ubuntu", sans-serif;
   font-weight: 600;
 }
 
@@ -332,5 +342,4 @@ export default {
     justify-content: flex-start;
   }
 }
-
 </style>

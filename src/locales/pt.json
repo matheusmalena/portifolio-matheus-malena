@@ -1,6 +1,6 @@
 {
   "header": {
-    "home": "Home",
+    "home": "Início",
     "services": "Serviços",
     "about": "Sobre",
     "skills": "Skills",
@@ -29,8 +29,8 @@
     "web_projects_desc": "Design e desenvolvimento de projetos web: sites, landing pages, etc.",
     "marketing_title": "Marketing digital",
     "marketing_desc": "Planejamento e ações de marketing digital para aumentar a presença da sua marca.",
-    "branding_title": "Identidade visual",
-    "branding_desc": "Criação de identidade visual, manual de marca e material gráfico de apoio.",
+    "branding_title": "Tráfego Pago",
+    "branding_desc": "Gestão de campanhas patrocinadas para atrair clientes, aumentar conversões e impulsionar resultados.",
     "fullstack_title": "Desenvolverdor Full Stack",
     "fullstack_desc": "Desenvolvimento de soluções web com tecnologias modernas e eficientes."
   },
@@ -115,16 +115,20 @@
   "certificates": {
     "title": "Minhas",
     "highlight": "Conquistas",
-    "certificates": "Certificados"
+    "certificates": "Certificados",
+    "subtitle": "Certificados que refletem minha dedicação ao aprendizado contínuo",
+    "view_certificate": "Ver Certificado"
   },
   "timeline": {
     "title": "Trajetória de carreira",
     "description": "Acompanhe a evolução da minha trajetória na área de tecnologia, desde meus estudos iniciais até minhas experiências profissionais mais recentes.",
+    "current ": "Atual",
     "jobs": {
       "software_dev": {
         "title": "Software Junior Developer",
         "company": "Yup Chat",
-        "description": "Atualmente trabalho na Yup Chat, onde estou aprimorando minhas habilidades em desenvolvimento Full-Stack. Colaboro com equipes multidisciplinares para criar soluções tecnológicas inovadoras e escaláveis."
+        "description": "Atuo como desenvolvedor Full-Stack na Yup Chat, contribuindo com desenvolvimento de novas features, correção de bugs, refatoração de código e melhorias de performance. Colaboro em equipe multidisciplinar focada em soluções escaláveis e inovadoras."
+
       },
       "support": {
         "title": "Suporte TI",

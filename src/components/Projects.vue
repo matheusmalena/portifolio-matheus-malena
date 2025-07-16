@@ -139,15 +139,6 @@ export default {
           category: 'web'
         },
         {
-          id: 3,
-          title: this.$t('projects.list.3.title'),
-          description: this.$t('projects.list.3.description'),
-          image: imgPrevisaoDoTempo,
-          demoUrl: 'https://matheusmalena.github.io/AppPrevisaoDoTempo/',
-          techs: ['JavaScript', 'API REST'],
-          category: 'app'
-        },
-        {
           id: 4,
           title: this.$t('projects.list.4.title'),
           description: this.$t('projects.list.4.description'),
@@ -157,13 +148,13 @@ export default {
           category: 'app'
         },
         {
-          id: 8,
-          title: this.$t('projects.list.8.title'),
-          description: this.$t('projects.list.8.description'),
-          image: imgGameMemorie,
-          demoUrl: 'https://matheusmalena.github.io/memorie-love-game/',
-          techs: ['HTML5', 'CSS3', 'JavaScript'],
-          category: 'game'
+          id: 3,
+          title: this.$t('projects.list.3.title'),
+          description: this.$t('projects.list.3.description'),
+          image: imgPrevisaoDoTempo,
+          demoUrl: 'https://matheusmalena.github.io/AppPrevisaoDoTempo/',
+          techs: ['JavaScript', 'API REST'],
+          category: 'app'
         },
         {
           id: 5,
@@ -175,13 +166,13 @@ export default {
           category: 'tool'
         },
         {
-          id: 6,
-          title: this.$t('projects.list.6.title'),
-          description: this.$t('projects.list.6.description'),
-          image: imgTasklist,
-          demoUrl: 'https://task-list-surf.vercel.app',
-          techs: ['Vue.js', 'LocalStorage'],
-          category: 'tool'
+          id: 8,
+          title: this.$t('projects.list.8.title'),
+          description: this.$t('projects.list.8.description'),
+          image: imgGameMemorie,
+          demoUrl: 'https://matheusmalena.github.io/memorie-love-game/',
+          techs: ['HTML5', 'CSS3', 'JavaScript'],
+          category: 'game'
         },
         {
           id: 7,
@@ -191,6 +182,15 @@ export default {
           demoUrl: 'https://jogo-numero-secreto-voz-three.vercel.app/',
           techs: ['JavaScript', 'Web Speech API'],
           category: 'game'
+        },
+          {
+          id: 6,
+          title: this.$t('projects.list.6.title'),
+          description: this.$t('projects.list.6.description'),
+          image: imgTasklist,
+          demoUrl: 'https://task-list-surf.vercel.app',
+          techs: ['Vue.js', 'LocalStorage'],
+          category: 'tool'
         },
         {
           id: 8,
