@@ -30,7 +30,7 @@
             <div class="info-text">
               <h3>{{ $t('contact.email_label') }}</h3>
               <a href="mailto:matheusmalena28@gmail.com" class="info-link">
-                {{ $t('contact.email_value') }}
+                matheusmalena28@gmail.com
               </a>
             </div>
           </div>
