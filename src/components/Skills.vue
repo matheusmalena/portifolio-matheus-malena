@@ -8,7 +8,7 @@
 
       <div class="skills-content">
         <div class="skills-intro">
-          <p>{{ $t("skills.description") }}</p>
+          <!-- <p>{{ $t("skills.description") }}</p> -->
         </div>
 
         <div class="skills-grid">
