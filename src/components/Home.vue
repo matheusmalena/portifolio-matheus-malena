@@ -19,8 +19,7 @@
               <span class="greeting-highlight">{{ $t("home.greeting") }}</span>
             </div>
             <h1 class="name-text">
-              <span class="name-gradient">Matheus</span>
-              <span class="name-gradient">Malena</span>
+              <span class="name-gradient">Matheus Malena</span>
             </h1>
             <div class="profession-text">
               <span ref="typingRef" class="profession-typing"></span>
@@ -420,10 +419,7 @@ export default {
 }
 
 .name-gradient {
-  background: linear-gradient(90deg, #f8fafc 0%, #4cc9f0 50%, #7209b7 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: rgb(233, 233, 233);
   display: inline-block;
 }
 
@@ -857,9 +853,74 @@ export default {
 }
 
 @media (max-width: 576px) {
+  .home-content {
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 2rem;
+  }
+
+  .text-content {
+    max-width: 100%;
+  }
+
+  .name-text {
+    font-size: 2rem;
+    line-height: 1.2;
+  }
+
+  .profession-text {
+    font-size: 1.3rem;
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+    flex-wrap: wrap;
+  }
+
+  .greeting-text {
+    font-size: 1rem;
+  }
+
+  .action-buttons {
+    flex-direction: column;
+    gap: 1rem;
+    width: 100%;
+  }
+
+  .cta-button,
+  .secondary-button {
+    width: 100%;
+    font-size: 1rem;
+    padding: 0.8rem 1.5rem;
+  }
+
+  .profile-image-wrapper {
+    width: 200px;
+    height: 200px;
+  }
+
+  .floating-socials {
+    flex-direction: row;
+    justify-content: center;
+    gap: 1rem;
+    margin: 2rem 0;
+  }
+
+  .scroll-indicator {
+    bottom: 20px;
+  }
+
+  .social-tooltip {
+    display: none;
+  }
+
   .profile-image-wrapper {
     width: 240px;
     height: 240px;
+  }
+
+  .profile-container {
+    margin: 5rem 0 0 0;
   }
 
   .tech-icons {

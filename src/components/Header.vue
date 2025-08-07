@@ -294,19 +294,21 @@ export default {
   
   .nav {
     position: fixed;
-    top: -10px;
+    top: 0;
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: var(--color-black);
+    background-color: rgba(10, 10, 10, 0.98);
+    backdrop-filter: blur(10px);
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-    gap: 30px;
+    gap: 0;
     transform: translateY(-100%);
-    transition: transform 0.3s ease;
+    transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
     z-index: 1000;
     padding-top: 80px;
+    overflow-y: auto;
   }
   
   .nav.open {
@@ -316,7 +318,28 @@ export default {
   .nav-links {
     flex-direction: column;
     align-items: center;
-    gap: 25px;
+    gap: 15px;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  .nav-link {
+    padding: 12px 20px;
+    width: 100%;
+    text-align: center;
+    font-size: 1.1rem;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    background: rgba(138, 43, 226, 0.1);
+    transform: translateX(5px);
+    color: white;
+  }
+  
+  .nav-link::after {
+    display: none;
   }
   
   .hamburger {
@@ -333,21 +356,45 @@ export default {
   
   .mobile {
     display: flex;
-    margin-top: 20px;
+    margin: 30px 0;
+    width: 80%;
+    max-width: 250px;
+    justify-content: center;
+    font-size: 1rem;
+    padding: 12px 20px;
   }
   
-  /* Dropdown de idiomas no mobile */
-  .header-actions::before {
-    content: '';
-    display: block;
-    position: absolute;
-    right: 60px;
-    top: 50%;
-    transform: translateY(-50%);
+  /* Efeito de fade-in para os itens do menu */
+  .nav.open .nav-link {
+    animation: fadeIn 0.5s ease forwards;
+    opacity: 0;
   }
   
-  .header-actions {
-    position: relative;
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+  
+  /* Delay para cada item do menu */
+  .nav-link:nth-child(1) { animation-delay: 0.1s; }
+  .nav-link:nth-child(2) { animation-delay: 0.2s; }
+  .nav-link:nth-child(3) { animation-delay: 0.3s; }
+  .nav-link:nth-child(4) { animation-delay: 0.4s; }
+  .nav-link:nth-child(5) { animation-delay: 0.5s; }
+  .nav-link:nth-child(6) { animation-delay: 0.6s; }
+  .nav-link:nth-child(7) { animation-delay: 0.7s; }
+  .nav-link:nth-child(8) { animation-delay: 0.8s; }
+  
+  /* Scroll personalizado para o menu */
+  .nav::-webkit-scrollbar {
+    width: 5px;
+  }
+  
+  .nav::-webkit-scrollbar-thumb {
+    background-color: var(--color-purple);
+    border-radius: 10px;
   }
 }
 
@@ -356,8 +403,14 @@ export default {
     font-size: 1.5rem;
   }
   
-  .header-actions::before {
-    right: 50px;
+  .nav-link {
+    padding: 10px 15px;
+    font-size: 1rem;
+  }
+  
+  .mobile {
+    padding: 10px 15px;
+    font-size: 0.9rem;
   }
 }
 </style>
