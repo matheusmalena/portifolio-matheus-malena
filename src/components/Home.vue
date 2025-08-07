@@ -894,11 +894,6 @@ export default {
     padding: 0.8rem 1.5rem;
   }
 
-  .profile-image-wrapper {
-    width: 200px;
-    height: 200px;
-  }
-
   .floating-socials {
     flex-direction: row;
     justify-content: center;
@@ -920,7 +915,7 @@ export default {
   }
 
   .profile-container {
-    margin: 5rem 0 0 0;
+    margin: 7rem 0 0 0;
   }
 
   .tech-icons {

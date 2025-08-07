@@ -125,7 +125,7 @@ export default {
           title: this.$t('projects.list.9.title'),
           description: this.$t('projects.list.9.description'),
           image: imgDipemat,
-          demoUrl: 'https://dipemat-website.vercel.app/',
+          demoUrl: 'https://dipemat.com/',
           techs: ['Vue.js'],
           category: 'web'
         },
