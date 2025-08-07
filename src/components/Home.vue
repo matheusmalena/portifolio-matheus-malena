@@ -915,7 +915,7 @@ export default {
   }
 
   .profile-container {
-    margin: 7rem 0 0 0;
+    margin: 6rem 0 0 0;
   }
 
   .tech-icons {
