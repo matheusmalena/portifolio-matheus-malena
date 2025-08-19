@@ -12,6 +12,7 @@
   --gradient-blue-pink-hover: linear-gradient(90deg, #42b6da, #eb237d);
   --gradient-dark-blue: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
   --gradient-dark-blue-hover: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+   --font-primary: 'Poppins', 'Inter', sans-serif;
 }
 
 /* Reset básico */
@@ -26,7 +27,7 @@ html {
 }
 
 body {
-  font-family: 'Poppins', sans-serif;
+  font-family: var(--font-primary);
   background-color: var(--color-black);
   color: var(--color-white);
 }

@@ -680,10 +680,10 @@ export default {
   background:#0f172a;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
-  color: white;
+  color: white !important;
   font-size: 1.2rem;
   transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-  text-decoration: none;
+  text-decoration: none !important;
   position: relative;
   border: 1px solid var(--glass-border);
   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
@@ -713,7 +713,7 @@ export default {
   background: var(--glass-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
-  color: white;
+  color: white !important;
   padding: 0.5rem 1rem;
   border-radius: 5px;
   font-size: 0.9rem;
