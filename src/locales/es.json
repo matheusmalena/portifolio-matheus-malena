@@ -23,7 +23,7 @@
   "services": {
     "subtitle": "Mis servicios",
     "title": "Lo que <br /> ofrezco",
-    "description": "Experiencia y capacidad para crear estrategias personalizadas, que resultan en un aumento significativo y cualitativo de la presencia en línea.",
+    "description": "Soluciones eficaces para aumentar tu visibilidad e impacto en el mundo digital.",
     "button": "Solicitar presupuesto",
     "web_projects_title": "Proyectos web",
     "web_projects_desc": "Diseño y desarrollo de proyectos web: sitios, landing pages, etc.",
@@ -37,8 +37,9 @@
   "about": {
     "subtitle": "Sobre mí",
     "title": "Mucho gusto, soy Matheus",
-    "paragraph_1": "Tengo 20 años y soy graduado en Análisis y Desarrollo de Sistemas por Unisanta, con formación técnica en Juegos Digitales. Actualmente trabajo como desarrollador Full-Stack en",
-    "paragraph_2": "Me apasiona aprender y busco actualizarme constantemente con cursos en Alura y otras plataformas.",
+    "paragraph_1": "Tengo 20 años y trabajo en el área de TI desde hace más de 3 años, adquiriendo experiencia en diversas áreas, desde programación y bases de datos hasta hardware y mantenimiento. Actualmente me desempeño como desarrollador Full-Stack en",
+    "paragraph_2": "Además de la tecnología, también adquirí conocimientos en marketing digital y tráfico pago, ayudando a las empresas a ganar más visibilidad y resultados en el mundo digital.",
+    "paragraph_3": "Soy graduado en Análisis y Desarrollo de Sistemas por Unisanta y tengo bachillerato técnico en Juegos Digitales. Me apasiona aprender y siempre busco mantenerme actualizado con cursos en Alura y otras plataformas.",
     "trajectory_button": "Conoce mi trayectoria"
   },
   "contact": {
@@ -116,7 +117,7 @@
     "highlight": "Logros",
     "certificates": "Certificados",
     "subtitle": "Certificados que reflejan mi dedicación al aprendizaje continuo",
-     "view_certificate": "Ver Certificado"
+    "view_certificate": "Ver Certificado"
   },
   "timeline": {
     "title": "Trayectoria profesional",

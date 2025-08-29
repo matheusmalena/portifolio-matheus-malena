@@ -23,7 +23,7 @@
   "services": {
     "subtitle": "My services",
     "title": "What <br /> I offer",
-    "description": "Expertise and ability to create personalized strategies, resulting in a significant and qualitative increase in online presence.",
+    "description": "Effective solutions to increase your visibility and impact in the digital world.",
     "button": "Request a quote",
     "web_projects_title": "Web projects",
     "web_projects_desc": "Design and development of web projects: websites, landing pages, etc.",
@@ -37,8 +37,9 @@
   "about": {
     "subtitle": "About me",
     "title": "Nice to meet you, I'm Matheus",
-    "paragraph_1": "I am 20 years old and graduated in Systems Analysis and Development from Unisanta, with a technical high school degree in Digital Games. I currently work as a Full-Stack developer at",
-    "paragraph_2": "I am passionate about learning and constantly update myself with courses on Alura and other platforms.",
+    "paragraph_1": "I am 20 years old and have been working in IT for over 3 years, gaining experience in various areas, from programming and databases to hardware and maintenance. Today, I work as a Full-Stack Developer at",
+    "paragraph_2": "In addition to technology, I have also acquired knowledge in digital marketing and paid traffic, helping businesses gain more visibility and results in the digital world.",
+    "paragraph_3": "I hold a degree in Systems Analysis and Development from Unisanta and a technical high school diploma in Digital Games. I am passionate about learning and constantly seek to update myself through courses at Alura and other platforms.",
     "trajectory_button": "Check out my journey"
   },
   "contact": {
@@ -116,7 +117,7 @@
     "highlight": "Conquests",
     "certificates": "Certificates",
     "subtitle": "Certificates that reflect my dedication to continuous learning",
-     "view_certificate": "View Certificate"
+    "view_certificate": "View Certificate"
   },
   "timeline": {
     "title": "Career",

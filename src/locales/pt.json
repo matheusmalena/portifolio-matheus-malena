@@ -23,7 +23,7 @@
   "services": {
     "subtitle": "Meus serviços",
     "title": "O que <br /> faço",
-    "description": "Expertise e capacidade de criar estratégias personalizadas, que resultam em um aumento significativo e qualitativo da presença online.",
+    "description": "Soluções eficazes para aumentar sua visibilidade e impacto no mundo digital.",
     "button": "Faça um orçamento",
     "web_projects_title": "Projetos web",
     "web_projects_desc": "Design e desenvolvimento de projetos web: sites, landing pages, etc.",
@@ -37,8 +37,9 @@
   "about": {
     "subtitle": "Sobre mim",
     "title": "Prazer, sou Matheus",
-    "paragraph_1": "Tenho 20 anos e sou formado em Análise e Desenvolvimento de Sistemas pela Unisanta, com ensino médio técnico em Jogos Digitais. Atualmente trabalho como desenvolvedor Full-Stack na",
-    "paragraph_2": "Sou apaixonado por aprender e busco me atualizar constantemente com cursos na Alura e outras plataformas.",
+    "paragraph_1": "Tenho 20 anos e trabalho na área de TI há mais de 3 anos, adquirindo experiência em diversas áreas, desde programação e bancos de dados até hardware e manutenção. Hoje atuo como desenvolvedor Full-Stack na",
+    "paragraph_2": "Além da tecnologia, também adquiri conhecimentos em marketing digital e tráfego pago, ajudando negócios a conquistarem mais visibilidade e resultados no mundo digital.",
+    "paragraph_3": "Sou formado em Análise e Desenvolvimento de Sistemas pela Unisanta e tenho ensino médio técnico em Jogos Digitais. Gosto muito de aprender e estou sempre buscando me atualizar com cursos na Alura e outras plataformas.",
     "trajectory_button": "Conheça minha trajetória"
   },
   "contact": {
@@ -127,7 +128,6 @@
         "title": "Software Junior Developer",
         "company": "Yup Chat",
         "description": "Atuo como desenvolvedor Full-Stack na Yup Chat, contribuindo com desenvolvimento de novas features, correção de bugs, refatoração de código e melhorias de performance. Colaboro em equipe multidisciplinar focada em soluções escaláveis e inovadoras."
-
       },
       "support": {
         "title": "Suporte TI",
