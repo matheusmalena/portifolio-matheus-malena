@@ -92,6 +92,8 @@ import imgCafe from '../assets/img/cafe.png';
 import imgAdivinha from '../assets/img/jogonumero.png';
 import imgDipemat from '../assets/img/dipemat2.jpeg';
 import imgGameMemorie from '../assets/img/game-memorie.png';
+import imgVieiraDias from '../assets/img/vieira-dias.png';
+import imgNgStone from '../assets/img/ng-stone.png';
 
 export default {
   name: 'Projects',
@@ -139,6 +141,15 @@ export default {
           category: 'web'
         },
         {
+          id: 12,
+          title: this.$t('projects.list.12.title'),
+          description: this.$t('projects.list.12.description'),
+          image: imgNgStone,
+          demoUrl: 'https://ngstonemarmoresperuibe.com.br',
+          techs: ['Vue.js', 'Node.js', 'Blog CMS'],
+          category: 'web'
+        },
+        {
           id: 4,
           title: this.$t('projects.list.4.title'),
           description: this.$t('projects.list.4.description'),
@@ -146,6 +157,15 @@ export default {
           demoUrl: 'https://cookin-up-website.vercel.app/',
           techs: ['Vue.js', 'Node.js'],
           category: 'app'
+        },
+        {
+          id: 11,
+          title: this.$t('projects.list.11.title'),
+          description: this.$t('projects.list.11.description'),
+          image: imgVieiraDias,
+          demoUrl: 'https://vieira-dias-advogadas.vercel.app/',
+          techs: ['Vue.js', 'Node.js', 'Blog CMS'],
+          category: 'web'
         },
         {
           id: 3,
@@ -193,7 +213,7 @@ export default {
           category: 'tool'
         },
         {
-          id: 8,
+          id: 10,
           title: this.$t('projects.list.8b.title'),
           description: this.$t('projects.list.8b.description'),
           image: imgCafe,

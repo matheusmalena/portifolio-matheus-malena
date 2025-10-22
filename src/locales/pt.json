@@ -106,9 +106,17 @@
         "title": "Adivinha Número",
         "description": "Jogo de adivinhação com reconhecimento de voz."
       },
-      "8b": {
+      "8": {
         "title": "Cafeteria Moderna",
         "description": "Landing page para cafeteria com design elegante."
+      },
+      "11": {
+        "title": "Vieira & Dias - Advocacia",
+        "description": "Site instituicional moderno para a empresa de advocacia Advocacia."
+      },
+      "12": {
+        "title": "NG Stone - Mármores",
+        "description": "Site instituicional moderno para a empresa de mármores NG Stone."
       }
     }
   },
