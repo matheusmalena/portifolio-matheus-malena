@@ -43,11 +43,7 @@
           <div class="profile-container">
             <div class="profile-image-wrapper" ref="profileWrapper">
               <div class="profile-frame"></div>
-              <img
-                src="../assets/img/perfil.jpeg"
-                alt="Matheus Malena"
-                class="profile-image"
-              />
+              <img src="../assets/img/perfil.jpeg" alt="Matheus Malena" class="profile-image" />
             </div>
           </div>
         </div>
@@ -55,30 +51,15 @@
         <!-- Redes sociais flutuantes -->
         <div class="floating-socials">
           <!-- <div class="social-line"></div> -->
-          <a
-            href="https://github.com/matheusmalena"
-            target="_blank"
-            class="social-link"
-            aria-label="GitHub"
-          >
+          <a href="https://github.com/matheusmalena" target="_blank" class="social-link" aria-label="GitHub">
             <i class="fab fa-github"></i>
             <span class="social-tooltip">GitHub</span>
           </a>
-          <a
-            href="https://www.linkedin.com/in/matheusmalena"
-            target="_blank"
-            class="social-link"
-            aria-label="LinkedIn"
-          >
+          <a href="https://www.linkedin.com/in/matheusmalena" target="_blank" class="social-link" aria-label="LinkedIn">
             <i class="fab fa-linkedin-in"></i>
             <span class="social-tooltip">LinkedIn</span>
           </a>
-          <a
-            href="https://www.instagram.com/dev_malena"
-            target="_blank"
-            class="social-link"
-            aria-label="Instagram"
-          >
+          <a href="https://www.instagram.com/dev_malena" target="_blank" class="social-link" aria-label="Instagram">
             <i class="fab fa-instagram"></i>
             <span class="social-tooltip">Instagram</span>
           </a>
@@ -166,9 +147,8 @@ export default {
         // Aplica ambos os efeitos
         wrapper.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.03)`;
         wrapper.style.borderRadius = `${radius1}% ${radius2}% ${radius3}% ${radius4}% / ${radius1}% ${radius2}% ${radius3}% ${radius4}%`;
-        wrapper.style.boxShadow = `0 0 ${30 + 50 * relX}px rgba(76, 201, 240, ${
-          0.3 + 0.3 * relY
-        })`;
+        wrapper.style.boxShadow = `0 0 ${30 + 50 * relX}px rgba(76, 201, 240, ${0.3 + 0.3 * relY
+          })`;
         wrapper.style.transition =
           "transform 0.1s ease, border-radius 0.3s ease, box-shadow 0.3s ease";
       });
@@ -200,69 +180,69 @@ export default {
       this.typed = new Typed(this.$refs.typingRef, options);
     },
     initParticles() {
-  if (typeof window !== "undefined" && window.particlesJS) {
-    particlesJS("particles-js", {
-      particles: {
-        number: { value: 80, density: { enable: true, value_area: 800 } },
-        color: { value: "#4cc9f0" },
-        shape: { 
-          type: "circle",
-          stroke: { width: 0, color: "#000000" },
-          polygon: { nb_sides: 5 }
-        },
-        opacity: {
-          value: 0.5,
-          random: true,
-          anim: { enable: true, speed: 1, opacity_min: 0.1 }
-        },
-        size: {
-          value: 3,
-          random: true,
-          anim: { enable: true, speed: 2, size_min: 0.1 }
-        },
-        line_linked: {
-          enable: true,
-          distance: 150,
-          color: "#3a0ca3",
-          opacity: 0.3,
-          width: 1
-        },
-        move: {
-          enable: true,
-          speed: 1,
-          direction: "none",
-          random: true,
-          straight: false,
-          out_mode: "out",
-          bounce: false,
-          attract: { enable: true, rotateX: 600, rotateY: 1200 }
-        }
-      },
-      interactivity: {
-        detect_on: "canvas",
-        events: {
-          onhover: { enable: true, mode: "bubble" },
-          onclick: { enable: true, mode: "push" }
-        },
-        modes: {
-          bubble: { 
-            distance: 200, 
-            size: 6, 
-            duration: 2, 
-            opacity: 0.8, 
-            speed: 3 
+      if (typeof window !== "undefined" && window.particlesJS) {
+        particlesJS("particles-js", {
+          particles: {
+            number: { value: 80, density: { enable: true, value_area: 800 } },
+            color: { value: "#4cc9f0" },
+            shape: {
+              type: "circle",
+              stroke: { width: 0, color: "#000000" },
+              polygon: { nb_sides: 5 }
+            },
+            opacity: {
+              value: 0.5,
+              random: true,
+              anim: { enable: true, speed: 1, opacity_min: 0.1 }
+            },
+            size: {
+              value: 3,
+              random: true,
+              anim: { enable: true, speed: 2, size_min: 0.1 }
+            },
+            line_linked: {
+              enable: true,
+              distance: 150,
+              color: "#3a0ca3",
+              opacity: 0.3,
+              width: 1
+            },
+            move: {
+              enable: true,
+              speed: 1,
+              direction: "none",
+              random: true,
+              straight: false,
+              out_mode: "out",
+              bounce: false,
+              attract: { enable: true, rotateX: 600, rotateY: 1200 }
+            }
           },
-          push: { particles_nb: 4 }
-        }
+          interactivity: {
+            detect_on: "canvas",
+            events: {
+              onhover: { enable: true, mode: "bubble" },
+              onclick: { enable: true, mode: "push" }
+            },
+            modes: {
+              bubble: {
+                distance: 200,
+                size: 6,
+                duration: 2,
+                opacity: 0.8,
+                speed: 3
+              },
+              push: { particles_nb: 4 }
+            }
+          }
+        });
+      } else {
+        const script = document.createElement("script");
+        script.src = "https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js";
+        script.onload = this.initParticles;
+        document.head.appendChild(script);
       }
-    });
-  } else {
-    const script = document.createElement("script");
-    script.src = "https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js";
-    script.onload = this.initParticles;
-    document.head.appendChild(script);
-  }
-},
+    },
     initScrollEffect() {
       window.addEventListener("scroll", this.handleScroll);
     },
@@ -325,7 +305,7 @@ export default {
 
 .max-width {
   width: 100%;
-  max-width: 1400px;
+  max-width: 100px;
   margin: 0 auto;
   padding: 0 5%;
   position: relative;
@@ -348,11 +328,9 @@ export default {
   height: 150%;
   top: -25%;
   left: -25%;
-  background: radial-gradient(
-    circle at center,
-    rgba(39, 125, 255, 0.2) 0%,
-    rgba(35, 52, 92, 0) 80%
-  );
+  background: radial-gradient(circle at center,
+      rgba(39, 125, 255, 0.2) 0%,
+      rgba(35, 52, 92, 0) 80%);
   z-index: 2;
   transition: transform 0.1s ease-out;
   will-change: transform;
@@ -436,6 +414,7 @@ export default {
     transform: translateX(-30px);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
@@ -447,6 +426,7 @@ export default {
     transform: translateX(30px);
     opacity: 0;
   }
+
   to {
     transform: translateX(0);
     opacity: 1;
@@ -535,6 +515,7 @@ export default {
     box-shadow: 0 0 6px rgba(76, 201, 240, 0.7), 0 0 12px rgba(76, 201, 240, 0.5),
       0 0 24px rgba(76, 201, 240, 0.3);
   }
+
   to {
     box-shadow: 0 0 6px rgba(76, 201, 240, 0.9), 0 0 12px rgba(76, 201, 240, 0.7),
       0 0 24px rgba(76, 201, 240, 0.5);
@@ -677,7 +658,7 @@ export default {
   display: flex;
   align-items: center;
   justify-content: center;
-  background:#0f172a;
+  background: #0f172a;
   backdrop-filter: blur(5px);
   -webkit-backdrop-filter: blur(5px);
   color: white !important;
@@ -698,9 +679,11 @@ export default {
 .social-link:nth-child(2):hover {
   background: #0077b5;
 }
+
 .social-link:nth-child(3):hover {
   background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
 }
+
 .social-link:nth-child(4):hover {
   background: #333;
 }
@@ -772,6 +755,7 @@ export default {
     transform: translateY(0);
     opacity: 1;
   }
+
   100% {
     transform: translateY(15px);
     opacity: 0;
@@ -915,7 +899,7 @@ export default {
   }
 
   .profile-container {
-    margin: 6rem 0 0 0;
+    margin: 14rem 0 0 !important;
   }
 
   .tech-icons {
@@ -938,11 +922,21 @@ export default {
   }
 }
 
+@media screen and (max-width: 480px) {
+
+  .profile-container {
+   margin: 14rem 0 0 !important;
+  }
+
+}
+
 @keyframes blink {
+
   0%,
   100% {
     opacity: 1;
   }
+
   50% {
     opacity: 0;
   }
