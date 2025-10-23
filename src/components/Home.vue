@@ -291,7 +291,7 @@ export default {
 
 .hero-section {
   position: relative;
-  height: 100vh;
+  height: 100%;
   min-height: 700px;
   display: flex;
   align-items: center;
@@ -305,7 +305,7 @@ export default {
 
 .max-width {
   width: 100%;
-  max-width: 100px;
+  max-width: 1000px;
   margin: 0 auto;
   padding: 0 5%;
   position: relative;
@@ -899,7 +899,7 @@ export default {
   }
 
   .profile-container {
-    margin: 14rem 0 0 !important;
+    margin: 4rem 0 0 !important;
   }
 
   .tech-icons {
