@@ -128,14 +128,17 @@ function redirectToWhatsapp() {
   border-radius: 12px;
   color: #ccc;
   border: 1px solid rgba(255, 255, 255, 0.05);
-  transition: all 0.4s ease;
   cursor: pointer;
+  transition: all 0.35s ease;
+  
+  /* sombra clara em todas as 4 bordas */
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.08);
 }
 
 .service-card:hover {
-  transform: translateY(-8px) scale(1.1);
-  box-shadow: 0 12px 30px rgba(45, 111, 196, 0.2);
-  background-color: rgba(19, 41, 112, 0.137);
+  transform: translateY(-5px) scale(1.04); /* hover mais leve */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.12); /* leve realce no hover */
+  background-color: rgba(19, 41, 112, 0.18);
 }
 
 .service-icon {
