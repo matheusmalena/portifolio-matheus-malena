@@ -899,7 +899,7 @@ export default {
   }
 
   .profile-container {
-    margin: 4rem 0 0 !important;
+    margin: 8rem 0 0 !important;
   }
 
   .tech-icons {
@@ -925,7 +925,7 @@ export default {
 @media screen and (max-width: 480px) {
 
   .profile-container {
-   margin: 14rem 0 0 !important;
+    margin: 8rem 0 0 !important;
   }
 
 }
