@@ -292,7 +292,7 @@ export default {
 .hero-section {
   position: relative;
   height: 100%;
-  min-height: 700px;
+  min-height: 860px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -927,6 +927,10 @@ export default {
   .profile-container {
     margin: 8rem 0 0 !important;
   }
+
+  .hero-section {
+  min-height: 700px;
+}
 
 }
 
