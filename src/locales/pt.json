@@ -64,6 +64,7 @@
     "view_code": "Código",
     "categories": {
       "all": "Todos",
+      "institutional": "Sites Institucionais",
       "web": "Websites",
       "app": "Aplicativos",
       "tool": "Ferramentas",

@@ -23,7 +23,7 @@
     <div
       v-if="isOpen"
       class="position-absolute rounded shadow mt-1 w-100 z-index-3"
-      style="top: 100%; left: 0"
+      style="top: 100%; left: 0; background-color: var(--color-black);"
     >
       <div
         v-for="(lang, index) in languages"

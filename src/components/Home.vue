@@ -50,7 +50,10 @@
 
         <!-- Redes sociais flutuantes -->
         <div class="floating-socials">
-          <!-- <div class="social-line"></div> -->
+           <a href="https://www.instagram.com/dev_malena" target="_blank" class="social-link" aria-label="Instagram">
+            <i class="fab fa-instagram"></i>
+            <span class="social-tooltip">Instagram</span>
+          </a>
           <a href="https://github.com/matheusmalena" target="_blank" class="social-link" aria-label="GitHub">
             <i class="fab fa-github"></i>
             <span class="social-tooltip">GitHub</span>
@@ -58,10 +61,6 @@
           <a href="https://www.linkedin.com/in/matheusmalena" target="_blank" class="social-link" aria-label="LinkedIn">
             <i class="fab fa-linkedin-in"></i>
             <span class="social-tooltip">LinkedIn</span>
-          </a>
-          <a href="https://www.instagram.com/dev_malena" target="_blank" class="social-link" aria-label="Instagram">
-            <i class="fab fa-instagram"></i>
-            <span class="social-tooltip">Instagram</span>
           </a>
         </div>
 
@@ -387,7 +386,7 @@ export default {
 }
 
 .name-text {
-  font-size: clamp(1.4rem, 4vw, 4rem);
+  font-size: clamp(1rem, 4vw, 4rem);
   font-weight: 800;
   margin: 0.5rem 0;
   line-height: 1.1;
@@ -676,15 +675,15 @@ export default {
   box-shadow: 0 8px 25px rgba(76, 201, 240, 0.3);
 }
 
-.social-link:nth-child(2):hover {
+.social-link:nth-child(3):hover {
   background: #0077b5;
 }
 
-.social-link:nth-child(3):hover {
+.social-link:nth-child(1):hover {
   background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
 }
 
-.social-link:nth-child(4):hover {
+.social-link:nth-child(2):hover {
   background: #333;
 }
 

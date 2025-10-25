@@ -7,13 +7,11 @@
 
     <!-- Navegação principal -->
     <nav :class="['nav', { open: isOpen }]">
-      <div class="nav-links">
+      <div :class="['nav-links', { scrolled: isScrolled || isOpen }]"> <!-- Adiciona a classe "scrolled" quando a classe "isScrolled" for verdadeira -->
         <router-link to="/" class="nav-link" @click="closeMenu">{{ $t('header.home') }}</router-link>
         <router-link to="/#services" class="nav-link" @click="closeMenu">{{ $t('header.services') }}</router-link>
         <router-link to="/#about" class="nav-link" @click="closeMenu">{{ $t('header.about') }}</router-link>
-        <router-link to="/#skills" class="nav-link" @click="closeMenu">{{ $t('header.skills') }}</router-link>
         <router-link to="/#projects" class="nav-link" @click="closeMenu">{{ $t('header.projects') }}</router-link>
-        <router-link to="/#certificates" class="nav-link" @click="closeMenu">{{ $t('header.certificates') }}</router-link>
         <router-link to="/#timeline" class="nav-link" @click="closeMenu">{{ $t('header.timeline') }}</router-link>
         <router-link to="/#contact" class="nav-link" @click="closeMenu">{{ $t('header.contact') }}</router-link>
       </div>
@@ -84,7 +82,12 @@ export default {
   --color-black: #0a0a0a;
   --color-white: #ffffff;
   --color-purple: #8a2be2;
+  --color-light-purple: rgba(138, 43, 226, 0.1);
   --gradient-blue: linear-gradient(90deg, rgba(195, 236, 254, 1) 1%, rgba(70, 130, 180, 1) 38%, rgba(195, 236, 254, 1) 70%);
+  --gradient-purple: linear-gradient(135deg, #8a2be2, #4a00e0);
+  --glass-bg: rgba(255, 255, 255, 0.05);
+  --glass-border: rgba(255, 255, 255, 0.1);
+  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
 }
 
 /* -------- HEADER -------- */
@@ -136,7 +139,21 @@ export default {
 
 .nav-links {
   display: flex;
-  gap: 25px;
+  background: var(--glass-bg);
+  gap: 0;
+  padding: 0.4rem;
+  border: 1px solid var(--glass-border);
+  box-shadow: 0 0 32px 2px rgba(43, 92, 226, 0.375);
+  border-radius: 2rem; /* mantém o efeito arredondado elegante */
+  backdrop-filter: blur(4px); /* opcional, dá um ar mais moderno */
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+
+.nav-links.scrolled {
+  box-shadow: 0 0 32px 2px rgba(43, 92, 226, 0.375);
+  border-radius: 2rem; /* mantém o efeito arredondado elegante */
+  backdrop-filter: blur(8px); /* opcional, dá um ar mais moderno */
+  transition: box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .nav-link {
@@ -146,18 +163,6 @@ export default {
   font-weight: 500;
   font-size: 0.95rem;
   transition: all 0.3s ease;
-}
-
-.nav-link::after {
-  content: '';
-  position: absolute;
-  left: 0;
-  bottom: -6px;
-  width: 0%;
-  height: 2px;
-  background-color: var(--color-purple);
-  border-radius: 10px;
-  transition: width 0.3s ease;
 }
 
 .nav-link:hover {

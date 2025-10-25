@@ -1,80 +1,56 @@
 <template>
   <section class="projects-section" id="projects" aria-label="Meus projetos desenvolvidos">
     <div class="container">
-      <!-- Header com animação -->
-      <div class="section-header" data-aos="fade-up">
+      <!-- Cabeçalho -->
+      <header class="section-header" data-aos="fade-up">
         <h2 class="section-title" v-html="$t('projects.section_title')"></h2>
         <p class="section-subtitle">{{ $t('projects.section_subtitle') }}</p>
-      </div>
+      </header>
 
       <!-- Filtros -->
-      <div class="projects-filter" data-aos="fade-up" data-aos-delay="100">
-        <button 
-          v-for="category in categories" 
-          :key="category.id"
-          @click="changeCategory(category.id)"
-          :class="{ active: activeCategory === category.id }"
-          class="filter-btn"
-        >
+      <nav class="projects-filter" data-aos="fade-up" data-aos-delay="100">
+        <button v-for="category in categories" :key="category.id" @click="changeCategory(category.id)"
+          :class="{ active: activeCategory === category.id }" class="filter-btn">
           {{ $t(`projects.categories.${category.id}`) }}
         </button>
-      </div>
+      </nav>
 
-      <!-- Grid de projetos -->
+      <!-- Grade de projetos -->
       <div class="projects-grid">
-        <div 
-          v-for="(project, index) in paginatedProjects" 
-          :key="project.id"
-          class="project-card"
-          data-aos="fade-up"
-          :data-aos-delay="100 * (index % 3)"
-        >
+        <article v-for="(project, index) in paginatedProjects" :key="project.id" class="project-card" data-aos="fade-up"
+          :data-aos-delay="100 * (index % 3)">
           <div class="project-image-wrapper">
             <img :src="project.image" :alt="project.title" class="project-image" />
+
             <div class="project-hover-content">
-              <!-- <div class="project-tags">
-                <span v-for="tag in project.techs" :key="tag" class="project-tag">
-                  {{ tag }}
-                </span>
-              </div> -->
               <h3 class="project-title">{{ project.title }}</h3>
               <p class="project-description">{{ project.description }}</p>
+
               <div class="project-links">
-                <a 
-                  v-if="project.demoUrl" 
-                  :href="project.demoUrl" 
-                  target="_blank" 
-                  class="project-link demo"
-                  aria-label="Ver demonstração"
-                >
-                  <i class="fas fa-external-link-alt"></i> {{ this.$t('projects.visit_demo') }}
+                <a v-if="project.demoUrl" :href="project.demoUrl" target="_blank" class="project-link demo"
+                  aria-label="Ver demonstração">
+                  <i class="fas fa-external-link-alt"></i> {{ $t('projects.visit_demo') }}
                 </a>
-                <a 
-                  v-if="project.codeUrl" 
-                  :href="project.codeUrl" 
-                  target="_blank" 
-                  class="project-link code"
-                  aria-label="Ver código fonte"
-                >
-                  <i class="fab fa-github"></i> {{ this.$t('projects.view_code') }}
+
+                <a v-if="project.codeUrl" :href="project.codeUrl" target="_blank" class="project-link code"
+                  aria-label="Ver código fonte">
+                  <i class="fab fa-github"></i> {{ $t('projects.view_code') }}
                 </a>
               </div>
             </div>
           </div>
+
           <div class="project-techs">
             <span v-for="tech in project.techs" :key="tech" class="tech-tag">
               {{ tech }}
             </span>
           </div>
-        </div>
+        </article>
       </div>
 
-      <Pagination
-        v-if="filteredProjects.length > itemsPerPage"
-        :current-page="currentPage"
-        :total-pages="totalPages"
-        @page-changed="changePage"
-      />
+      <!-- Paginação -->
+      <Pagination v-if="filteredProjects.length > itemsPerPage" :current-page="currentPage" :total-pages="totalPages"
+        @page-changed="changePage" />
     </div>
   </section>
 </template>
@@ -82,6 +58,7 @@
 <script>
 import Pagination from './Pagination.vue';
 
+// Imagens
 import imgSweetGiftfy from '../assets/img/sweetgift.png';
 import imgPrevisaoDoTempo from '../assets/img/previsao-web.png';
 import imgEscola from '../assets/img/escola.png';
@@ -97,20 +74,19 @@ import imgNgStone from '../assets/img/ng-stone.png';
 
 export default {
   name: 'Projects',
-  components: {
-    Pagination
-  },
+  components: { Pagination },
   data() {
     return {
       activeCategory: 'all',
       currentPage: 1,
       itemsPerPage: 9,
       categories: [
-        { id: 'all', name: 'all' },
-        { id: 'web', name: 'web' },
-        { id: 'app', name: 'app' },
-        { id: 'tool', name: 'tool' },
-        { id: 'game', name: 'game' }
+        { id: 'all' },
+        { id: 'web' },
+        { id: 'institutional' },
+        { id: 'app' },
+        { id: 'tool' },
+        { id: 'game' },
       ],
       projects: [
         {
@@ -120,61 +96,34 @@ export default {
           image: imgSweetGiftfy,
           demoUrl: 'https://sweetgiftfy.com',
           techs: ['Vue.js', 'Supabase', 'CSS3'],
-          category: 'web'
+          category: ['web']
         },
         {
-          id: 9,
+          id: 2,
           title: this.$t('projects.list.9.title'),
           description: this.$t('projects.list.9.description'),
           image: imgDipemat,
           demoUrl: 'https://dipemat.com/',
           techs: ['Vue.js'],
-          category: 'web'
+          categories: ["web", "institutional"],
         },
         {
-          id: 2,
+          id: 3,
           title: this.$t('projects.list.2.title'),
           description: this.$t('projects.list.2.description'),
           image: imgEscola,
           demoUrl: 'https://arvoredavidaperuibe.com.br',
           techs: ['Vue.js', 'JavaScript'],
-          category: 'web'
+          categories: ["web", "institutional"],
         },
         {
-          id: 12,
+          id: 4,
           title: this.$t('projects.list.12.title'),
           description: this.$t('projects.list.12.description'),
           image: imgNgStone,
           demoUrl: 'https://ngstonemarmoresperuibe.com.br',
           techs: ['Vue.js', 'Node.js', 'Blog CMS'],
-          category: 'web'
-        },
-        {
-          id: 4,
-          title: this.$t('projects.list.4.title'),
-          description: this.$t('projects.list.4.description'),
-          image: imgCookinUp,
-          demoUrl: 'https://cookin-up-website.vercel.app/',
-          techs: ['Vue.js', 'Node.js'],
-          category: 'app'
-        },
-        {
-          id: 11,
-          title: this.$t('projects.list.11.title'),
-          description: this.$t('projects.list.11.description'),
-          image: imgVieiraDias,
-          demoUrl: 'https://vieira-dias-advogadas.vercel.app/',
-          techs: ['Vue.js', 'Node.js', 'Blog CMS'],
-          category: 'web'
-        },
-        {
-          id: 3,
-          title: this.$t('projects.list.3.title'),
-          description: this.$t('projects.list.3.description'),
-          image: imgPrevisaoDoTempo,
-          demoUrl: 'https://matheusmalena.github.io/AppPrevisaoDoTempo/',
-          techs: ['JavaScript', 'API REST'],
-          category: 'app'
+          categories: ["web", "institutional"],
         },
         {
           id: 5,
@@ -183,85 +132,121 @@ export default {
           image: imgFokus,
           demoUrl: 'https://matheusmalena.github.io/Fokus/',
           techs: ['JavaScript', 'CSS3'],
-          category: 'tool'
+          category: ['tool']
         },
         {
-          id: 8,
-          title: this.$t('projects.list.8.title'),
-          description: this.$t('projects.list.8.description'),
-          image: imgGameMemorie,
-          demoUrl: 'https://matheusmalena.github.io/memorie-love-game/',
-          techs: ['HTML5', 'CSS3', 'JavaScript'],
-          category: 'game'
+          id: 6,
+          title: this.$t('projects.list.11.title'),
+          description: this.$t('projects.list.11.description'),
+          image: imgVieiraDias,
+          demoUrl: 'https://vieira-dias-advogadas.vercel.app/',
+          techs: ['Vue.js', 'Node.js', 'Blog CMS'],
+          categories: ["web", "institutional"],
         },
         {
           id: 7,
-          title: this.$t('projects.list.7.title'),
-          description: this.$t('projects.list.7.description'),
-          image: imgAdivinha,
-          demoUrl: 'https://jogo-numero-secreto-voz-three.vercel.app/',
-          techs: ['JavaScript', 'Web Speech API'],
-          category: 'game'
+          title: this.$t('projects.list.3.title'),
+          description: this.$t('projects.list.3.description'),
+          image: imgPrevisaoDoTempo,
+          demoUrl: 'https://matheusmalena.github.io/AppPrevisaoDoTempo/',
+          techs: ['JavaScript', 'API REST'],
+          category: ['app']
         },
-          {
-          id: 6,
+        {
+          id: 8,
+          title: this.$t('projects.list.4.title'),
+          description: this.$t('projects.list.4.description'),
+          image: imgCookinUp,
+          demoUrl: 'https://cookin-up-website.vercel.app/',
+          techs: ['Vue.js', 'Node.js'],
+          category: ['app']
+        },
+        {
+          id: 9,
           title: this.$t('projects.list.6.title'),
           description: this.$t('projects.list.6.description'),
           image: imgTasklist,
           demoUrl: 'https://task-list-surf.vercel.app',
           techs: ['Vue.js', 'LocalStorage'],
-          category: 'tool'
+          category: ['tool']
         },
         {
           id: 10,
-          title: this.$t('projects.list.8b.title'),
-          description: this.$t('projects.list.8b.description'),
+          title: this.$t('projects.list.7.title'),
+          description: this.$t('projects.list.7.description'),
+          image: imgAdivinha,
+          demoUrl: 'https://jogo-numero-secreto-voz-three.vercel.app/',
+          techs: ['JavaScript', 'Web Speech API'],
+          category: ['game']
+        },
+        {
+          id: 11,
+          title: this.$t('projects.list.8.title'),
+          description: this.$t('projects.list.8.description'),
+          image: imgGameMemorie,
+          demoUrl: 'https://matheusmalena.github.io/memorie-love-game/',
+          techs: ['HTML5', 'CSS3', 'JavaScript'],
+          category: ['game']
+        },
+        {
+          id: 12,
+          title: this.$t('projects.list.10.title'),
+          description: this.$t('projects.list.10.description'),
           image: imgCafe,
           demoUrl: 'https://matheusmalena.github.io/landing-page_cafeteria/',
           techs: ['HTML5', 'CSS3'],
-          category: 'web'
-        }
+          categories: ["web", "institutional"],
+        },
+
       ]
     };
   },
   computed: {
     filteredProjects() {
       if (this.activeCategory === 'all') return this.projects;
-      return this.projects.filter(project => project.category === this.activeCategory);
+
+      return this.projects.filter(project => {
+        // se o projeto tiver "category" (mesmo que array)
+        if (project.category) {
+          return Array.isArray(project.category)
+            ? project.category.includes(this.activeCategory)
+            : project.category === this.activeCategory;
+        }
+
+        // se o projeto tiver "categories"
+        if (project.categories) {
+          return project.categories.includes(this.activeCategory);
+        }
+
+        return false;
+      });
     },
     paginatedProjects() {
       const start = (this.currentPage - 1) * this.itemsPerPage;
-      const end = start + this.itemsPerPage;
-      return this.filteredProjects.slice(start, end);
+      return this.filteredProjects.slice(start, start + this.itemsPerPage);
     },
     totalPages() {
       return Math.ceil(this.filteredProjects.length / this.itemsPerPage);
     }
   },
-   methods: {
-    changeCategory(category) {
-      this.activeCategory = category;
-      this.currentPage = 1; // Resetar para a primeira página ao mudar de categoria
-    },
-    changePage(page) {
-      this.currentPage = page;
-      // Rolagem suave para o topo da seção
-      const element = document.getElementById('projects');
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
-    }
+methods: {
+  changeCategory(category) {
+    this.activeCategory = category;
+    this.currentPage = 1;
   },
-  watch: {
-    filteredProjects() {
-      // Se a página atual for maior que o total de páginas após filtrar,
-      // voltar para a última página disponível
-      if (this.currentPage > this.totalPages && this.totalPages > 0) {
-        this.currentPage = this.totalPages;
-      }
+  changePage(page) {
+    this.currentPage = page;
+    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+},
+watch: {
+  filteredProjects() {
+    if (this.currentPage > this.totalPages && this.totalPages > 0) {
+      this.currentPage = this.totalPages;
     }
   }
 }
+};
 </script>
 
 <style scoped>
@@ -399,7 +384,7 @@ export default {
   left: 0;
   right: 0;
   padding: 2rem 1.5rem;
-  background: linear-gradient(0deg, rgba(0,0,0,0.9) 0%, rgba(0,0,0,0.5) 100%);
+  background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 100%);
   transform: translateY(100%);
   transition: transform 0.4s ease;
   height: 100%;
@@ -504,15 +489,15 @@ export default {
   .section-title {
     font-size: 2.2rem;
   }
-  
+
   .section-subtitle {
     font-size: 1rem;
   }
-  
+
   .projects-filter {
     gap: 0.6rem;
   }
-  
+
   .filter-btn {
     padding: 0.5rem 1.2rem;
     font-size: 0.85rem;
@@ -523,28 +508,28 @@ export default {
   .projects-section {
     padding: 4rem 0;
   }
-  
+
   .section-title {
     font-size: 1.8rem;
   }
-  
+
   .projects-grid {
     grid-template-columns: 1fr;
   }
-  
+
   .project-hover-content {
     padding: 1.5rem 1rem;
   }
-  
+
   .project-title {
     font-size: 1.2rem;
   }
-  
+
   .project-description {
     font-size: 0.85rem;
     margin-bottom: 1rem;
   }
-  
+
   .project-link {
     padding: 0.5rem 1rem;
     font-size: 0.8rem;
