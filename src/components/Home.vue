@@ -762,6 +762,12 @@ export default {
 }
 
 /* ============= RESPONSIVIDADE ============= */
+@media (min-width: 1700px) {
+.hero-section {
+  min-height: 920px;
+}
+}
+
 @media (max-width: 1200px) {
   .home-content {
     gap: 3rem;
