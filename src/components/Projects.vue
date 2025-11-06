@@ -71,6 +71,7 @@ import imgDipemat from '../assets/img/dipemat2.jpeg';
 import imgGameMemorie from '../assets/img/game-memorie.png';
 import imgVieiraDias from '../assets/img/vieira-dias.png';
 import imgNgStone from '../assets/img/ng-stone.png';
+import gifVivaColorir from '../assets/img/gif-viva-colorir.gif';
 
 export default {
   name: 'Projects',
@@ -142,6 +143,15 @@ export default {
           demoUrl: 'https://vieira-dias-advogadas.vercel.app/',
           techs: ['Vue.js', 'Node.js', 'Blog CMS'],
           categories: ["web", "institutional"],
+        },
+        {
+          id: 13,
+          title: this.$t('projects.list.13.title'),
+          description: this.$t('projects.list.13.description'),
+          image: gifVivaColorir,
+          demoUrl: 'https://matheusmalena.github.io/AppPrevisaoDoTempo/',
+          techs: ['Vue JS', 'JavaScript'],
+          category: ['app']
         },
         {
           id: 7,
