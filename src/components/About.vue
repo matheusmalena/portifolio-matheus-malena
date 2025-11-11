@@ -4,7 +4,7 @@
       <!-- LEFT SIDE - IMAGE -->
       <div class="about-image" ref="tiltContainer" @mousemove="handleTilt" @mouseleave="resetTilt">
         <div class="image-wrapper" ref="imageWrapper">
-          <img src="../assets/img/perfil.jpeg" alt="Photo of Matheus Malena" class="profile-image" />
+          <img src="../assets/img/perfil-2.jpeg" alt="Photo of Matheus Malena" class="profile-image" />
           <div class="image-glow"></div>
         </div>
       </div>
