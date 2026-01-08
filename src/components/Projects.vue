@@ -149,7 +149,7 @@ export default {
           title: this.$t('projects.list.13.title'),
           description: this.$t('projects.list.13.description'),
           image: gifVivaColorir,
-          demoUrl: 'https://matheusmalena.github.io/AppPrevisaoDoTempo/',
+          demoUrl: 'https://vivacolorirbiblia.vercel.app/',
           techs: ['Vue JS', 'JavaScript'],
           category: ['app']
         },

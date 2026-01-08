@@ -7,15 +7,38 @@
 
     <!-- Navegação principal -->
     <nav :class="['nav', { open: isOpen }]">
-      <div :class="['nav-links', { scrolled: isScrolled || isOpen }]"> <!-- Adiciona a classe "scrolled" quando a classe "isScrolled" for verdadeira -->
-        <router-link to="/" class="nav-link" @click="closeMenu">{{ $t('header.home') }}</router-link>
-        <router-link to="/#services" class="nav-link" @click="closeMenu">{{ $t('header.services') }}</router-link>
-        <router-link to="/#about" class="nav-link" @click="closeMenu">{{ $t('header.about') }}</router-link>
-        <router-link to="/#projects" class="nav-link" @click="closeMenu">{{ $t('header.projects') }}</router-link>
-        <router-link to="/#timeline" class="nav-link" @click="closeMenu">{{ $t('header.timeline') }}</router-link>
-        <router-link to="/#contact" class="nav-link" @click="closeMenu">{{ $t('header.contact') }}</router-link>
+      <div :class="['nav-links', { scrolled: isScrolled || isOpen }]">
+        <router-link to="/" class="nav-link" :class="{ 'nav-link-active': isHomeActive }" @click="closeMenu">
+          {{ $t('header.home') }}
+        </router-link>
+
+        <router-link to="/#services" class="nav-link" :class="{ 'nav-link-active': isHashActive('#services') }"
+          @click="closeMenu">
+          {{ $t('header.services') }}
+        </router-link>
+
+        <router-link to="/#about" class="nav-link" :class="{ 'nav-link-active': isHashActive('#about') }"
+          @click="closeMenu">
+          {{ $t('header.about') }}
+        </router-link>
+
+        <router-link to="/#projects" class="nav-link" :class="{ 'nav-link-active': isHashActive('#projects') }"
+          @click="closeMenu">
+          {{ $t('header.projects') }}
+        </router-link>
+
+        <router-link to="/#timeline" class="nav-link" :class="{ 'nav-link-active': isHashActive('#timeline') }"
+          @click="closeMenu">
+          {{ $t('header.timeline') }}
+        </router-link>
+
+        <router-link to="/#contact" class="nav-link" :class="{ 'nav-link-active': isHashActive('#contact') }"
+          @click="closeMenu">
+          {{ $t('header.contact') }}
+        </router-link>
       </div>
-      
+
+
       <!-- Botão WhatsApp mobile -->
       <a class="btn-whatsapp mobile" href="http://wa.me/5513996958183" target="_blank" rel="noopener noreferrer">
         {{ $t('header.talk_to_me') }}
@@ -26,12 +49,12 @@
     <div class="header-actions">
       <!-- Dropdown de idioma (desktop) -->
       <OptLangDropdown class="lang-dropdown-desktop" />
-      
+
       <!-- Botão WhatsApp desktop -->
       <a class="btn-whatsapp desktop" href="http://wa.me/5513996958183" target="_blank" rel="noopener noreferrer">
         <i class="fab fa-whatsapp"></i> {{ $t('header.talk_to_me') }}
       </a>
-      
+
       <!-- Menu hamburger -->
       <button class="hamburger" @click="toggleMenu">
         <span :class="{ open: isOpen }"></span>
@@ -56,7 +79,17 @@ export default {
       isScrolled: false
     };
   },
+  computed: {
+    isHomeActive() {
+      // Home só fica ativa quando NÃO tem hash
+      return this.$route.path === '/' && (!this.$route.hash || this.$route.hash === '');
+    }
+  },
   methods: {
+    isHashActive(hash) {
+      return this.$route.path === '/' && this.$route.hash === hash;
+    },
+
     toggleMenu() {
       this.isOpen = !this.isOpen;
     },
@@ -144,15 +177,19 @@ export default {
   padding: 0.4rem;
   border: 1px solid var(--glass-border);
   box-shadow: 0 0 32px 2px rgba(43, 92, 226, 0.375);
-  border-radius: 2rem; /* mantém o efeito arredondado elegante */
-  backdrop-filter: blur(4px); /* opcional, dá um ar mais moderno */
+  border-radius: 2rem;
+  /* mantém o efeito arredondado elegante */
+  backdrop-filter: blur(4px);
+  /* opcional, dá um ar mais moderno */
   transition: box-shadow 0.3s ease, background 0.3s ease;
 }
 
 .nav-links.scrolled {
   box-shadow: 0 0 32px 2px rgba(43, 92, 226, 0.375);
-  border-radius: 2rem; /* mantém o efeito arredondado elegante */
-  backdrop-filter: blur(8px); /* opcional, dá um ar mais moderno */
+  border-radius: 2rem;
+  /* mantém o efeito arredondado elegante */
+  backdrop-filter: blur(8px);
+  /* opcional, dá um ar mais moderno */
   transition: box-shadow 0.3s ease, background 0.3s ease;
 }
 
@@ -163,17 +200,28 @@ export default {
   font-weight: 500;
   font-size: 0.95rem;
   transition: all 0.3s ease;
+  border-radius: 999px;
 }
 
+/* Hover moderno */
 .nav-link:hover {
   background: var(--gradient-blue);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+  color: #0a0a0a;
+  box-shadow: 0 6px 20px rgba(70, 130, 180, 0.35);
+  transform: translateY(-1px);
 }
 
 .nav-link:hover::after {
   width: 100%;
+}
+
+.nav-link-active {
+  background: var(--gradient-blue);
+  color: #0a0a0a;
+  box-shadow:
+    0 6px 20px rgba(70, 130, 180, 0.45),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+  font-weight: 600;
 }
 
 /* -------- HEADER ACTIONS -------- */
@@ -292,11 +340,11 @@ export default {
   .header {
     padding: 16px 20px;
   }
-  
+
   .header-actions {
     gap: 15px;
   }
-  
+
   .nav {
     position: fixed;
     top: 0;
@@ -315,11 +363,11 @@ export default {
     padding-top: 80px;
     overflow-y: auto;
   }
-  
+
   .nav.open {
     transform: translateY(0);
   }
-  
+
   .nav-links {
     flex-direction: column;
     align-items: center;
@@ -327,38 +375,42 @@ export default {
     width: 100%;
     padding: 20px;
   }
-  
+
   .nav-link {
-    padding: 12px 20px;
     width: 100%;
     text-align: center;
-    font-size: 1.1rem;
-    border-radius: 8px;
-    transition: all 0.3s ease;
+    border-radius: 14px;
   }
-  
+
+  /* Hover mobile */
   .nav-link:hover {
-    background: rgba(138, 43, 226, 0.1);
-    transform: translateX(5px);
-    color: white;
+    background: var(--gradient-blue);
+    color: #0a0a0a;
+    transform: translateX(6px);
   }
-  
+
+  .nav-link-active {
+    background: var(--gradient-blue);
+    color: #0a0a0a;
+    box-shadow: 0 8px 24px rgba(70, 130, 180, 0.45);
+  }
+
   .nav-link::after {
     display: none;
   }
-  
+
   .hamburger {
     display: flex;
   }
-  
+
   .lang-dropdown-desktop {
     display: none;
   }
-  
+
   .desktop {
     display: none;
   }
-  
+
   .mobile {
     display: flex;
     margin: 30px 0;
@@ -368,35 +420,58 @@ export default {
     font-size: 1rem;
     padding: 12px 20px;
   }
-  
+
   /* Efeito de fade-in para os itens do menu */
   .nav.open .nav-link {
     animation: fadeIn 0.5s ease forwards;
     opacity: 0;
   }
-  
+
   @keyframes fadeIn {
     to {
       opacity: 1;
       transform: translateX(0);
     }
   }
-  
+
   /* Delay para cada item do menu */
-  .nav-link:nth-child(1) { animation-delay: 0.1s; }
-  .nav-link:nth-child(2) { animation-delay: 0.2s; }
-  .nav-link:nth-child(3) { animation-delay: 0.3s; }
-  .nav-link:nth-child(4) { animation-delay: 0.4s; }
-  .nav-link:nth-child(5) { animation-delay: 0.5s; }
-  .nav-link:nth-child(6) { animation-delay: 0.6s; }
-  .nav-link:nth-child(7) { animation-delay: 0.7s; }
-  .nav-link:nth-child(8) { animation-delay: 0.8s; }
-  
+  .nav-link:nth-child(1) {
+    animation-delay: 0.1s;
+  }
+
+  .nav-link:nth-child(2) {
+    animation-delay: 0.2s;
+  }
+
+  .nav-link:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+
+  .nav-link:nth-child(4) {
+    animation-delay: 0.4s;
+  }
+
+  .nav-link:nth-child(5) {
+    animation-delay: 0.5s;
+  }
+
+  .nav-link:nth-child(6) {
+    animation-delay: 0.6s;
+  }
+
+  .nav-link:nth-child(7) {
+    animation-delay: 0.7s;
+  }
+
+  .nav-link:nth-child(8) {
+    animation-delay: 0.8s;
+  }
+
   /* Scroll personalizado para o menu */
   .nav::-webkit-scrollbar {
     width: 5px;
   }
-  
+
   .nav::-webkit-scrollbar-thumb {
     background-color: var(--color-purple);
     border-radius: 10px;
@@ -407,12 +482,12 @@ export default {
   .logo {
     font-size: 1.5rem;
   }
-  
+
   .nav-link {
     padding: 10px 15px;
     font-size: 1rem;
   }
-  
+
   .mobile {
     padding: 10px 15px;
     font-size: 0.9rem;
