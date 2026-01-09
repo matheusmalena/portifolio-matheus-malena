@@ -6,7 +6,7 @@
     "skills": "Skills",
     "projects": "Projetos",
     "certificates": "Certificados",
-    "timeline": "Timeline",
+    "timeline": "Carreira",
     "contact": "Contato",
     "talk_to_me": "Fale comigo"
   },
@@ -35,13 +35,13 @@
     "fullstack_desc": "Desenvolvimento de soluções web com tecnologias modernas e eficientes."
   },
   "about": {
-    "subtitle": "Sobre mim",
-    "title": "Prazer, sou Matheus",
-    "paragraph_1": "Tenho 20 anos e trabalho na área de TI há mais de 3 anos, adquirindo experiência em diversas áreas, desde programação e bancos de dados até hardware e manutenção. Hoje atuo como desenvolvedor Full-Stack na",
-    "paragraph_2": "Além da tecnologia, também adquiri conhecimentos em marketing digital e tráfego pago, ajudando negócios a conquistarem mais visibilidade e resultados no mundo digital.",
-    "paragraph_3": "Sou formado em Análise e Desenvolvimento de Sistemas pela Unisanta e tenho ensino médio técnico em Jogos Digitais. Gosto muito de aprender e estou sempre buscando me atualizar com cursos na Alura e outras plataformas.",
-    "trajectory_button": "Conheça minha trajetória"
-  },
+  "subtitle": "Sobre mim",
+  "title": "Prazer, sou Matheus",
+  "paragraph_1": "Sou desenvolvedor com 2 anos de experiência, com foco em front-end, atuando principalmente na criação de interfaces bem estruturadas, intuitivas e com atenção à usabilidade. Também possuo experiência em back-end e bancos de dados, o que me permite compreender o funcionamento completo das aplicações e colaborar de forma mais estratégica no desenvolvimento.",
+  "paragraph_2": "Atualmente, faço parte do time da Yup Chat, onde liderei o desenvolvimento do front-end da nova interface da plataforma, contribuindo para uma interface mais moderna, intuitiva e alinhada às necessidades do produto. Atuo de forma integrada com o back-end em PHP/Laravel e bancos de dados SQL, participando ativamente da evolução contínua da plataforma.",
+  "paragraph_3": "Sou formado em Análise e Desenvolvimento de Sistemas pela Unisanta e iniciei minha trajetória técnica ainda no ensino médio, no curso de Jogos Digitais integrado à ETEC. Sigo em evolução contínua com estudos e especializações pela Alura, além de conhecimentos em marketing digital e presença online, ampliando minha visão sobre como a tecnologia pode impulsionar negócios e gerar resultados reais.",
+  "trajectory_button": "Conheça minha trajetória"
+},
   "contact": {
     "title": "Vamos Conversar?",
     "subtitle": "Estou disponível para colaborações e novos projetos",

@@ -13,7 +13,7 @@ export default {
 <style scoped>
 /* -------- FOOTER -------- */
 .footer {
-  background-color: #111;
+  background: linear-gradient(135deg, #0a0a0a 0%, #0f172a 100%);
   padding: 20px 40px;
   text-align: center;
   color: var(--color-gray);

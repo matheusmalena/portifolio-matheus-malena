@@ -328,7 +328,7 @@ export default {
   top: -25%;
   left: -25%;
   background: radial-gradient(circle at center,
-      rgba(39, 125, 255, 0.2) 0%,
+      rgba(31, 98, 199, 0.2) 0%,
       rgba(35, 52, 92, 0) 80%);
   z-index: 2;
   transition: transform 0.1s ease-out;

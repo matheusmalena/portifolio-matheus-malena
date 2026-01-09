@@ -6,38 +6,68 @@
     </div>
 
     <!-- Navegação principal -->
-    <nav :class="['nav', { open: isOpen }]">
+    <nav :class="['nav', { open: isOpen }]" @click="closeMenuOnOutsideClick">
       <div :class="['nav-links', { scrolled: isScrolled || isOpen }]">
-        <router-link to="/" class="nav-link" :class="{ 'nav-link-active': isHomeActive }" @click="closeMenu">
+        <router-link 
+          to="/" 
+          class="nav-link" 
+          :class="{ 'nav-link-active': isHomeActive }" 
+          @click="handleLinkClick($event, '/')"
+          data-text="Home"
+        >
           {{ $t('header.home') }}
         </router-link>
 
-        <router-link to="/#services" class="nav-link" :class="{ 'nav-link-active': isHashActive('#services') }"
-          @click="closeMenu">
+        <router-link 
+          to="/#services" 
+          class="nav-link" 
+          :class="{ 'nav-link-active': isHashActive('#services') }"
+          @click="handleLinkClick($event, '/#services')"
+          data-text="Services"
+        >
           {{ $t('header.services') }}
         </router-link>
 
-        <router-link to="/#about" class="nav-link" :class="{ 'nav-link-active': isHashActive('#about') }"
-          @click="closeMenu">
+        <router-link 
+          to="/#about" 
+          class="nav-link" 
+          :class="{ 'nav-link-active': isHashActive('#about') }"
+          @click="handleLinkClick($event, '/#about')"
+          :data-text="$t('header.about')"
+        >
           {{ $t('header.about') }}
         </router-link>
 
-        <router-link to="/#projects" class="nav-link" :class="{ 'nav-link-active': isHashActive('#projects') }"
-          @click="closeMenu">
+        <router-link 
+          to="/#projects" 
+          class="nav-link" 
+          :class="{ 'nav-link-active': isHashActive('#projects') }"
+          @click="handleLinkClick($event, '/#projects')"
+          :data-text="$t('header.projects')"
+        >
           {{ $t('header.projects') }}
         </router-link>
 
-        <router-link to="/#timeline" class="nav-link" :class="{ 'nav-link-active': isHashActive('#timeline') }"
-          @click="closeMenu">
+        <router-link 
+          to="/#timeline" 
+          class="nav-link" 
+          :class="{ 'nav-link-active': isHashActive('#timeline') }"
+          @click="handleLinkClick($event, '/#timeline')"
+          :data-text="$t('header.timeline')"
+        >
           {{ $t('header.timeline') }}
         </router-link>
 
-        <router-link to="/#contact" class="nav-link" :class="{ 'nav-link-active': isHashActive('#contact') }"
-          @click="closeMenu">
+        <router-link 
+          to="/#contact" 
+          class="nav-link" 
+          :class="{ 'nav-link-active': isHashActive('#contact') }"
+          @click="handleLinkClick($event, '/#contact')"
+          :data-text="$t('header.contact')"
+        >
           {{ $t('header.contact') }}
         </router-link>
       </div>
-
 
       <!-- Botão WhatsApp mobile -->
       <a class="btn-whatsapp mobile" href="http://wa.me/5513996958183" target="_blank" rel="noopener noreferrer">
@@ -56,7 +86,7 @@
       </a>
 
       <!-- Menu hamburger -->
-      <button class="hamburger" @click="toggleMenu">
+      <button class="hamburger" @click="toggleMenu" :aria-label="isOpen ? 'Close menu' : 'Open menu'">
         <span :class="{ open: isOpen }"></span>
         <span :class="{ open: isOpen }"></span>
         <span :class="{ open: isOpen }"></span>
@@ -76,35 +106,164 @@ export default {
   data() {
     return {
       isOpen: false,
-      isScrolled: false
+      isScrolled: false,
+      activeLinkIndex: 0,
+      indicatorWidth: 0,
+      indicatorLeft: 0,
+      isMobile: false,
+      lastActiveLink: null
     };
   },
   computed: {
     isHomeActive() {
-      // Home só fica ativa quando NÃO tem hash
       return this.$route.path === '/' && (!this.$route.hash || this.$route.hash === '');
+    },
+    indicatorStyle() {
+      return {
+        width: `${this.indicatorWidth}px`,
+        left: `${this.indicatorLeft}px`,
+        opacity: this.indicatorWidth > 0 ? 1 : 0
+      };
     }
   },
   methods: {
     isHashActive(hash) {
       return this.$route.path === '/' && this.$route.hash === hash;
     },
-
+    
+    handleLinkClick(event, route) {
+      const link = event.currentTarget;
+      this.updateIndicator(link);
+      this.closeMenu();
+      
+      // Adiciona efeito de clique
+      link.classList.add('clicked');
+      setTimeout(() => {
+        link.classList.remove('clicked');
+      }, 300);
+    },
+    
+    updateIndicator(activeLink) {
+      if (this.isMobile || !activeLink) return;
+      
+      const links = document.querySelectorAll('.nav-link');
+      const index = Array.from(links).indexOf(activeLink);
+      
+      if (index !== -1) {
+        this.activeLinkIndex = index;
+        const linkRect = activeLink.getBoundingClientRect();
+        const navRect = activeLink.parentElement.getBoundingClientRect();
+        
+        this.indicatorWidth = linkRect.width;
+        this.indicatorLeft = linkRect.left - navRect.left;
+      }
+    },
+    
     toggleMenu() {
       this.isOpen = !this.isOpen;
+      document.body.style.overflow = this.isOpen ? 'hidden' : '';
+      
+      if (!this.isOpen) {
+        // Adiciona efeito de fechamento suave
+        setTimeout(() => {
+          const links = document.querySelectorAll('.nav-link');
+          links.forEach(link => link.classList.remove('menu-open'));
+        }, 300);
+      } else {
+        // Adiciona efeito de abertura sequencial
+        setTimeout(() => {
+          const links = document.querySelectorAll('.nav-link');
+          links.forEach((link, index) => {
+            setTimeout(() => {
+              link.classList.add('menu-open');
+            }, index * 50);
+          });
+        }, 100);
+      }
     },
+    
     closeMenu() {
-      this.isOpen = false;
+      if (this.isOpen) {
+        this.isOpen = false;
+        document.body.style.overflow = '';
+        
+        // Remove classes de animação
+        setTimeout(() => {
+          const links = document.querySelectorAll('.nav-link');
+          links.forEach(link => link.classList.remove('menu-open'));
+        }, 300);
+      }
     },
+    
+    closeMenuOnOutsideClick(event) {
+      if (this.isOpen && event.target.classList.contains('nav')) {
+        this.closeMenu();
+      }
+    },
+    
     handleScroll() {
       this.isScrolled = window.scrollY > 20;
+      
+      // Atualiza o indicador baseado na posição da página
+      if (!this.isMobile) {
+        const links = document.querySelectorAll('.nav-link');
+        let activeLink = null;
+        
+        links.forEach(link => {
+          if (link.classList.contains('nav-link-active')) {
+            activeLink = link;
+          }
+        });
+        
+        if (activeLink) {
+          this.updateIndicator(activeLink);
+        }
+      }
+    },
+    
+    checkMobile() {
+      this.isMobile = window.innerWidth <= 768;
+      if (!this.isMobile) {
+        this.closeMenu();
+      }
+    },
+    
+    handleRouteChange() {
+      // Aguarda a renderização dos links
+      this.$nextTick(() => {
+        const links = document.querySelectorAll('.nav-link');
+        links.forEach(link => {
+          if (link.classList.contains('nav-link-active') && link !== this.lastActiveLink) {
+            this.updateIndicator(link);
+            this.lastActiveLink = link;
+          }
+        });
+      });
     }
   },
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
+    window.addEventListener("resize", this.checkMobile);
+    
+    // Inicializa o estado mobile
+    this.checkMobile();
+    
+    // Inicializa o indicador
+    this.$nextTick(() => {
+      const activeLink = document.querySelector('.nav-link-active');
+      if (activeLink) {
+        this.updateIndicator(activeLink);
+        this.lastActiveLink = activeLink;
+      }
+    });
+    
+    // Observa mudanças de rota
+    this.$watch(() => this.$route, this.handleRouteChange, { immediate: true });
   },
   beforeUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
+    window.removeEventListener("resize", this.checkMobile);
+    document.body.style.overflow = '';
   }
 };
 </script>
@@ -133,14 +292,16 @@ export default {
   width: 100%;
   top: 0;
   z-index: 1000;
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   background-color: transparent;
+  backdrop-filter: blur(0px);
 }
 
 .header.scrolled {
-  background-color: var(--color-black);
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0);
-  padding: 20px 5%;
+  background: linear-gradient(135deg, #0a0a0a 0%, #0f172a 100%);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  padding: 15px 5%;
 }
 
 .logo {
@@ -157,10 +318,20 @@ export default {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   display: inline-block;
+  position: relative;
 }
 
 .logo:hover {
   transform: scale(1.05);
+}
+
+.logo:hover span {
+  animation: gradientShift 2s ease infinite;
+}
+
+@keyframes gradientShift {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
 }
 
 /* -------- NAVIGATION -------- */
@@ -168,6 +339,7 @@ export default {
   display: flex;
   align-items: center;
   gap: 40px;
+  position: relative;
 }
 
 .nav-links {
@@ -178,19 +350,27 @@ export default {
   border: 1px solid var(--glass-border);
   box-shadow: 0 0 32px 2px rgba(43, 92, 226, 0.375);
   border-radius: 2rem;
-  /* mantém o efeito arredondado elegante */
   backdrop-filter: blur(4px);
-  /* opcional, dá um ar mais moderno */
-  transition: box-shadow 0.3s ease, background 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
 }
 
 .nav-links.scrolled {
   box-shadow: 0 0 32px 2px rgba(43, 92, 226, 0.375);
   border-radius: 2rem;
-  /* mantém o efeito arredondado elegante */
   backdrop-filter: blur(8px);
-  /* opcional, dá um ar mais moderno */
-  transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+
+/* Indicador de item ativo */
+.nav-indicator {
+  position: absolute;
+  bottom: -5px;
+  height: 3px;
+  background: var(--gradient-blue);
+  border-radius: 2px;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+  pointer-events: none;
 }
 
 .nav-link {
@@ -201,27 +381,86 @@ export default {
   font-size: 0.95rem;
   transition: all 0.3s ease;
   border-radius: 999px;
+  padding: 0.6rem 1.2rem;
+  overflow: hidden;
+  z-index: 1;
 }
 
-/* Hover moderno */
-.nav-link:hover {
+/* Efeito de fundo animado */
+.nav-link::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
   background: var(--gradient-blue);
-  color: #0a0a0a;
-  box-shadow: 0 6px 20px rgba(70, 130, 180, 0.35);
-  transform: translateY(-1px);
+  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: -1;
+  border-radius: 999px;
+}
+
+.nav-link:hover::before {
+  left: 0;
+}
+
+.nav-link:hover {
+  color: var(--color-black);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(70, 130, 180, 0.4);
+}
+
+/* Efeito de clique */
+.nav-link.clicked {
+  animation: clickEffect 0.3s ease;
+  transform: scale(0.95);
+}
+
+@keyframes clickEffect {
+  0% { transform: scale(1); }
+  50% { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+/* Link ativo */
+.nav-link-active {
+  background: var(--gradient-blue);
+  color: var(--color-black);
+  font-weight: 600;
+  box-shadow: 
+    0 6px 20px rgba(70, 130, 180, 0.45),
+    inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+  animation: pulseActive 2s ease infinite;
+}
+
+@keyframes pulseActive {
+  0%, 100% { box-shadow: 0 6px 20px rgba(70, 130, 180, 0.45); }
+  50% { box-shadow: 0 6px 25px rgba(70, 130, 180, 0.6); }
+}
+
+/* Efeito de texto flutuante */
+.nav-link::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--gradient-blue);
+  color: var(--color-black);
+  border-radius: 999px;
+  transform: translateY(100%);
+  opacity: 0;
+  transition: all 0.3s ease;
+  font-weight: 600;
 }
 
 .nav-link:hover::after {
-  width: 100%;
-}
-
-.nav-link-active {
-  background: var(--gradient-blue);
-  color: #0a0a0a;
-  box-shadow:
-    0 6px 20px rgba(70, 130, 180, 0.45),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-  font-weight: 600;
+  transform: translateY(0);
+  opacity: 1;
 }
 
 /* -------- HEADER ACTIONS -------- */
@@ -233,12 +472,17 @@ export default {
 
 .lang-dropdown-desktop {
   margin-left: 10px;
+  transition: transform 0.3s ease;
+}
+
+.lang-dropdown-desktop:hover {
+  transform: translateY(-2px);
 }
 
 /* -------- WHATSAPP BUTTON -------- */
 .btn-whatsapp {
   padding: 0.6rem 1.2rem;
-  background-color: #23c45e;
+  background: linear-gradient(135deg, #25D366, #128C7E);
   text-decoration: none;
   border: none;
   border-radius: 2rem;
@@ -249,21 +493,11 @@ export default {
   justify-content: center;
   align-items: center;
   gap: 0.5rem;
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-  box-shadow: 0 2px 8px rgba(37, 211, 102, 0.3);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
   cursor: pointer;
   position: relative;
   overflow: hidden;
-}
-
-.btn-whatsapp:hover {
-  background-color: #24c25e;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(37, 211, 102, 0.4);
-}
-
-.btn-whatsapp:active {
-  transform: translateY(0);
 }
 
 .btn-whatsapp::before {
@@ -273,7 +507,7 @@ export default {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
   transition: 0.5s;
 }
 
@@ -281,12 +515,21 @@ export default {
   left: 100%;
 }
 
+.btn-whatsapp:hover {
+  transform: translateY(-3px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+}
+
+.btn-whatsapp:active {
+  transform: translateY(-1px) scale(1.02);
+}
+
 .btn-whatsapp i {
-  transition: transform 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .btn-whatsapp:hover i {
-  transform: scale(1.1) rotate(5deg);
+  transform: scale(1.2) rotate(10deg);
 }
 
 .desktop {
@@ -306,27 +549,35 @@ export default {
   border: none;
   cursor: pointer;
   z-index: 1100;
-  padding: 5px;
+  padding: 8px;
+  border-radius: 50%;
+  transition: background 0.3s ease;
+}
+
+.hamburger:hover {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .hamburger span {
   width: 25px;
   height: 3px;
   background-color: var(--color-white);
-  transition: all 0.3s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   border-radius: 2px;
+  transform-origin: center;
 }
 
 .hamburger span.open:nth-child(1) {
-  transform: rotate(45deg) translate(5px, 5px);
+  transform: rotate(45deg) translate(6px, 6px);
 }
 
 .hamburger span.open:nth-child(2) {
   opacity: 0;
+  transform: scaleX(0);
 }
 
 .hamburger span.open:nth-child(3) {
-  transform: rotate(-45deg) translate(5px, -5px);
+  transform: rotate(-45deg) translate(6px, -6px);
 }
 
 /* -------- RESPONSIVE DESIGN -------- */
@@ -351,48 +602,67 @@ export default {
     left: 0;
     width: 100%;
     height: 100vh;
-    background-color: rgba(10, 10, 10, 0.98);
-    backdrop-filter: blur(10px);
+    background: linear-gradient(135deg, rgba(10, 10, 10, 0.98), rgba(20, 20, 40, 0.98));
+    backdrop-filter: blur(20px);
     flex-direction: column;
     justify-content: flex-start;
     align-items: center;
     gap: 0;
     transform: translateY(-100%);
-    transition: transform 0.4s cubic-bezier(0.65, 0, 0.35, 1);
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
     z-index: 1000;
-    padding-top: 80px;
+    padding-top: 100px;
     overflow-y: auto;
   }
 
   .nav.open {
     transform: translateY(0);
+    opacity: 1;
   }
 
   .nav-links {
     flex-direction: column;
     align-items: center;
-    gap: 15px;
-    width: 100%;
+    gap: 10px;
+    width: 90%;
+    max-width: 300px;
     padding: 20px;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    margin-top: 20px;
   }
 
   .nav-link {
     width: 100%;
     text-align: center;
-    border-radius: 14px;
+    border-radius: 12px;
+    padding: 15px 20px;
+    margin: 5px 0;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
-  /* Hover mobile */
+  .nav-link.menu-open {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
   .nav-link:hover {
-    background: var(--gradient-blue);
-    color: #0a0a0a;
-    transform: translateX(6px);
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 10px 30px rgba(70, 130, 180, 0.3);
   }
 
   .nav-link-active {
-    background: var(--gradient-blue);
-    color: #0a0a0a;
-    box-shadow: 0 8px 24px rgba(70, 130, 180, 0.45);
+    animation: mobilePulse 2s ease infinite;
+  }
+
+  @keyframes mobilePulse {
+    0%, 100% { box-shadow: 0 8px 25px rgba(70, 130, 180, 0.4); }
+    50% { box-shadow: 0 8px 30px rgba(70, 130, 180, 0.6); }
   }
 
   .nav-link::after {
@@ -418,64 +688,26 @@ export default {
     max-width: 250px;
     justify-content: center;
     font-size: 1rem;
-    padding: 12px 20px;
-  }
-
-  /* Efeito de fade-in para os itens do menu */
-  .nav.open .nav-link {
-    animation: fadeIn 0.5s ease forwards;
+    padding: 14px 24px;
     opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInUp 0.5s ease 0.8s forwards;
   }
 
-  @keyframes fadeIn {
+  @keyframes fadeInUp {
     to {
       opacity: 1;
-      transform: translateX(0);
+      transform: translateY(0);
     }
   }
 
-  /* Delay para cada item do menu */
-  .nav-link:nth-child(1) {
-    animation-delay: 0.1s;
-  }
-
-  .nav-link:nth-child(2) {
-    animation-delay: 0.2s;
-  }
-
-  .nav-link:nth-child(3) {
-    animation-delay: 0.3s;
-  }
-
-  .nav-link:nth-child(4) {
-    animation-delay: 0.4s;
-  }
-
-  .nav-link:nth-child(5) {
-    animation-delay: 0.5s;
-  }
-
-  .nav-link:nth-child(6) {
-    animation-delay: 0.6s;
-  }
-
-  .nav-link:nth-child(7) {
-    animation-delay: 0.7s;
-  }
-
-  .nav-link:nth-child(8) {
-    animation-delay: 0.8s;
-  }
-
-  /* Scroll personalizado para o menu */
-  .nav::-webkit-scrollbar {
-    width: 5px;
-  }
-
-  .nav::-webkit-scrollbar-thumb {
-    background-color: var(--color-purple);
-    border-radius: 10px;
-  }
+  /* Efeito de entrada sequencial para os links */
+  .nav-link:nth-child(1).menu-open { transition-delay: 0.1s; }
+  .nav-link:nth-child(2).menu-open { transition-delay: 0.2s; }
+  .nav-link:nth-child(3).menu-open { transition-delay: 0.3s; }
+  .nav-link:nth-child(4).menu-open { transition-delay: 0.4s; }
+  .nav-link:nth-child(5).menu-open { transition-delay: 0.5s; }
+  .nav-link:nth-child(6).menu-open { transition-delay: 0.6s; }
 }
 
 @media (max-width: 480px) {
@@ -484,13 +716,24 @@ export default {
   }
 
   .nav-link {
-    padding: 10px 15px;
+    padding: 14px 18px;
     font-size: 1rem;
   }
 
   .mobile {
-    padding: 10px 15px;
-    font-size: 0.9rem;
+    padding: 12px 20px;
+    font-size: 0.95rem;
   }
+}
+
+/* Animações globais */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
 }
 </style>

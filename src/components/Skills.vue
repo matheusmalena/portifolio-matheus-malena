@@ -19,6 +19,11 @@
         </div>
       </div>
     </div>
+
+    <!-- Background Elements (igual services) -->
+    <div class="bg-grid"></div>
+    <div class="bg-blur-1"></div>
+    <div class="bg-blur-2"></div>
   </section>
 </template>
 
@@ -127,14 +132,21 @@ export default {
 <style scoped>
 .skills {
   padding: 5rem 0;
-  background: #0f172a;
+  background: linear-gradient(135deg, #0a0a0a 0%, #0f172a 100%);
   color: white;
+
+  /* IMPORTANTE pro fundo */
+  position: relative;
+  overflow: hidden;
 }
 
+/* garante que seu conteúdo fique acima do fundo */
 .container {
   max-width: 1200px;
   margin: 0 auto;
   padding: 0 1.5rem;
+  position: relative;
+  z-index: 2;
 }
 
 .section-title {
@@ -223,6 +235,46 @@ export default {
   text-align: center;
 }
 
+/* -------- BACKGROUND ELEMENTS (igual services) -------- */
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 50px 50px;
+  opacity: 0.3;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bg-blur-1 {
+  position: absolute;
+  top: 20%;
+  right: 10%;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(195, 236, 254, 0.1) 0%, transparent 70%);
+  filter: blur(60px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+.bg-blur-2 {
+  position: absolute;
+  bottom: 20%;
+  left: 10%;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(138, 43, 226, 0.1) 0%, transparent 70%);
+  filter: blur(80px);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* -------- RESPONSIVO -------- */
 @media (max-width: 768px) {
   .skills {
     padding: 3rem 0;

@@ -92,7 +92,7 @@ export default {
 
 /* -------- SEÇÃO CONTATO -------- */
 .contact-section {
-  background-color: var(--color-bg);
+  background: linear-gradient(135deg, #0a0a0a 0%, #0f172a 100%);
   padding: 5rem 0;
   position: relative;
   overflow: hidden;
@@ -157,7 +157,6 @@ export default {
   background: var(--color-card);
   padding: 1.5rem 2rem;
   border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
   gap: 1.5rem;
@@ -166,17 +165,12 @@ export default {
   max-width: 350px;
 }
 
-.info-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-}
-
 .contact-icon {
   font-size: 1.8rem;
-  color: var(--color-primary);
-  background: rgba(124, 58, 237, 0.1);
+  color: rgb(171, 221, 243);
   width: 60px;
   height: 60px;
+  border: 1px solid rgb(171, 221, 243);
   border-radius: 50%;
   display: flex;
   align-items: center;

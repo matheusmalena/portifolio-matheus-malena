@@ -51,7 +51,7 @@ onUnmounted(() => {
   height: 50px;
   border-radius: 50%;
   background: var(--gradient-blue);
-  color: white;
+  color: linear-gradient(135deg, #0a0a0a 0%, #0f172a 100%);
   border: none;
   cursor: pointer;
   display: flex;

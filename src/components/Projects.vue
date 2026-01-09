@@ -239,30 +239,30 @@ export default {
       return Math.ceil(this.filteredProjects.length / this.itemsPerPage);
     }
   },
-methods: {
-  changeCategory(category) {
-    this.activeCategory = category;
-    this.currentPage = 1;
+  methods: {
+    changeCategory(category) {
+      this.activeCategory = category;
+      this.currentPage = 1;
+    },
+    changePage(page) {
+      this.currentPage = page;
+      document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
   },
-  changePage(page) {
-    this.currentPage = page;
-    document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  }
-},
-watch: {
-  filteredProjects() {
-    if (this.currentPage > this.totalPages && this.totalPages > 0) {
-      this.currentPage = this.totalPages;
+  watch: {
+    filteredProjects() {
+      if (this.currentPage > this.totalPages && this.totalPages > 0) {
+        this.currentPage = this.totalPages;
+      }
     }
   }
-}
 };
 </script>
 
 <style scoped>
 .projects-section {
   padding: 6rem 0;
-  background: var(--color-black);
+  background: linear-gradient(135deg, #0a0a0a 0%, #0f172a 100%);
   color: white;
 }
 
@@ -332,24 +332,22 @@ watch: {
 }
 
 .filter-btn {
-  background: rgba(255, 255, 255, 0.1);
+  background: transparent;
   color: rgba(255, 255, 255, 0.8);
-  border: none;
+  border: 1px solid rgba(195, 236, 254, 1);
   padding: 0.6rem 1.4rem;
   border-radius: 30px;
   font-size: 0.95rem;
+  font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
 }
 
-.filter-btn:hover {
-  background: rgba(255, 255, 255, 0.2);
-}
-
-.filter-btn.active {
-  background: var(--accent-color);
-  color: white;
+.filter-btn:hover, .filter-btn.active {
+  background: var(--gradient-blue);
+  color: #0a0a0a;
   box-shadow: 0 4px 15px rgba(74, 205, 240, 0.3);
+  border: var(--gradient-blue);
 }
 
 /* Grid de Projetos */
