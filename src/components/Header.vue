@@ -344,7 +344,7 @@ export default {
 
 .nav-links {
   display: flex;
-  background: var(--glass-bg);
+  background: #171718;
   gap: 0;
   padding: 0.4rem;
   border: 1px solid var(--glass-border);
