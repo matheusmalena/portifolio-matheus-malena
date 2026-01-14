@@ -35,13 +35,13 @@
     "fullstack_desc": "Desenvolvimento de soluções web com tecnologias modernas e eficientes."
   },
   "about": {
-  "subtitle": "Sobre mim",
-  "title": "Prazer, sou Matheus",
-  "paragraph_1": "Sou desenvolvedor com 2 anos de experiência, com foco em front-end, atuando principalmente na criação de interfaces bem estruturadas, intuitivas e com atenção à usabilidade. Também possuo experiência em back-end e bancos de dados, o que me permite compreender o funcionamento completo das aplicações e colaborar de forma mais estratégica no desenvolvimento.",
-  "paragraph_2": "Atualmente, faço parte do time da Yup Chat, onde liderei o desenvolvimento do front-end da nova interface da plataforma, contribuindo para uma interface mais moderna, intuitiva e alinhada às necessidades do produto. Atuo de forma integrada com o back-end em PHP/Laravel e bancos de dados SQL, participando ativamente da evolução contínua da plataforma.",
-  "paragraph_3": "Sou formado em Análise e Desenvolvimento de Sistemas pela Unisanta e iniciei minha trajetória técnica ainda no ensino médio, no curso de Jogos Digitais integrado à ETEC. Sigo em evolução contínua com estudos e especializações pela Alura, além de conhecimentos em marketing digital e presença online, ampliando minha visão sobre como a tecnologia pode impulsionar negócios e gerar resultados reais.",
-  "trajectory_button": "Conheça minha trajetória"
-},
+    "subtitle": "Sobre mim",
+    "title": "Prazer, sou Matheus",
+    "paragraph_1": "Sou desenvolvedor Full Stack com 2 anos de experiência, com foco em front-end, criando interfaces modernas, intuitivas e bem estruturadas. Também tenho experiência com back-end e bancos de dados, o que me permite atuar de ponta a ponta no desenvolvimento.",
+    "paragraph_2": "Atualmente, faço parte do time da Yup Chat, onde liderei o desenvolvimento do front-end da nova interface da plataforma, contribuindo para uma interface mais moderna, intuitiva e alinhada às necessidades do produto. Atuo de forma integrada com o back-end em PHP/Laravel e bancos de dados SQL, participando ativamente da evolução contínua da plataforma.",
+    "paragraph_3": "Sou formado em Análise e Desenvolvimento de Sistemas pela Unisanta e iniciei minha trajetória técnica ainda no ensino médio, no curso de Jogos Digitais integrado à ETEC. Sigo em evolução contínua com estudos e especializações pela Alura, além de conhecimentos em marketing digital e presença online, ampliando minha visão sobre como a tecnologia pode impulsionar negócios e gerar resultados reais.",
+    "trajectory_button": "Conheça minha trajetória"
+  },
   "contact": {
     "title": "Vamos Conversar?",
     "subtitle": "Estou disponível para colaborações e novos projetos",
@@ -67,6 +67,7 @@
       "institutional": "Sites Institucionais",
       "web": "Websites",
       "app": "Aplicativos",
+      "lp": "Landing Pages",
       "tool": "Ferramentas",
       "game": "Jogos"
     },
@@ -107,7 +108,7 @@
         "title": "Adivinha Número",
         "description": "Jogo de adivinhação com reconhecimento de voz."
       },
-      "8": {
+      "10": {
         "title": "Cafeteria Moderna",
         "description": "Landing page para cafeteria com design elegante."
       },
@@ -122,6 +123,10 @@
       "13": {
         "title": "Viva Colorir",
         "description": "Landing Page para um livro de colorir estilo bobbie goods."
+      },
+      "14": {
+        "title": "Libera Já - Despachante",
+        "description": "Site instituicional moderno para a empresa de despachante Libera Já."
       }
     }
   },

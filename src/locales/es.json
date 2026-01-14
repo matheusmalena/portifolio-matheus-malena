@@ -2,11 +2,11 @@
   "header": {
     "home": "Inicio",
     "services": "Servicios",
-    "about": "Acerca de",
+    "about": "Sobre mí",
     "skills": "Habilidades",
     "projects": "Proyectos",
     "certificates": "Certificados",
-    "timeline": "Timeline",
+    "timeline": "Carrera",
     "contact": "Contacto",
     "talk_to_me": "Habla conmigo"
   },
@@ -22,31 +22,31 @@
   },
   "services": {
     "subtitle": "Mis servicios",
-    "title": "Lo que <br /> ofrezco",
+    "title": "Lo que <br /> hago",
     "description": "Soluciones eficaces para aumentar tu visibilidad e impacto en el mundo digital.",
     "button": "Solicitar presupuesto",
     "web_projects_title": "Proyectos web",
-    "web_projects_desc": "Diseño y desarrollo de proyectos web: sitios, landing pages, etc.",
+    "web_projects_desc": "Diseño y desarrollo de proyectos web: sitios web, landing pages, etc.",
     "marketing_title": "Marketing digital",
     "marketing_desc": "Planificación y acciones de marketing digital para aumentar la presencia de tu marca.",
-    "branding_title": "Tráfico Pago",
-    "branding_desc": "Gestión de campañas patrocinadas para atraer clientes, aumentar conversiones y potenciar resultados.",
+    "branding_title": "Tráfico de Pago",
+    "branding_desc": "Gestión de campañas patrocinadas para atraer clientes, aumentar conversiones e impulsar resultados.",
     "fullstack_title": "Desarrollador Full Stack",
     "fullstack_desc": "Desarrollo de soluciones web con tecnologías modernas y eficientes."
   },
   "about": {
     "subtitle": "Sobre mí",
     "title": "Mucho gusto, soy Matheus",
-    "paragraph_1": "Tengo 20 años y trabajo en el área de TI desde hace más de 3 años, adquiriendo experiencia en diversas áreas, desde programación y bases de datos hasta hardware y mantenimiento. Actualmente me desempeño como desarrollador Full-Stack en",
-    "paragraph_2": "Además de la tecnología, también adquirí conocimientos en marketing digital y tráfico pago, ayudando a las empresas a ganar más visibilidad y resultados en el mundo digital.",
-    "paragraph_3": "Soy graduado en Análisis y Desarrollo de Sistemas por Unisanta y tengo bachillerato técnico en Juegos Digitales. Me apasiona aprender y siempre busco mantenerme actualizado con cursos en Alura y otras plataformas.",
+    "paragraph_1": "Soy desarrollador Full Stack con 2 años de experiencia, con enfoque en front-end, creando interfaces modernas, intuitivas y bien estructuradas. También tengo experiencia con back-end y bases de datos, lo que me permite trabajar de punta a punta en el desarrollo.",
+    "paragraph_2": "Actualmente, formo parte del equipo de Yup Chat, donde lideré el desarrollo del front-end de la nueva interfaz de la plataforma, contribuyendo a una interfaz más moderna, intuitiva y alineada a las necesidades del producto. Trabajo de forma integrada con el back-end en PHP/Laravel y bases de datos SQL, participando activamente en la evolución continua de la plataforma.",
+    "paragraph_3": "Soy graduado en Análisis y Desarrollo de Sistemas por Unisanta e inicié mi trayectoria técnica aún en la escuela secundaria, en el curso de Juegos Digitales integrado a ETEC. Sigo en evolución continua con estudios y especializaciones en Alura, además de conocimientos en marketing digital y presencia online, ampliando mi visión sobre cómo la tecnología puede impulsar negocios y generar resultados reales.",
     "trajectory_button": "Conoce mi trayectoria"
   },
   "contact": {
     "title": "¿Hablamos?",
     "subtitle": "Estoy disponible para colaboraciones y nuevos proyectos",
     "whatsapp": "Habla conmigo por WhatsApp",
-    "email_label": "Correo electrónico",
+    "email_label": "Correo",
     "location_label": "Ubicación",
     "location_value": "Peruíbe - SP, Brasil",
     "social_title": "Mis redes",
@@ -64,9 +64,10 @@
     "view_code": "Código",
     "categories": {
       "all": "Todos",
-      "institutional": "Sitios institucionales",
-      "web": "Sitios web",
+      "institutional": "Sitios Institucionales",
+      "web": "Sitios Web",
       "app": "Aplicaciones",
+      "lp": "Landing Pages",
       "tool": "Herramientas",
       "game": "Juegos"
     },
@@ -80,8 +81,8 @@
         "description": "Sitio institucional para la empresa de materiales de construcción Dipemat."
       },
       "2": {
-        "title": "Escola Árvore da Vida",
-        "description": "Sitio web profesional para institución educativa con información académica."
+        "title": "Escuela Árbol de la Vida",
+        "description": "Sitio web profesional para una institución educativa con información académica."
       },
       "3": {
         "title": "Pronóstico del Tiempo",
@@ -89,7 +90,7 @@
       },
       "4": {
         "title": "Cookin Up",
-        "description": "Plataforma para explorar recetas basadas en los ingredientes disponibles."
+        "description": "Plataforma para explorar recetas según los ingredientes disponibles."
       },
       "8": {
         "title": "Juego de memoria - Pareja",
@@ -100,16 +101,32 @@
         "description": "Sistema de temporizador Pomodoro para mejorar la productividad."
       },
       "6": {
-        "title": "Lista de tareas",
+        "title": "Task List",
         "description": "Aplicación de gestión de tareas con CRUD completo."
       },
       "7": {
         "title": "Adivina el Número",
         "description": "Juego de adivinanza con reconocimiento de voz."
       },
-      "8b": {
+      "10": {
         "title": "Cafetería Moderna",
-        "description": "Página de aterrizaje para cafetería con diseño elegante."
+        "description": "Landing page para cafetería con diseño elegante."
+      },
+      "11": {
+        "title": "Vieira & Dias - Abogacía",
+        "description": "Sitio institucional moderno para el estudio jurídico Vieira & Dias."
+      },
+      "12": {
+        "title": "NG Stone - Mármoles",
+        "description": "Sitio institucional moderno para la empresa de mármoles NG Stone."
+      },
+      "13": {
+        "title": "Viva Colorir",
+        "description": "Landing page para un libro para colorear estilo Bobbie Goods."
+      },
+      "14": {
+        "title": "Libera Já - Gestoría",
+        "description": "Sitio institucional moderno para la empresa de gestoría Libera Já."
       }
     }
   },
@@ -122,33 +139,33 @@
   },
   "timeline": {
     "title": "Trayectoria profesional",
-    "description": "Sigue la evolución de mi carrera en tecnología, desde mis estudios iniciales hasta mis experiencias profesionales más recientes.",
+    "description": "Sigue la evolución de mi trayectoria en el área de tecnología, desde mis estudios iniciales hasta mis experiencias profesionales más recientes.",
     "current ": "Actual",
     "jobs": {
       "software_dev": {
         "title": "Desarrollador de Software Junior",
         "company": "Yup Chat",
-        "description": "Actualmente Trabajo como Desarrollador Full-Stack en Yup Chat, contribuyendo al desarrollo de nuevas funcionalidades, corrección de errores, refactorización de código y mejoras de rendimiento. Colaboro con un equipo multidisciplinario enfocado en soluciones escalables e innovadoras."
+        "description": "Trabajo como desarrollador Full-Stack en Yup Chat, contribuyendo al desarrollo de nuevas funcionalidades, corrección de errores, refactorización de código y mejoras de rendimiento. Colaboro en un equipo multidisciplinario enfocado en soluciones escalables e innovadoras."
       },
       "support": {
         "title": "Soporte TI",
         "company": "Yup Chat",
-        "description": "Trabajé en soporte TI, resolviendo problemas técnicos, atendiendo las necesidades de los usuarios y asegurando el correcto funcionamiento de los sistemas. Esta experiencia me brindó una comprensión más profunda de las necesidades de los usuarios finales."
+        "description": "Trabajé en el área de soporte de TI, resolviendo problemas técnicos, atendiendo las necesidades de los usuarios y garantizando el correcto funcionamiento de los sistemas. Esta experiencia me proporcionó una comprensión más profunda de las necesidades de los usuarios finales."
       },
       "college": {
         "title": "Análisis y Desarrollo de Sistemas",
         "company": "Unisanta",
-        "description": "Completé mi educación superior en Análisis y Desarrollo de Sistemas en Unisanta, donde adquirí sólidos conocimientos en programación, bases de datos, análisis de sistemas y metodologías de desarrollo de software."
+        "description": "Concluí mi formación superior en Análisis y Desarrollo de Sistemas en Unisanta, donde adquirí sólidos conocimientos en programación, bases de datos, análisis de sistemas y metodologías de desarrollo de software."
       },
       "internship": {
         "title": "Practicante",
         "company": "Yup Chat",
-        "description": "Comencé mi trayectoria profesional en Yup Chat como practicante, aplicando los conocimientos adquiridos en la universidad y desarrollando habilidades prácticas en un entorno empresarial real, participando en proyectos y aprendiendo de profesionales experimentados."
+        "description": "Inicié mi trayectoria profesional en Yup Chat como practicante, donde pude aplicar los conocimientos adquiridos en la universidad y desarrollar mis habilidades prácticas en un entorno empresarial real, participando en proyectos y aprendiendo con profesionales experimentados."
       },
       "technical_course": {
         "title": "Técnico en Juegos Digitales",
         "company": "ETEC",
-        "description": "Durante la escuela secundaria, realicé un curso técnico en Juegos Digitales en ETEC, donde tuve mi primer contacto con la programación y el desarrollo de software. Esta experiencia fue fundamental para definir mi trayectoria en tecnología."
+        "description": "Durante la escuela secundaria, estudié el curso técnico en Juegos Digitales en ETEC, donde tuve mi primer contacto con la programación y el desarrollo de software. Esta experiencia fue fundamental para definir mi trayectoria en el área de tecnología."
       }
     }
   },
@@ -166,6 +183,6 @@
     "web_development": "Desarrollo Web",
     "teamwork": "Trabajo en Equipo",
     "logic_programming": "Lógica de Programación",
-    "development_fundamentals": "Fundamentos del Desarrollo"
+    "development_fundamentals": "Fundamentos de Desarrollo"
   }
 }

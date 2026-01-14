@@ -68,6 +68,7 @@ import imgTasklist from '../assets/img/task-list.png';
 import imgCafe from '../assets/img/cafe.png';
 import imgAdivinha from '../assets/img/jogonumero.png';
 import imgDipemat from '../assets/img/dipemat2.jpeg';
+import imgLiberaja from '../assets/img/liberaja.png';
 import imgGameMemorie from '../assets/img/game-memorie.png';
 import imgVieiraDias from '../assets/img/vieira-dias.png';
 import imgNgStone from '../assets/img/ng-stone.png';
@@ -85,7 +86,8 @@ export default {
         { id: 'all' },
         { id: 'web' },
         { id: 'institutional' },
-        { id: 'app' },
+        // { id: 'app' },
+        { id: 'lp' },
         { id: 'tool' },
         { id: 'game' },
       ],
@@ -96,15 +98,15 @@ export default {
           description: this.$t('projects.list.1.description'),
           image: imgSweetGiftfy,
           demoUrl: 'https://sweetgiftfy.com',
-          techs: ['Vue.js', 'Supabase', 'CSS3'],
+          techs: ['Vue.js', 'Supabase', 'Bootstrap'],
           category: ['web']
         },
         {
-          id: 2,
-          title: this.$t('projects.list.9.title'),
-          description: this.$t('projects.list.9.description'),
-          image: imgDipemat,
-          demoUrl: 'https://dipemat.com/',
+          id: 14,
+          title: this.$t('projects.list.14.title'),
+          description: this.$t('projects.list.14.description'),
+          image: imgLiberaja,
+          demoUrl: 'https://liberajadespachante.com.br/',
           techs: ['Vue.js'],
           categories: ["web", "institutional"],
         },
@@ -123,7 +125,7 @@ export default {
           description: this.$t('projects.list.12.description'),
           image: imgNgStone,
           demoUrl: 'https://ngstonemarmoresperuibe.com.br',
-          techs: ['Vue.js', 'Node.js', 'Blog CMS'],
+          techs: ['Vue.js', 'Node.js', 'Bootstrap'],
           categories: ["web", "institutional"],
         },
         {
@@ -134,6 +136,15 @@ export default {
           demoUrl: 'https://matheusmalena.github.io/Fokus/',
           techs: ['JavaScript', 'CSS3'],
           category: ['tool']
+        },
+         {
+          id: 2,
+          title: this.$t('projects.list.9.title'),
+          description: this.$t('projects.list.9.description'),
+          image: imgDipemat,
+          demoUrl: 'https://dipemat.com/',
+          techs: ['Vue.js'],
+          categories: ["web", "institutional"],
         },
         {
           id: 6,
@@ -151,7 +162,7 @@ export default {
           image: gifVivaColorir,
           demoUrl: 'https://vivacolorirbiblia.vercel.app/',
           techs: ['Vue JS', 'JavaScript'],
-          category: ['app']
+          category: ['lp']
         },
         {
           id: 7,
@@ -160,7 +171,7 @@ export default {
           image: imgPrevisaoDoTempo,
           demoUrl: 'https://matheusmalena.github.io/AppPrevisaoDoTempo/',
           techs: ['JavaScript', 'API REST'],
-          category: ['app']
+          category: ['app', 'tool']
         },
         {
           id: 8,
@@ -343,7 +354,8 @@ export default {
   transition: all 0.3s ease;
 }
 
-.filter-btn:hover, .filter-btn.active {
+.filter-btn:hover,
+.filter-btn.active {
   background: var(--gradient-blue);
   color: #0a0a0a;
   box-shadow: 0 4px 15px rgba(74, 205, 240, 0.3);

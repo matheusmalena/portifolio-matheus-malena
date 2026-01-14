@@ -275,7 +275,7 @@ export default {
   --color-white: #ffffff;
   --color-purple: #8a2be2;
   --color-light-purple: rgba(138, 43, 226, 0.1);
-  --gradient-blue: linear-gradient(90deg, rgba(195, 236, 254, 1) 1%, rgba(70, 130, 180, 1) 38%, rgba(195, 236, 254, 1) 70%);
+  --gradient-blue: linear-gradient(90deg, rgb(171, 221, 243), rgba(70, 130, 180, 1));
   --gradient-purple: linear-gradient(135deg, #8a2be2, #4a00e0);
   --glass-bg: rgba(255, 255, 255, 0.05);
   --glass-border: rgba(255, 255, 255, 0.1);
@@ -348,7 +348,7 @@ export default {
   gap: 0;
   padding: 0.4rem;
   border: 1px solid var(--glass-border);
-  box-shadow: 0 0 32px 2px rgba(43, 92, 226, 0.375);
+  box-shadow: 0 0 32px 2px rgba(70, 130, 180, 1);
   border-radius: 2rem;
   backdrop-filter: blur(4px);
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
@@ -356,7 +356,7 @@ export default {
 }
 
 .nav-links.scrolled {
-  box-shadow: 0 0 32px 2px rgba(43, 92, 226, 0.375);
+  box-shadow: 0 0 32px 2px rgba(70, 130, 180, 1);
   border-radius: 2rem;
   backdrop-filter: blur(8px);
 }

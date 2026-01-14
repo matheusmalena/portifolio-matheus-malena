@@ -10,7 +10,7 @@
       <!-- Yup Chat - Software Junior Developer -->
       <div class="timeline-item">
         <div class="timeline-date">
-          2025 -
+          2026 -
           {{ $t("timeline.jobs.software_dev.title") ? "Atual" : $t("timeline.current") }}
         </div>
         <div class="timeline-content">
