@@ -86,8 +86,6 @@ export default {
         { id: 'all' },
         { id: 'web' },
         { id: 'institutional' },
-        // { id: 'app' },
-        { id: 'lp' },
         { id: 'tool' },
         { id: 'game' },
       ],
@@ -162,7 +160,7 @@ export default {
           image: gifVivaColorir,
           demoUrl: 'https://vivacolorirbiblia.vercel.app/',
           techs: ['Vue JS', 'JavaScript'],
-          category: ['lp']
+          category: ['web', 'institutional']
         },
         {
           id: 7,
