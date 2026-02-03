@@ -47,23 +47,6 @@
         </div>
       </div>
 
-      <!-- Formação ADS -->
-      <div class="timeline-item">
-        <div class="timeline-dot"></div>
-        <div class="timeline-date">2022 - 2024</div>
-        <div class="timeline-content">
-          <h3>{{ $t("timeline.jobs.college.title") }}</h3>
-          <div class="company">{{ $t("timeline.jobs.college.company") }}</div>
-          <p>{{ $t("timeline.jobs.college.description") }}</p>
-          <div class="skills">
-            <span class="skill-tag">{{ $t("skills.programming") }}</span>
-            <span class="skill-tag">{{ $t("skills.database") }}</span>
-            <span class="skill-tag">{{ $t("skills.software_engineering") }}</span>
-            <span class="skill-tag">{{ $t("skills.agile_methodologies") }}</span>
-          </div>
-        </div>
-      </div>
-
       <!-- Yup Chat - Estagiário -->
       <div class="timeline-item">
         <div class="timeline-dot"></div>
@@ -78,6 +61,23 @@
             <span class="skill-tag">HTML/CSS</span>
             <span class="skill-tag">JavaScript</span>
             <span class="skill-tag">{{ $t("skills.teamwork") }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Formação ADS -->
+      <div class="timeline-item">
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2022 - 2024</div>
+        <div class="timeline-content">
+          <h3>{{ $t("timeline.jobs.college.title") }}</h3>
+          <div class="company">{{ $t("timeline.jobs.college.company") }}</div>
+          <p>{{ $t("timeline.jobs.college.description") }}</p>
+          <div class="skills">
+            <span class="skill-tag">{{ $t("skills.programming") }}</span>
+            <span class="skill-tag">{{ $t("skills.database") }}</span>
+            <span class="skill-tag">{{ $t("skills.software_engineering") }}</span>
+            <span class="skill-tag">{{ $t("skills.agile_methodologies") }}</span>
           </div>
         </div>
       </div>
@@ -187,7 +187,7 @@ export default {
   left: 0;
   width: 100%;
   height: 100%;
-  background-image: 
+  background-image:
     linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
   background-size: 50px 50px;
@@ -278,8 +278,15 @@ export default {
 }
 
 @keyframes underlinePulse {
-  0%, 100% { width: 100px; }
-  50% { width: 150px; }
+
+  0%,
+  100% {
+    width: 100px;
+  }
+
+  50% {
+    width: 150px;
+  }
 }
 
 .timeline-section .section-title p {
@@ -315,12 +322,11 @@ export default {
   height: 100%;
   left: calc(50% - 2px);
   top: 0;
-  background: linear-gradient(180deg, 
-    transparent 0%,
-    var(--gradient-blue) 15%,
-    var(--gradient-blue) 85%,
-    transparent 100%
-  );
+  background: linear-gradient(180deg,
+      transparent 0%,
+      var(--gradient-blue) 15%,
+      var(--gradient-blue) 85%,
+      transparent 100%);
   opacity: 0.6;
   filter: blur(0.4px);
   box-shadow: 0 0 30px rgba(70, 130, 180, 0.35);
@@ -367,7 +373,7 @@ export default {
   padding: 8px 20px;
   border-radius: 20px;
   backdrop-filter: blur(10px);
-   background: rgba(195, 236, 254, 0.15);
+  background: rgba(195, 236, 254, 0.15);
   border-color: rgba(195, 236, 254, 0.3);
   white-space: nowrap;
   display: inline-block;
@@ -382,16 +388,16 @@ export default {
 
 /* -------- CARD -------- */
 .timeline-content {
-  background: linear-gradient(135deg, 
-    rgba(255, 255, 255, 0.05) 0%,
-    rgba(255, 255, 255, 0.02) 100%);
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.05) 0%,
+      rgba(255, 255, 255, 0.02) 100%);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   padding: 40px 35px;
   border-radius: 24px;
   position: relative;
   z-index: 1;
-  
+
   /* box-shadow da cor do gradient blue */
   box-shadow:
     0 20px 40px rgba(0, 0, 0, 0.3),
@@ -415,9 +421,9 @@ export default {
 /* hover moderno */
 .timeline-content:hover {
   transform: translateY(-15px);
-  background: linear-gradient(135deg, 
-    rgba(195, 236, 254, 0.1) 0%,
-    rgba(70, 130, 180, 0.05) 100%);
+  background: linear-gradient(135deg,
+      rgba(195, 236, 254, 0.1) 0%,
+      rgba(70, 130, 180, 0.05) 100%);
   border-color: rgba(195, 236, 254, 0.3);
   box-shadow:
     0 30px 60px rgba(195, 236, 254, 0.2),
@@ -438,9 +444,9 @@ export default {
   transform: translate(-50%, -50%);
   width: 100%;
   height: 100%;
-  background: radial-gradient(circle at center, 
-    rgba(195, 236, 254, 0.15) 0%,
-    transparent 70%);
+  background: radial-gradient(circle at center,
+      rgba(195, 236, 254, 0.15) 0%,
+      transparent 70%);
   border-radius: 24px;
   opacity: 0;
   transition: opacity 0.5s ease;
@@ -454,8 +460,15 @@ export default {
 }
 
 @keyframes glowPulse {
-  0%, 100% { opacity: 0.4; }
-  50% { opacity: 0.7; }
+
+  0%,
+  100% {
+    opacity: 0.4;
+  }
+
+  50% {
+    opacity: 0.7;
+  }
 }
 
 .timeline-content h3 {
@@ -518,16 +531,19 @@ export default {
 
 /* acessibilidade: reduz animações se usuário preferir */
 @media (prefers-reduced-motion: reduce) {
+
   .timeline-item,
   .timeline-content,
   .timeline-dot,
   .timeline-date {
     transition: none !important;
   }
+
   .timeline-content:hover,
   .timeline-item:hover .timeline-dot {
     transform: none !important;
   }
+
   .timeline-section .section-title h2,
   .timeline-section .section-title p {
     transition: none !important;
@@ -536,8 +552,15 @@ export default {
 
 /* -------- ANIMAÇÕES ADICIONAIS -------- */
 @keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-10px); }
+
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 .timeline-item.is-visible .timeline-content {
@@ -565,22 +588,22 @@ export default {
   .timeline-section {
     padding: 100px 20px;
   }
-  
+
   .timeline-items::before {
     left: 30px;
   }
-  
+
   .timeline-item {
     width: calc(100% - 60px);
     margin-left: 60px !important;
     padding: 0 !important;
     text-align: left !important;
   }
-  
+
   .timeline-dot {
     left: 30px;
   }
-  
+
   .timeline-section .section-title h2 {
     font-size: 3rem;
   }
@@ -590,36 +613,36 @@ export default {
   .timeline-section {
     padding: 80px 15px;
   }
-  
+
   .timeline-items::before {
     left: 20px;
     width: 3px;
   }
-  
+
   .timeline-item {
     width: calc(100% - 40px);
     margin-left: 40px !important;
     margin-bottom: 60px;
   }
-  
+
   .timeline-dot {
     left: 20px;
     width: 20px;
     height: 20px;
   }
-  
+
   .timeline-content {
     padding: 30px 25px;
   }
-  
+
   .timeline-content h3 {
     font-size: 1.3rem;
   }
-  
+
   .timeline-section .section-title h2 {
     font-size: 2.5rem;
   }
-  
+
   .timeline-section .section-title p {
     font-size: 1.1rem;
   }
@@ -629,32 +652,32 @@ export default {
   .timeline-section {
     padding: 60px 15px;
   }
-  
+
   .timeline-section .section-title h2 {
     font-size: 2.2rem;
   }
-  
+
   .timeline-item {
     width: calc(100% - 30px);
     margin-left: 30px !important;
   }
-  
+
   .timeline-items::before {
     left: 15px;
   }
-  
+
   .timeline-dot {
     left: 15px;
   }
-  
+
   .timeline-content {
     padding: 25px 20px;
   }
-  
+
   .skills {
     gap: 8px;
   }
-  
+
   .skill-tag {
     font-size: 0.85rem;
     padding: 6px 12px;
