@@ -10,7 +10,7 @@
       <!-- Yup Chat - Software Junior Developer -->
       <div class="timeline-item">
         <div class="timeline-date">
-          2026 -
+          2025 -
           {{ $t("timeline.jobs.software_dev.title") ? "Atual" : $t("timeline.current") }}
         </div>
         <div class="timeline-content">
@@ -67,7 +67,7 @@
       <!-- Yup Chat - Estagiário -->
       <div class="timeline-item">
         <div class="timeline-dot"></div>
-        <div class="timeline-date">2021 - 2023</div>
+        <div class="timeline-date">2022 - 2023</div>
         <div class="timeline-content">
           <h3>{{ $t("timeline.jobs.internship.title") }}</h3>
           <div class="company">{{ $t("timeline.jobs.internship.company") }}</div>
