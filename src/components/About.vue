@@ -1,51 +1,54 @@
 <template>
-  <section id="about" class="about-section" aria-label="Section about Matheus Malena and his programming journey.">
-    <div class="about-container">
-      <!-- LEFT SIDE - IMAGE -->
-      <div class="about-image" ref="tiltContainer" @mousemove="handleTilt" @mouseleave="resetTilt">
-        <div class="image-wrapper" ref="imageWrapper">
-          <img src="../assets/img/perfil-2.jpeg" alt="Photo of Matheus Malena" class="profile-image" />
-          <div class="image-glow"></div>
+  <section id="about" class="about-section">
+    <div class="section-bg">
+      <div class="bg-pattern"></div>
+      <div class="bg-glow"></div>
+    </div>
+
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image">
+          <div class="image-wrapper">
+            <div class="image-frame"></div>
+            <img src="../assets/img/perfil-2.jpeg" alt="Matheus Malena" class="profile-image" />
+            <div class="image-overlay"></div>
+          </div>
+          <div class="experience-badge">
+            <span class="badge-number">3+</span>
+            <span class="badge-text">Anos de<br>Experiência</span>
+          </div>
         </div>
-      </div>
 
-      <!-- RIGHT SIDE - TEXT -->
-      <div class="about-text">
-        <small class="about-subtitle">{{ $t("about.subtitle") }}</small>
-        <h2 class="about-title">
-          {{ $t("about.title") }} <span class="highlight">Malena</span>
-        </h2>
+        <div class="about-content">
+          <div class="badge">{{ $t("about.subtitle") }}</div>
+          <h2 class="section-title">
+            Prazer, sou <span class="gradient-text">Malena</span>
+          </h2>
 
-        <p class="about-paragraph">
-          {{ $t("about.paragraph_1") }}
-          <a href="https://yupchat.com" target="_blank" rel="noopener noreferrer" class="link-purple">Yup Chat</a>.
-        </p>
+          <div class="about-text">
+            <p>{{ $t("about.paragraph_1") }}</p>
+            <p>Atuando no mercado de tecnologia com foco em desenvolvimento web e marketing digital, criei projetos para diversas empresas incluindo <a href="https://yupchat.com" target="_blank" rel="noopener noreferrer" class="highlight-link">Yup Chat</a>.</p>
+            <p>{{ $t("about.paragraph_2") }}</p>
+            <p>{{ $t("about.paragraph_3") }}</p>
+          </div>
 
-        <p class="about-paragraph">
-          {{ $t("about.paragraph_2") }}
-        </p>
-
-        <p class="about-paragraph">
-          {{ $t("about.paragraph_3") }}
-        </p>
-
-        <a href="#timeline" class="about-link btn-trajetoria">
-          {{ $t("about.trajectory_button") }}
-          <span class="material-symbols-outlined">conversion_path</span>
-        </a>
-
-        <div class="social-icons">
-          <a href="https://github.com/matheusmalena" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-            <i class="fab fa-github"></i>
-          </a>
-          <a href="https://www.linkedin.com/in/matheusmalena" target="_blank" rel="noopener noreferrer"
-            aria-label="LinkedIn">
-            <i class="fab fa-linkedin-in"></i>
-          </a>
-          <a href="https://www.instagram.com/dev_malena" target="_blank" rel="noopener noreferrer"
-            aria-label="Instagram">
-            <i class="fab fa-instagram"></i>
-          </a>
+          <div class="about-actions">
+            <a href="#timeline" class="btn-primary">
+              <span>Minha Jornada</span>
+              <i class="fas fa-arrow-right"></i>
+            </a>
+            <div class="social-links">
+              <a href="https://github.com/matheusmalena" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="GitHub">
+                <i class="fab fa-github"></i>
+              </a>
+              <a href="https://www.linkedin.com/in/matheusmalena" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="LinkedIn">
+                <i class="fab fa-linkedin-in"></i>
+              </a>
+              <a href="https://www.instagram.com/dev_malena" target="_blank" rel="noopener noreferrer" class="social-btn" aria-label="Instagram">
+                <i class="fab fa-instagram"></i>
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -53,287 +56,322 @@
 </template>
 
 <script>
-import { ref } from "vue";
-
 export default {
   name: "About",
-  setup() {
-    const tiltContainer = ref(null);
-    const imageWrapper = ref(null);
-
-    const handleTilt = (e) => {
-      const container = tiltContainer.value;
-      const card = imageWrapper.value;
-      if (!container || !card) return;
-
-      const rect = container.getBoundingClientRect();
-      const x = e.clientX - rect.left;
-      const y = e.clientY - rect.top;
-
-      const centerX = rect.width / 2;
-      const centerY = rect.height / 2;
-
-      const rotateX = ((y - centerY) / centerY) * -10;
-      const rotateY = ((x - centerX) / centerX) * 10;
-
-      card.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.05)`;
-    };
-
-    const resetTilt = () => {
-      const card = imageWrapper.value;
-      if (!card) return;
-      card.style.transform = "rotateX(0deg) rotateY(0deg) scale(1)";
-    };
-
-    return {
-      tiltContainer,
-      imageWrapper,
-      handleTilt,
-      resetTilt,
-    };
-  },
 };
 </script>
 
 <style scoped>
 .about-section {
-  background-color: #fff;
-  padding: 100px 40px;
+  padding: 120px 5%;
   position: relative;
   overflow: hidden;
+  background: var(--background-dark);
 }
 
-/* brilho sutil no fundo */
-.about-section::before {
-  content: "";
+.section-bg {
   position: absolute;
-  inset: -30%;
-  background: radial-gradient(circle, rgba(195, 236, 254, 0.22) 0%, transparent 55%);
-  filter: blur(25px);
+  inset: 0;
   pointer-events: none;
 }
 
-.about-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  flex-wrap: wrap;
-  max-width: 1280px;
-  margin: 0 auto;
-  gap: 40px;
-  position: relative;
-  z-index: 1;
-}
-
-.about-text {
-  flex: 1;
-  min-width: 320px;
-  max-width: 600px;
-}
-
-.about-subtitle {
-  font-weight: 800;
-  font-size: 0.92rem;
-  color: #111;
-  margin-bottom: 12px;
-  display: block;
-  text-transform: uppercase;
-  letter-spacing: 1.2px;
-}
-
-.about-title {
-  font-size: 2.55rem;
-  font-weight: 900;
-  color: #0a0a23;
-  margin-bottom: 22px;
-  line-height: 1.15;
-  letter-spacing: -0.02em;
-}
-
-.highlight {
-  background: var(--gradient-blue);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
-
-.about-paragraph {
-  font-size: 1.02rem;
-  line-height: 1.75;
-  color: #444;
-  margin-bottom: 16px;
-}
-
-.link-purple {
-  background: var(--gradient-blue);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  font-weight: 700;
-  text-decoration: none;
-  position: relative;
-}
-
-.link-purple::after {
-  content: "";
+.bg-pattern {
   position: absolute;
-  left: 0;
-  bottom: -3px;
-  width: 100%;
-  height: 2px;
-  background: var(--gradient-blue);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.25s ease;
-  border-radius: 999px;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(14, 165, 233, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 165, 233, 0.02) 1px, transparent 1px);
+  background-size: 40px 40px;
 }
 
-.link-purple:hover::after {
-  transform: scaleX(1);
+.bg-glow {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 600px;
+  height: 600px;
+  background: radial-gradient(circle, rgba(14, 165, 233, 0.1) 0%, transparent 70%);
+  filter: blur(80px);
 }
 
-.about-link {
-  display: inline-flex;
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 4rem;
   align-items: center;
-  gap: 8px;
-  background: var(--gradient-blue);
-  color: white;
-  padding: 12px 20px;
-  border-radius: 12px;
-  text-decoration: none;
-  font-weight: 800;
-  margin-top: 14px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease;
-  box-shadow: 0 12px 30px rgba(70, 130, 180, 0.22);
 }
 
-.about-link:hover {
-  transform: translateY(-2px);
-  box-shadow: 0 16px 38px rgba(70, 130, 180, 0.28);
-}
-
-.social-icons {
-  margin-top: 26px;
-  display: flex;
-  gap: 12px;
-}
-
-.social-icons a {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  background-color: #f3f4f6;
-  border-radius: 12px;
-  transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
-  font-size: 18px;
-  color: #1f2937;
-  text-decoration: none !important;
-  border: 1px solid rgba(0, 0, 0, 0.06);
-}
-
-.social-icons a:hover {
-  transform: translateY(-3px);
-  background: #fff;
-  box-shadow: 0 16px 30px rgba(70, 130, 180, 0.18);
-}
-
-.social-icons a i {
-  color: #111827;
-}
-
-/* Estilos da imagem */
 .about-image {
-  flex: 1;
-  min-width: 300px;
-  max-width: 450px;
   position: relative;
 }
 
 .image-wrapper {
-  transform-style: preserve-3d;
-  transition: transform 0.2s ease;
-  will-change: transform;
-  perspective: 1000px;
-  border-radius: 22px;
+  position: relative;
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+}
+
+.image-frame {
+  position: absolute;
+  inset: -4px;
+  background: var(--gradient-primary);
+  border-radius: calc(var(--radius-xl) + 4px);
+  z-index: 0;
+  animation: rotate 10s linear infinite;
+}
+
+@keyframes rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
 }
 
 .profile-image {
   width: 100%;
   height: auto;
   display: block;
-  border-radius: 22px;
-  transition: transform 0.5s ease;
+  border-radius: var(--radius-xl);
   position: relative;
-  z-index: 2;
-  border: 4px solid white;
-  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.18);
+  z-index: 1;
+  border: 4px solid var(--background-dark);
+  transition: transform 0.5s ease;
 }
 
-.image-glow {
+.image-wrapper:hover .profile-image {
+  transform: scale(1.03);
+}
+
+.image-overlay {
   position: absolute;
-  top: 0;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 60%,
+    rgba(3, 7, 18, 0.8) 100%
+  );
+  z-index: 2;
+  pointer-events: none;
+}
+
+.experience-badge {
+  position: absolute;
+  bottom: -20px;
+  right: -20px;
+  background: var(--background-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-shadow: var(--shadow-lg);
+  z-index: 10;
+}
+
+.badge-number {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  line-height: 1;
+}
+
+.badge-text {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+  text-align: center;
+  margin-top: 4px;
+}
+
+.about-content {
+  padding: 2rem 0;
+}
+
+.badge {
+  display: inline-block;
+  background: rgba(14, 165, 233, 0.1);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  padding: 8px 20px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary-light);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+}
+
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 2rem;
+  line-height: 1.2;
+}
+
+.gradient-text {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.about-text {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.about-text p {
+  font-size: 1.05rem;
+  color: var(--text-secondary);
+  line-height: 1.8;
+}
+
+.highlight-link {
+  color: var(--primary-light);
+  font-weight: 600;
+  position: relative;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.highlight-link::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
   left: 0;
   width: 100%;
-  height: 100%;
-  background: radial-gradient(circle, rgba(70, 130, 180, 0.22) 0%, rgba(70, 130, 180, 0) 70%);
-  border-radius: 22px;
-  z-index: 1;
-  animation: pulse-glow 4s infinite alternate;
+  height: 2px;
+  background: var(--gradient-primary);
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.3s ease;
 }
 
-@keyframes pulse-glow {
-  0% {
-    transform: scale(0.98);
-    opacity: 0.65;
-  }
-
-  100% {
-    transform: scale(1.03);
-    opacity: 0.35;
-  }
+.highlight-link:hover::after {
+  transform: scaleX(1);
+  transform-origin: left;
 }
 
-/* Responsivo */
+.about-actions {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: var(--gradient-primary);
+  color: white;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 20px rgba(14, 165, 233, 0.3);
+}
+
+.btn-primary:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(14, 165, 233, 0.4);
+}
+
+.btn-primary i {
+  transition: transform 0.3s ease;
+}
+
+.btn-primary:hover i {
+  transform: translateX(4px);
+}
+
+.social-links {
+  display: flex;
+  gap: 12px;
+}
+
+.social-btn {
+  width: 48px;
+  height: 48px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-secondary);
+  font-size: 1.2rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.social-btn:hover {
+  background: var(--surface-light);
+  border-color: var(--primary);
+  color: var(--primary-light);
+  transform: translateY(-3px);
+}
+
 @media (max-width: 1024px) {
-  .about-container {
-    flex-direction: column;
+  .about-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .about-image {
+    max-width: 400px;
+    margin: 0 auto;
+  }
+
+  .about-content {
     text-align: center;
-    gap: 30px;
+    padding: 0;
   }
 
-  .about-text,
-  .about-image {
-    max-width: 100%;
-  }
-
-  .about-title {
-    font-size: 2rem;
-  }
-
-  .about-image {
-    order: -1;
-    padding-top: 0;
-  }
-
-  .about-link {
-    margin-left: auto;
-    margin-right: auto;
-  }
-
-  .social-icons {
+  .about-actions {
     justify-content: center;
   }
-}
 
-@media (max-width: 480px) {
-  .about-section {
-    padding: 60px 20px;
+  .experience-badge {
+    bottom: -15px;
+    right: -15px;
+    padding: 1rem;
   }
 
-  .about-title {
-    font-size: 1.8rem;
+  .badge-number {
+    font-size: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-section {
+    padding: 80px 5%;
+  }
+
+  .about-image {
+    max-width: 300px;
+  }
+
+  .about-actions {
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .btn-primary {
+    width: 100%;
+    justify-content: center;
   }
 }
 </style>

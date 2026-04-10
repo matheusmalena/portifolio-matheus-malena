@@ -1,56 +1,71 @@
 <template>
   <section class="projects-section" id="projects" aria-label="Meus projetos desenvolvidos">
+    <div class="section-bg">
+      <div class="bg-glow glow-1"></div>
+      <div class="bg-glow glow-2"></div>
+      <div class="bg-grid"></div>
+    </div>
+
     <div class="container">
-      <!-- Cabeçalho -->
-      <header class="section-header" data-aos="fade-up">
+      <header class="section-header">
+        <div class="badge">Portfolio</div>
         <h2 class="section-title" v-html="$t('projects.section_title')"></h2>
         <p class="section-subtitle">{{ $t('projects.section_subtitle') }}</p>
       </header>
 
-      <!-- Filtros -->
-      <nav class="projects-filter" data-aos="fade-up" data-aos-delay="100">
-        <button v-for="category in categories" :key="category.id" @click="changeCategory(category.id)"
-          :class="{ active: activeCategory === category.id }" class="filter-btn">
-          {{ $t(`projects.categories.${category.id}`) }}
+      <nav class="projects-filter">
+        <button 
+          v-for="category in categories" 
+          :key="category.id" 
+          @click="changeCategory(category.id)"
+          :class="{ active: activeCategory === category.id }" 
+          class="filter-btn"
+        >
+          <span class="btn-text">{{ $t(`projects.categories.${category.id}`) }}</span>
+          <span class="btn-icon"><i class="fas fa-check"></i></span>
         </button>
       </nav>
 
-      <!-- Grade de projetos -->
       <div class="projects-grid">
-        <article v-for="(project, index) in paginatedProjects" :key="project.id" class="project-card" data-aos="fade-up"
-          :data-aos-delay="100 * (index % 3)">
-          <div class="project-image-wrapper">
+        <article 
+          v-for="(project, index) in paginatedProjects" 
+          :key="project.id" 
+          class="project-card"
+        >
+          <div class="card-image">
             <img :src="project.image" :alt="project.title" class="project-image" />
+            <div class="image-overlay"></div>
+          </div>
 
-            <div class="project-hover-content">
+          <div class="card-content">
+            <div class="card-header">
               <h3 class="project-title">{{ project.title }}</h3>
               <p class="project-description">{{ project.description }}</p>
+            </div>
 
-              <div class="project-links">
-                <a v-if="project.demoUrl" :href="project.demoUrl" target="_blank" class="project-link demo"
-                  aria-label="Ver demonstração">
-                  <i class="fas fa-external-link-alt"></i> {{ $t('projects.visit_demo') }}
-                </a>
+            <div class="card-techs">
+              <span v-for="tech in project.techs" :key="tech" class="tech-tag">
+                {{ tech }}
+              </span>
+            </div>
 
-                <a v-if="project.codeUrl" :href="project.codeUrl" target="_blank" class="project-link code"
-                  aria-label="Ver código fonte">
-                  <i class="fab fa-github"></i> {{ $t('projects.view_code') }}
-                </a>
-              </div>
+            <div class="card-actions">
+              <a v-if="project.demoUrl" :href="project.demoUrl" target="_blank" class="action-btn primary">
+                <i class="fas fa-external-link-alt"></i>
+                <span>Visitar</span>
+              </a>
+              <a v-if="project.codeUrl" :href="project.codeUrl" target="_blank" class="action-btn secondary">
+                <i class="fab fa-github"></i>
+                <span>Código</span>
+              </a>
             </div>
           </div>
 
-          <div class="project-techs">
-            <span v-for="tech in project.techs" :key="tech" class="tech-tag">
-              {{ tech }}
-            </span>
-          </div>
+          <div class="card-border-glow"></div>
         </article>
       </div>
 
-      <!-- Paginação -->
-      <Pagination v-if="filteredProjects.length > itemsPerPage" :current-page="currentPage" :total-pages="totalPages"
-        @page-changed="changePage" />
+      <Pagination v-if="filteredProjects.length > itemsPerPage" :current-page="currentPage" :total-pages="totalPages" @page-changed="changePage" />
     </div>
   </section>
 </template>
@@ -58,7 +73,6 @@
 <script>
 import Pagination from './Pagination.vue';
 
-// Imagens
 import imgSweetGiftfy from '../assets/img/sweetgift.png';
 import imgPrevisaoDoTempo from '../assets/img/previsao-web.png';
 import imgEscola from '../assets/img/escola.png';
@@ -135,7 +149,7 @@ export default {
           techs: ['JavaScript', 'CSS3'],
           category: ['tool']
         },
-         {
+        {
           id: 2,
           title: this.$t('projects.list.9.title'),
           description: this.$t('projects.list.9.description'),
@@ -216,7 +230,6 @@ export default {
           techs: ['HTML5', 'CSS3'],
           categories: ["web", "institutional"],
         },
-
       ]
     };
   },
@@ -225,14 +238,12 @@ export default {
       if (this.activeCategory === 'all') return this.projects;
 
       return this.projects.filter(project => {
-        // se o projeto tiver "category" (mesmo que array)
         if (project.category) {
           return Array.isArray(project.category)
             ? project.category.includes(this.activeCategory)
             : project.category === this.activeCategory;
         }
 
-        // se o projeto tiver "categories"
         if (project.categories) {
           return project.categories.includes(this.activeCategory);
         }
@@ -270,118 +281,183 @@ export default {
 
 <style scoped>
 .projects-section {
-  padding: 6rem 0;
-  background: linear-gradient(135deg, #0a0a0a 0%, #0f172a 100%);
-  color: white;
+  padding: 120px 5%;
+  position: relative;
+  overflow: hidden;
+  background: var(--gradient-dark);
+}
+
+.section-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.bg-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.3;
+}
+
+.glow-1 {
+  width: 500px;
+  height: 500px;
+  background: var(--primary);
+  top: -150px;
+  right: -150px;
+}
+
+.glow-2 {
+  width: 400px;
+  height: 400px;
+  background: var(--secondary);
+  bottom: -100px;
+  left: -100px;
+}
+
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(14, 165, 233, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 165, 233, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
 }
 
 .container {
   max-width: 1280px;
   margin: 0 auto;
-  padding: 0 2rem;
+  position: relative;
+  z-index: 10;
 }
 
-/* Header Section */
 .section-header {
   text-align: center;
   margin-bottom: 3rem;
 }
 
-.section-title {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.title-text {
-  color: rgba(255, 255, 255, 0.9);
-}
-
-.highlight-wrapper {
-  position: relative;
+.badge {
   display: inline-block;
+  background: rgba(14, 165, 233, 0.1);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  padding: 8px 20px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary-light);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
 }
 
-.highlight {
-  color: var(--accent-color);
-  position: relative;
-  z-index: 2;
-}
-
-.highlight-accent {
-  position: absolute;
-  bottom: 5px;
-  left: 0;
-  width: 100%;
-  height: 12px;
-  background: rgba(74, 205, 240, 0.3);
-  z-index: 1;
-  border-radius: 4px;
-  transform: rotate(-1deg);
+.section-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 1rem;
 }
 
 .section-subtitle {
-  font-size: 1.2rem;
-  color: rgba(255, 255, 255, 0.7);
+  font-size: 1.15rem;
+  color: var(--text-secondary);
   max-width: 600px;
   margin: 0 auto;
-  line-height: 1.6;
 }
 
-/* Filtros */
 .projects-filter {
   display: flex;
   justify-content: center;
   flex-wrap: wrap;
-  gap: 0.8rem;
+  gap: 12px;
   margin-bottom: 3rem;
 }
 
 .filter-btn {
-  background: transparent;
-  color: rgba(255, 255, 255, 0.8);
-  border: 1px solid rgba(195, 236, 254, 1);
-  padding: 0.6rem 1.4rem;
-  border-radius: 30px;
-  font-size: 0.95rem;
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-secondary);
+  padding: 12px 24px;
+  border-radius: var(--radius-full);
+  font-size: 0.9rem;
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
+  overflow: hidden;
 }
 
-.filter-btn:hover,
+.filter-btn .btn-icon {
+  display: none;
+  margin-left: 8px;
+}
+
+.filter-btn:hover {
+  border-color: var(--primary);
+  color: var(--text-primary);
+}
+
 .filter-btn.active {
-  background: var(--gradient-blue);
-  color: #0a0a0a;
-  box-shadow: 0 4px 15px rgba(74, 205, 240, 0.3);
-  border: var(--gradient-blue);
+  background: var(--gradient-primary);
+  color: white;
+  border-color: transparent;
+  box-shadow: 0 4px 20px rgba(14, 165, 233, 0.3);
 }
 
-/* Grid de Projetos */
+.filter-btn.active .btn-text {
+  transform: translateX(-10px);
+}
+
+.filter-btn.active .btn-icon {
+  display: inline-flex;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
+}
+
 .projects-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
   gap: 2rem;
 }
 
 .project-card {
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 16px;
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
   overflow: hidden;
-  transition: transform 0.4s ease, box-shadow 0.4s ease;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .project-card:hover {
   transform: translateY(-8px);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.3);
+  border-color: rgba(14, 165, 233, 0.3);
 }
 
-.project-image-wrapper {
+.card-border-glow {
+  position: absolute;
+  inset: 0;
+  background: var(--gradient-primary);
+  opacity: 0;
+  filter: blur(30px);
+  transition: opacity 0.4s ease;
+  z-index: 0;
+}
+
+.project-card:hover .card-border-glow {
+  opacity: 0.15;
+}
+
+.card-image {
   position: relative;
-  aspect-ratio: 16/9;
+  aspect-ratio: 16/10;
   overflow: hidden;
 }
 
@@ -393,164 +469,133 @@ export default {
 }
 
 .project-card:hover .project-image {
-  transform: scale(1.05);
+  transform: scale(1.08);
 }
 
-.project-hover-content {
+.image-overlay {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 2rem 1.5rem;
-  background: linear-gradient(0deg, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.5) 100%);
-  transform: translateY(100%);
-  transition: transform 0.4s ease;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    transparent 40%,
+    rgba(3, 7, 18, 0.9) 100%
+  );
+  pointer-events: none;
 }
 
-.project-card:hover .project-hover-content {
-  transform: translateY(0);
+.card-content {
+  padding: 1.5rem;
+  position: relative;
+  z-index: 1;
 }
 
-.project-tags {
-  display: flex;
-  gap: 0.6rem;
-  margin-bottom: 0.8rem;
-}
-
-.project-tag {
-  background: var(--accent-color);
-  color: white;
-  font-size: 0.7rem;
-  padding: 0.3rem 0.8rem;
-  border-radius: 20px;
-  font-weight: 600;
+.card-header {
+  margin-bottom: 1rem;
 }
 
 .project-title {
-  font-size: 1.4rem;
-  font-weight: 600;
-  margin-bottom: 0.8rem;
-  color: white;
+  font-size: 1.3rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.project-card:hover .project-title {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
 .project-description {
-  font-size: 0.95rem;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 1.5rem;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
   line-height: 1.6;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
 }
 
-.project-links {
+.card-techs {
   display: flex;
-  gap: 1rem;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 1.5rem;
 }
 
-.project-link {
-  display: inline-flex;
+.tech-tag {
+  background: rgba(14, 165, 233, 0.1);
+  border: 1px solid rgba(14, 165, 233, 0.2);
+  color: var(--primary-light);
+  padding: 4px 12px;
+  border-radius: var(--radius-full);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.card-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.action-btn {
+  flex: 1;
+  display: flex;
   align-items: center;
-  gap: 0.5rem;
-  padding: 0.8rem 1.2rem;
-  border-radius: 30px;
-  font-size: 0.8rem;
-  font-weight: 500;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border-radius: var(--radius-md);
+  font-size: 0.85rem;
+  font-weight: 600;
   text-decoration: none;
   transition: all 0.3s ease;
 }
 
-.project-link.demo {
-  background: white;
-  color: #0f172a;
-}
-
-.project-link.demo:hover {
-  background: #e0e0e0;
-}
-
-.project-link.code {
-  background: rgba(255, 255, 255, 0.1);
+.action-btn.primary {
+  background: var(--gradient-primary);
   color: white;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
 }
 
-.project-link.code:hover {
-  background: rgba(255, 255, 255, 0.2);
+.action-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(14, 165, 233, 0.4);
 }
 
-.project-techs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  padding: 1.2rem 1.5rem;
-  background: rgba(255, 255, 255, 0.03);
+.action-btn.secondary {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-primary);
 }
 
-.tech-tag {
-  font-size: 0.75rem;
-  color: var(--accent-color);
-  background: rgba(74, 205, 240, 0.1);
-  padding: 0.3rem 0.8rem;
-  border-radius: 20px;
+.action-btn.secondary:hover {
+  background: var(--surface-light);
+  border-color: var(--primary);
+  transform: translateY(-2px);
 }
 
-/* Responsividade */
 @media (max-width: 1024px) {
   .projects-grid {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   }
 }
 
 @media (max-width: 768px) {
-  .section-title {
-    font-size: 2.2rem;
-  }
-
-  .section-subtitle {
-    font-size: 1rem;
-  }
-
-  .projects-filter {
-    gap: 0.6rem;
-  }
-
-  .filter-btn {
-    padding: 0.5rem 1.2rem;
-    font-size: 0.85rem;
-  }
-}
-
-@media (max-width: 480px) {
   .projects-section {
-    padding: 4rem 0;
-  }
-
-  .section-title {
-    font-size: 1.8rem;
+    padding: 80px 5%;
   }
 
   .projects-grid {
     grid-template-columns: 1fr;
+    gap: 1.5rem;
   }
 
-  .project-hover-content {
-    padding: 1.5rem 1rem;
-  }
-
-  .project-title {
-    font-size: 1.2rem;
-  }
-
-  .project-description {
+  .filter-btn {
+    padding: 10px 18px;
     font-size: 0.85rem;
-    margin-bottom: 1rem;
-  }
-
-  .project-link {
-    padding: 0.5rem 1rem;
-    font-size: 0.8rem;
   }
 }
 </style>

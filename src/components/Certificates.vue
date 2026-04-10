@@ -8,12 +8,7 @@
       <!-- Header com animação -->
       <div class="section-header" data-aos="fade-up">
         <h2 class="section-title">
-          <span class="title-text"
-            >{{ $t("certificates.title") }}
-            <span class="highlight-wrapper">
-              <span class="highlight">{{ $t("certificates.highlight") }}</span>
-              <span class="highlight-accent"></span> </span
-          ></span>
+          {{ $t("certificates.title") }}
         </h2>
         <p class="section-subtitle">
           {{ $t('certificates.subtitle') }}
@@ -202,8 +197,8 @@ export default {
 
 <style scoped>
 .certificates-section {
-  padding: 6rem 0;
-  background: white;
+  padding: 120px 5%;
+  background: var(--gradient-dark);
   color: white;
   position: relative;
   overflow: hidden;

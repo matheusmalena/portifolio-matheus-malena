@@ -1,78 +1,69 @@
 <template>
-  <section
-    class="contact-section"
-    id="contact"
-    aria-label="Entre em contato através das redes sociais ou WhatsApp"
-  >
-    <div class="contact-container">
-      <div class="contact-header" data-aos="fade-down">
-        <h2 class="contact-title">{{ $t('contact.title') }}</h2>
-        <div class="title-decoration"></div>
-        <p class="contact-subtitle">{{ $t('contact.subtitle') }}</p>
-      </div>
+  <section class="contact-section" id="contact" aria-label="Entre em contato">
+    <div class="section-bg">
+      <div class="bg-glow glow-1"></div>
+      <div class="bg-glow glow-2"></div>
+      <div class="bg-grid"></div>
+    </div>
 
-      <div class="whatsapp-container">
-        <a
-          href="http://wa.me/5513996958183"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="whatsapp-btn"
-        >
-          <i class="fab fa-whatsapp"></i>
-          <span>{{ $t('contact.whatsapp') }}</span>
-        </a>
+    <div class="container">
+      <div class="contact-header">
+        <div class="badge">Contato</div>
+        <h2 class="section-title">{{ $t('contact.title') }}</h2>
+        <p class="section-subtitle">{{ $t('contact.subtitle') }}</p>
       </div>
 
       <div class="contact-content">
-        <div class="contact-info">
-          <div class="info-card">
-            <i class="fas fa-envelope contact-icon"></i>
-            <div class="info-text">
-              <h3>{{ $t('contact.email_label') }}</h3>
-              <a href="mailto:matheusmalena28@gmail.com" class="info-link">
+        <div class="contact-cards">
+          <div class="contact-card">
+            <div class="card-icon">
+              <i class="fas fa-envelope"></i>
+            </div>
+            <div class="card-info">
+              <span class="card-label">{{ $t('contact.email_label') }}</span>
+              <a href="mailto:matheusmalena28@gmail.com" class="card-value">
                 matheusmalena28@gmail.com
               </a>
             </div>
           </div>
 
-          <div class="info-card">
-            <i class="fas fa-map-marker-alt contact-icon"></i>
-            <div class="info-text">
-              <h3>{{ $t('contact.location_label') }}</h3>
-              <p>{{ $t('contact.location_value') }}</p>
+          <div class="contact-card">
+            <div class="card-icon">
+              <i class="fas fa-map-marker-alt"></i>
+            </div>
+            <div class="card-info">
+              <span class="card-label">{{ $t('contact.location_label') }}</span>
+              <span class="card-value">{{ $t('contact.location_value') }}</span>
             </div>
           </div>
         </div>
 
-        <div class="social-container">
-          <h3 class="social-title">{{ $t('contact.social_title') }}</h3>
-          <div class="social-media">
-            <a
-              href="https://github.com/matheusmalena"
-              target="_blank"
-              class="social-link"
-              aria-label="GitHub"
-            >
+        <div class="cta-container">
+          <a href="http://wa.me/5513996958183" target="_blank" rel="noopener noreferrer" class="whatsapp-btn">
+            <div class="btn-icon">
+              <i class="fab fa-whatsapp"></i>
+            </div>
+            <div class="btn-content">
+              <span class="btn-label">{{ $t('contact.whatsapp') }}</span>
+              <span class="btn-sublabel">Inicie uma conversa</span>
+            </div>
+            <div class="btn-arrow">
+              <i class="fas fa-arrow-right"></i>
+            </div>
+          </a>
+        </div>
+
+        <div class="social-section">
+          <span class="social-label">{{ $t('contact.social_title') }}</span>
+          <div class="social-links">
+            <a href="https://github.com/matheusmalena" target="_blank" rel="noopener noreferrer" class="social-btn github" aria-label="GitHub">
               <i class="fab fa-github"></i>
-              <span class="social-tooltip">GitHub</span>
             </a>
-            <a
-              href="https://www.linkedin.com/in/matheusmalena"
-              target="_blank"
-              class="social-link"
-              aria-label="LinkedIn"
-            >
+            <a href="https://www.linkedin.com/in/matheusmalena" target="_blank" rel="noopener noreferrer" class="social-btn linkedin" aria-label="LinkedIn">
               <i class="fab fa-linkedin-in"></i>
-              <span class="social-tooltip">LinkedIn</span>
             </a>
-            <a
-              href="https://www.instagram.com/dev_malena"
-              target="_blank"
-              class="social-link"
-              aria-label="Instagram"
-            >
+            <a href="https://www.instagram.com/dev_malena" target="_blank" rel="noopener noreferrer" class="social-btn instagram" aria-label="Instagram">
               <i class="fab fa-instagram"></i>
-              <span class="social-tooltip">Instagram</span>
             </a>
           </div>
         </div>
@@ -81,7 +72,6 @@
   </section>
 </template>
 
-
 <script>
 export default {
   name: 'Contact'
@@ -89,54 +79,95 @@ export default {
 </script>
 
 <style scoped>
-
-/* -------- SEÇÃO CONTATO -------- */
 .contact-section {
-  background: linear-gradient(135deg, #0a0a0a 0%, #0f172a 100%);
-  padding: 5rem 0;
+  padding: 120px 5%;
   position: relative;
   overflow: hidden;
+  background: var(--gradient-dark);
 }
 
-.contact-container {
-  max-width: 1200px;
+.section-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.bg-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(120px);
+  opacity: 0.4;
+}
+
+.glow-1 {
+  width: 500px;
+  height: 500px;
+  background: var(--primary);
+  top: -150px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.glow-2 {
+  width: 300px;
+  height: 300px;
+  background: var(--secondary);
+  bottom: -100px;
+  right: 10%;
+}
+
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(14, 165, 233, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 165, 233, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.container {
+  max-width: 900px;
   margin: 0 auto;
-  padding: 0 2rem;
+  position: relative;
+  z-index: 10;
 }
 
 .contact-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
-.contact-title {
-  font-size: 2.5rem;
-  font-weight: 700;
-  color: var(--color-white);
-  margin-bottom: 1rem;
-  background: var(--gradient-blue);
+.badge {
+  display: inline-block;
+  background: rgba(14, 165, 233, 0.1);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  padding: 8px 20px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary-light);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
+}
+
+.section-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 800;
+  background: var(--gradient-primary);
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
   background-clip: text;
+  color: transparent;
+  margin-bottom: 1rem;
 }
 
-.title-decoration {
-  width: 80px;
-  height: 4px;
-  background: linear-gradient(to right, var(--color-primary), var(--color-primary-light));
-  margin: 0 auto 1.5rem;
-  border-radius: 2px;
-}
-
-.contact-subtitle {
-  color: var(--color-text-light);
-  font-size: 1.2rem;
+.section-subtitle {
+  font-size: 1.15rem;
+  color: var(--text-secondary);
   max-width: 600px;
   margin: 0 auto;
-  line-height: 1.6;
 }
 
-/* -------- INFORMAÇÕES DE CONTATO -------- */
 .contact-content {
   display: flex;
   flex-direction: column;
@@ -144,282 +175,255 @@ export default {
   gap: 2.5rem;
 }
 
-.contact-info {
+.contact-cards {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  gap: 2rem;
+  gap: 1.5rem;
   width: 100%;
-  max-width: 800px;
 }
 
-.info-card {
-  background: var(--color-card);
-  padding: 1.5rem 2rem;
-  border-radius: 12px;
+.contact-card {
   display: flex;
   align-items: center;
   gap: 1.5rem;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  width: 100%;
-  max-width: 350px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  padding: 1.5rem 2rem;
+  min-width: 300px;
+  transition: all 0.4s ease;
 }
 
-.contact-icon {
-  font-size: 1.8rem;
-  color: rgb(171, 221, 243);
+.contact-card:hover {
+  border-color: rgba(14, 165, 233, 0.3);
+  transform: translateY(-4px);
+}
+
+.card-icon {
   width: 60px;
   height: 60px;
-  border: 1px solid rgb(171, 221, 243);
-  border-radius: 50%;
+  background: var(--gradient-primary);
+  border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
 }
 
-.info-text h3 {
-  color: var(--color-text-light);
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
+.card-icon i {
+  font-size: 1.5rem;
+  color: white;
+}
+
+.card-info {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.card-label {
+  font-size: 0.85rem;
+  color: var(--text-muted);
   font-weight: 500;
 }
 
-.info-link, .info-text p {
-  color: var(--color-text);
-  font-size: 1.1rem;
-  font-weight: 500;
+.card-value {
+  font-size: 1.05rem;
+  color: var(--text-primary);
+  font-weight: 600;
   text-decoration: none;
   transition: color 0.3s ease;
 }
 
-.info-link:hover {
-  color: var(--color-primary);
+a.card-value:hover {
+  color: var(--primary-light);
 }
 
-/* -------- REDES SOCIAIS -------- */
-.social-container {
-  text-align: center;
+.cta-container {
   width: 100%;
+  max-width: 500px;
 }
 
-.social-title {
-  color: var(--color-text-light);
-  font-size: 1.2rem;
-  margin-bottom: 1.5rem;
-  font-weight: 500;
-}
-
-.social-media {
+.whatsapp-btn {
   display: flex;
-  justify-content: center;
+  align-items: center;
   gap: 1.5rem;
-  margin-bottom: 2rem;
+  width: 100%;
+  background: #25D366;
+  border-radius: var(--radius-xl);
+  padding: 1.5rem 2rem;
+  text-decoration: none;
+  transition: all 0.4s ease;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.3);
+  position: relative;
+  overflow: hidden;
 }
 
-.social-link {
-  width: 50px;
-  height: 50px;
+.whatsapp-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+  transition: left 0.6s ease;
+}
+
+.whatsapp-btn:hover::before {
+  left: 100%;
+}
+
+.whatsapp-btn:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(37, 211, 102, 0.4);
+}
+
+.btn-icon {
+  width: 56px;
+  height: 56px;
+  background: rgba(255, 255, 255, 0.2);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.btn-icon i {
+  font-size: 1.8rem;
+  color: white;
+}
+
+.btn-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.btn-label {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: white;
+}
+
+.btn-sublabel {
+  font-size: 0.9rem;
+  color: rgba(255, 255, 255, 0.8);
+}
+
+.btn-arrow {
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.2);
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  color: white;
-  font-size: 1.3rem;
-  position: relative;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  text-decoration: none !important;
-}
-
-.social-link:hover {
-  transform: translateY(-5px);
-}
-
-.social-link i {
   transition: transform 0.3s ease;
-   color: var(--color-white);
 }
 
-.social-link:hover i {
-  transform: scale(1.2);
-}
-
-.social-tooltip {
-  position: absolute;
-  bottom: -30px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: var(--color-card);
-  color: var(--color-text);
-  padding: 0.3rem 0.8rem;
-  border-radius: 4px;
-  font-size: 0.8rem;
-  opacity: 0;
-  visibility: hidden;
-  transition: all 0.3s ease;
-  white-space: nowrap;
-}
-
-.social-link:hover .social-tooltip {
-  opacity: 1;
-  visibility: visible;
-  bottom: -40px;
-}
-
-/* Cores específicas para cada rede social */
-.social-link:nth-child(1) {
-  background-color: #333;
-}
-.social-link:nth-child(2) {
-  background-color: #0077B5;
-}
-.social-link:nth-child(3) {
-  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
-}
-
-/* -------- BOTÃO WHATSAPP -------- */
-.whatsapp-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.8rem;
-  padding: 1rem 2rem;
-  background-color:#23c45e;
+.btn-arrow i {
   color: white;
-  border-radius: 50px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-  margin-top: 1rem;
+  font-size: 1rem;
 }
 
-.whatsapp-btn:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-  background-color: #23c55e;
+.whatsapp-btn:hover .btn-arrow {
+  transform: translateX(4px);
 }
 
-.whatsapp-btn i {
-  font-size: 1.4rem;
-}
-
-.whatsapp-container {
+.social-section {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: 1rem 2rem 2rem 2rem;
+  gap: 1.5rem;
 }
 
-/* -------- RESPONSIVIDADE -------- */
-@media (max-width: 1024px) {
-  .contact-title {
-    font-size: 2.2rem;
-  }
+.social-label {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  font-weight: 500;
+}
 
-  .info-card {
-    flex: 1 1 100%;
-    max-width: 100%;
-  }
+.social-links {
+  display: flex;
+  gap: 16px;
+}
 
-  .contact-subtitle {
-    font-size: 1.1rem;
-  }
+.social-btn {
+  width: 56px;
+  height: 56px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: all 0.4s ease;
+}
 
-  .social-media {
-    gap: 1rem;
-  }
+.social-btn:hover {
+  transform: translateY(-4px);
+}
 
-  .whatsapp-btn {
-    font-size: 1rem;
-    padding: 0.8rem 1.5rem;
-  }
+.social-btn.github:hover {
+  background: #333;
+  border-color: #333;
+  color: white;
+}
+
+.social-btn.linkedin:hover {
+  background: #0077B5;
+  border-color: #0077B5;
+  color: white;
+}
+
+.social-btn.instagram:hover {
+  background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+  border-color: transparent;
+  color: white;
 }
 
 @media (max-width: 768px) {
-  .contact-title {
-    font-size: 2rem;
+  .contact-section {
+    padding: 80px 5%;
   }
 
-  .contact-subtitle {
-    font-size: 1rem;
-  }
-
-  .contact-content {
-    gap: 2rem;
-  }
-
-  .info-card {
+  .contact-cards {
     flex-direction: column;
-    text-align: center;
-    padding: 1.5rem;
-    align-items: center;
   }
 
-  .contact-icon {
-    margin-bottom: 1rem;
-  }
-
-  .info-text h3 {
-    font-size: 1rem;
-  }
-
-  .info-link,
-  .info-text p {
-    font-size: 1rem;
-  }
-
-  .social-link {
-    width: 45px;
-    height: 45px;
-    font-size: 1.1rem;
-  }
-
-  .social-tooltip {
-    font-size: 0.7rem;
-    padding: 0.2rem 0.6rem;
+  .contact-card {
+    min-width: 100%;
   }
 
   .whatsapp-btn {
-    width: 100%;
-    justify-content: center;
-  }
-}
-
-@media (max-width: 480px) {
-  .contact-container {
-    padding: 0 1rem;
+    padding: 1.2rem 1.5rem;
+    gap: 1rem;
   }
 
-  .contact-title {
-    font-size: 1.8rem;
+  .btn-icon {
+    width: 48px;
+    height: 48px;
   }
 
-  .contact-subtitle {
-    font-size: 0.95rem;
-    line-height: 1.4;
-  }
-
-  .info-card {
-    max-width: 100%;
-    padding: 1.2rem;
-  }
-
-  .contact-icon {
-    width: 50px;
-    height: 50px;
+  .btn-icon i {
     font-size: 1.4rem;
   }
 
-  .whatsapp-btn {
-    font-size: 0.95rem;
-    padding: 0.8rem 1.2rem;
-  }
-
-  .social-link {
-    width: 40px;
-    height: 40px;
+  .btn-label {
     font-size: 1rem;
   }
-}
 
+  .social-btn {
+    width: 48px;
+    height: 48px;
+    font-size: 1.2rem;
+  }
+}
 </style>

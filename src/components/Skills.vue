@@ -1,29 +1,34 @@
 <template>
   <section class="skills" id="skills">
+    <div class="section-bg">
+      <div class="bg-glow glow-1"></div>
+      <div class="bg-glow glow-2"></div>
+      <div class="bg-grid"></div>
+    </div>
+
     <div class="container">
-      <div class="section-header" data-aos="fade-up">
+      <div class="section-header">
+        <div class="badge">Minhas Skills</div>
         <h2 class="section-title" v-html="$t('skills.title')"></h2>
         <p class="section-subtitle">{{ $t("skills.subtitle") }}</p>
       </div>
 
       <div class="skills-content">
-        <div class="skills-intro">
-          <!-- <p>{{ $t("skills.description") }}</p> -->
-        </div>
-
         <div class="skills-grid">
-          <div v-for="(skill, index) in skills" :key="index" class="skill-card">
-            <img :src="skill.icon" :alt="skill.name" class="skill-icon" />
+          <div 
+            v-for="(skill, index) in skills" 
+            :key="index" 
+            class="skill-card"
+          >
+            <div class="skill-icon-wrapper">
+              <img :src="skill.icon" :alt="skill.name" class="skill-icon" />
+            </div>
             <span class="skill-name">{{ skill.name }}</span>
+            <div class="skill-glow"></div>
           </div>
         </div>
       </div>
     </div>
-
-    <!-- Background Elements (igual services) -->
-    <div class="bg-grid"></div>
-    <div class="bg-blur-1"></div>
-    <div class="bg-blur-2"></div>
   </section>
 </template>
 
@@ -35,93 +40,75 @@ export default {
       skills: [
         {
           name: "Vue.js",
-          icon:
-            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vuejs/vuejs-original.svg",
         },
         {
           name: "JavaScript",
-          icon:
-            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg",
         },
         {
           name: "TypeScript",
-          icon:
-            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg",
         },
         {
           name: "HTML5",
-          icon:
-            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/html5/html5-original.svg",
         },
         {
           name: "PHP",
-          icon:
-            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/php/php-original.svg",
         },
         {
           name: "CSS3",
-          icon:
-            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/css3/css3-original.svg",
         },
         {
           name: "Bootstrap",
-          icon:
-            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/bootstrap/bootstrap-original.svg",
         },
         {
           name: "Tailwind",
-          icon:
-            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original-wordmark.svg",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original-wordmark.svg",
         },
         {
           name: "Node.js",
-          icon:
-            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg",
         },
         {
           name: "Express",
-          icon:
-            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/express/express-original.svg",
         },
         {
           name: "PostgreSQL",
-          icon:
-            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg",
         },
         {
           name: "MongoDB",
-          icon:
-            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg",
         },
         {
           name: "Git",
-          icon:
-            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg",
         },
         {
           name: "Docker",
-          icon:
-            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg",
         },
         {
           name: "Linux",
-          icon:
-            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/linux/linux-original.svg",
         },
         {
           name: "Python",
-          icon:
-            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg",
         },
         {
           name: "Vite",
-          icon:
-            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vitejs/vitejs-original.svg",
         },
         {
           name: "Firebase",
-          icon:
-            "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg",
+          icon: "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg",
         },
       ],
     };
@@ -131,190 +118,210 @@ export default {
 
 <style scoped>
 .skills {
-  padding: 5rem 0;
-  background: linear-gradient(135deg, #0a0a0a 0%, #0f172a 100%);
-  color: white;
-
-  /* IMPORTANTE pro fundo */
+  padding: 120px 5%;
   position: relative;
   overflow: hidden;
+  background: var(--gradient-dark);
 }
 
-/* garante que seu conteúdo fique acima do fundo */
+.section-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.bg-glow {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(100px);
+  opacity: 0.3;
+}
+
+.glow-1 {
+  width: 400px;
+  height: 400px;
+  background: var(--primary);
+  top: -100px;
+  left: -100px;
+}
+
+.glow-2 {
+  width: 350px;
+  height: 350px;
+  background: var(--secondary);
+  bottom: -100px;
+  right: -100px;
+}
+
+.bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image: 
+    linear-gradient(rgba(14, 165, 233, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(14, 165, 233, 0.03) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
 .container {
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 1.5rem;
   position: relative;
-  z-index: 2;
-}
-
-.section-title {
-  font-size: 3rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  display: inline-flex;
-  flex-direction: column;
-  align-items: center;
+  z-index: 10;
 }
 
 .section-header {
   text-align: center;
-  margin-bottom: 3rem;
+  margin-bottom: 4rem;
 }
 
-.section-header h2 {
-  font-size: 2.5rem;
-  margin-bottom: 0.5rem;
-  color: #fff;
+.badge {
+  display: inline-block;
+  background: rgba(14, 165, 233, 0.1);
+  border: 1px solid rgba(14, 165, 233, 0.3);
+  padding: 8px 20px;
+  border-radius: var(--radius-full);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--primary-light);
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 1.5rem;
 }
 
-.section-header p {
+.section-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 1rem;
+}
+
+.section-subtitle {
   font-size: 1.1rem;
-  color: #94a3b8;
+  color: var(--text-secondary);
   max-width: 600px;
   margin: 0 auto;
 }
 
 .skills-content {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
-}
-
-.skills-intro {
-  text-align: center;
-  max-width: 700px;
-  margin: 0 auto;
-}
-
-.skills-intro p {
-  font-size: 1.1rem;
-  line-height: 1.6;
-  color: #e2e8f0;
+  position: relative;
 }
 
 .skills-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
   gap: 1.5rem;
-  margin-top: 2rem;
 }
 
 .skill-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
-  transition: transform 0.3s ease;
+  gap: 12px;
+  padding: 1.5rem 1rem;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .skill-card:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  border-color: rgba(14, 165, 233, 0.4);
+  background: var(--surface-light);
 }
 
-.skill-icon {
-  width: 60px;
-  height: 60px;
-  object-fit: contain;
-  padding: 0.8rem;
-  background: rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
-  transition: all 0.3s ease;
+.skill-icon-wrapper {
+  width: 64px;
+  height: 64px;
+  background: var(--background-card);
+  border-radius: var(--radius-lg);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
 }
 
-.skill-card:hover .skill-icon {
-  background: rgba(74, 205, 240, 0.1);
+.skill-card:hover .skill-icon-wrapper {
+  background: var(--gradient-primary);
   transform: scale(1.1);
 }
 
-.skill-name {
-  font-size: 0.9rem;
-  font-weight: 500;
-  color: #e2e8f0;
-  text-align: center;
+.skill-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+  transition: filter 0.3s ease;
 }
 
-/* -------- BACKGROUND ELEMENTS (igual services) -------- */
-.bg-grid {
+.skill-card:hover .skill-icon {
+  filter: brightness(0) invert(1);
+}
+
+.skill-name {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--text-secondary);
+  text-align: center;
+  transition: color 0.3s ease;
+}
+
+.skill-card:hover .skill-name {
+  color: var(--primary-light);
+}
+
+.skill-glow {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  background-image:
-    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
-  background-size: 50px 50px;
-  opacity: 0.3;
-  z-index: 1;
-  pointer-events: none;
+  border-radius: inherit;
+  background: var(--gradient-primary);
+  opacity: 0;
+  filter: blur(20px);
+  transition: opacity 0.4s ease;
+  z-index: -1;
 }
 
-.bg-blur-1 {
-  position: absolute;
-  top: 20%;
-  right: 10%;
-  width: 300px;
-  height: 300px;
-  background: radial-gradient(circle, rgba(195, 236, 254, 0.1) 0%, transparent 70%);
-  filter: blur(60px);
-  z-index: 1;
-  pointer-events: none;
+.skill-card:hover .skill-glow {
+  opacity: 0.15;
 }
 
-.bg-blur-2 {
-  position: absolute;
-  bottom: 20%;
-  left: 10%;
-  width: 400px;
-  height: 400px;
-  background: radial-gradient(circle, rgba(138, 43, 226, 0.1) 0%, transparent 70%);
-  filter: blur(80px);
-  z-index: 1;
-  pointer-events: none;
-}
-
-/* -------- RESPONSIVO -------- */
 @media (max-width: 768px) {
   .skills {
-    padding: 3rem 0;
-  }
-
-  .section-header h2 {
-    font-size: 2rem;
+    padding: 80px 5%;
   }
 
   .skills-grid {
-    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
     gap: 1rem;
   }
 
-  .skill-icon {
-    width: 50px;
-    height: 50px;
+  .skill-card {
+    padding: 1.2rem 0.8rem;
   }
 
-  .section-title {
-    font-size: 2.2rem;
+  .skill-icon-wrapper {
+    width: 56px;
+    height: 56px;
+  }
+
+  .skill-icon {
+    width: 32px;
+    height: 32px;
+  }
+
+  .skill-name {
+    font-size: 0.75rem;
   }
 }
 
 @media (max-width: 480px) {
-  .section-header h2 {
-    font-size: 1.8rem;
-  }
-
-  .section-header p,
-  .skills-intro p {
-    font-size: 1rem;
-  }
-
   .skills-grid {
-    grid-template-columns: repeat(auto-fill, minmax(70px, 1fr));
-  }
-
-  .section-title {
-    font-size: 1.8rem;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+    gap: 0.8rem;
   }
 }
 </style>

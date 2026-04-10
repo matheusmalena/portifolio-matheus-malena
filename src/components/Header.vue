@@ -1,96 +1,92 @@
 <template>
   <header :class="['header', { scrolled: isScrolled || isOpen }]">
-    <!-- Logo -->
-    <div class="logo">
-      <a class="portfolio-title" href="#">Portfo<span>lio</span></a>
-    </div>
+    <div class="header-container">
+      <a href="#" class="logo">Portfo<span>lio</span></a>
 
-    <!-- Navegação principal -->
-    <nav :class="['nav', { open: isOpen }]" @click="closeMenuOnOutsideClick">
-      <div :class="['nav-links', { scrolled: isScrolled || isOpen }]">
-        <router-link 
-          to="/" 
-          class="nav-link" 
-          :class="{ 'nav-link-active': isHomeActive }" 
-          @click="handleLinkClick($event, '/')"
-          data-text="Home"
-        >
-          {{ $t('header.home') }}
-        </router-link>
+      <nav :class="['nav', { open: isOpen }]">
+        <div class="nav-links">
+          <router-link 
+            to="/" 
+            class="nav-link" 
+            :class="{ 'active': isHomeActive }" 
+            @click="handleLinkClick($event, '/')"
+          >
+            <span class="link-text">{{ $t('header.home') }}</span>
+            <span class="link-icon"><i class="fas fa-home"></i></span>
+          </router-link>
 
-        <router-link 
-          to="/#services" 
-          class="nav-link" 
-          :class="{ 'nav-link-active': isHashActive('#services') }"
-          @click="handleLinkClick($event, '/#services')"
-          data-text="Services"
-        >
-          {{ $t('header.services') }}
-        </router-link>
+          <router-link 
+            to="/#services" 
+            class="nav-link" 
+            :class="{ 'active': isHashActive('#services') }"
+            @click="handleLinkClick($event, '/#services')"
+          >
+            <span class="link-text">{{ $t('header.services') }}</span>
+            <span class="link-icon"><i class="fas fa-briefcase"></i></span>
+          </router-link>
 
-        <router-link 
-          to="/#about" 
-          class="nav-link" 
-          :class="{ 'nav-link-active': isHashActive('#about') }"
-          @click="handleLinkClick($event, '/#about')"
-          :data-text="$t('header.about')"
-        >
-          {{ $t('header.about') }}
-        </router-link>
+          <router-link 
+            to="/#about" 
+            class="nav-link" 
+            :class="{ 'active': isHashActive('#about') }"
+            @click="handleLinkClick($event, '/#about')"
+          >
+            <span class="link-text">{{ $t('header.about') }}</span>
+            <span class="link-icon"><i class="fas fa-user"></i></span>
+          </router-link>
 
-        <router-link 
-          to="/#projects" 
-          class="nav-link" 
-          :class="{ 'nav-link-active': isHashActive('#projects') }"
-          @click="handleLinkClick($event, '/#projects')"
-          :data-text="$t('header.projects')"
-        >
-          {{ $t('header.projects') }}
-        </router-link>
+          <router-link 
+            to="/#projects" 
+            class="nav-link" 
+            :class="{ 'active': isHashActive('#projects') }"
+            @click="handleLinkClick($event, '/#projects')"
+          >
+            <span class="link-text">{{ $t('header.projects') }}</span>
+            <span class="link-icon"><i class="fas fa-folder-open"></i></span>
+          </router-link>
 
-        <router-link 
-          to="/#timeline" 
-          class="nav-link" 
-          :class="{ 'nav-link-active': isHashActive('#timeline') }"
-          @click="handleLinkClick($event, '/#timeline')"
-          :data-text="$t('header.timeline')"
-        >
-          {{ $t('header.timeline') }}
-        </router-link>
+          <router-link 
+            to="/#timeline" 
+            class="nav-link" 
+            :class="{ 'active': isHashActive('#timeline') }"
+            @click="handleLinkClick($event, '/#timeline')"
+          >
+            <span class="link-text">{{ $t('header.timeline') }}</span>
+            <span class="link-icon"><i class="fas fa-clock"></i></span>
+          </router-link>
 
-        <router-link 
-          to="/#contact" 
-          class="nav-link" 
-          :class="{ 'nav-link-active': isHashActive('#contact') }"
-          @click="handleLinkClick($event, '/#contact')"
-          :data-text="$t('header.contact')"
-        >
-          {{ $t('header.contact') }}
-        </router-link>
+          <router-link 
+            to="/#contact" 
+            class="nav-link" 
+            :class="{ 'active': isHashActive('#contact') }"
+            @click="handleLinkClick($event, '/#contact')"
+          >
+            <span class="link-text">{{ $t('header.contact') }}</span>
+            <span class="link-icon"><i class="fas fa-envelope"></i></span>
+          </router-link>
+        </div>
+
+        <div class="nav-actions mobile">
+          <a class="btn-whatsapp" href="http://wa.me/5513996958183" target="_blank" rel="noopener noreferrer">
+            <i class="fab fa-whatsapp"></i>
+            <span>{{ $t('header.talk_to_me') }}</span>
+          </a>
+        </div>
+      </nav>
+
+      <div class="header-actions">
+        <OptLangDropdown class="lang-dropdown" />
+
+        <a class="btn-whatsapp desktop" href="http://wa.me/5513996958183" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp"></i>
+        </a>
+
+        <button class="menu-toggle" @click="toggleMenu" :class="{ open: isOpen }">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </div>
-
-      <!-- Botão WhatsApp mobile -->
-      <a class="btn-whatsapp mobile" href="http://wa.me/5513996958183" target="_blank" rel="noopener noreferrer">
-        {{ $t('header.talk_to_me') }}
-      </a>
-    </nav>
-
-    <!-- Área de ações (direita) -->
-    <div class="header-actions">
-      <!-- Dropdown de idioma (desktop) -->
-      <OptLangDropdown class="lang-dropdown-desktop" />
-
-      <!-- Botão WhatsApp desktop -->
-      <a class="btn-whatsapp desktop" href="http://wa.me/5513996958183" target="_blank" rel="noopener noreferrer">
-        <i class="fab fa-whatsapp"></i> {{ $t('header.talk_to_me') }}
-      </a>
-
-      <!-- Menu hamburger -->
-      <button class="hamburger" @click="toggleMenu" :aria-label="isOpen ? 'Close menu' : 'Open menu'">
-        <span :class="{ open: isOpen }"></span>
-        <span :class="{ open: isOpen }"></span>
-        <span :class="{ open: isOpen }"></span>
-      </button>
     </div>
   </header>
 </template>
@@ -107,24 +103,12 @@ export default {
     return {
       isOpen: false,
       isScrolled: false,
-      activeLinkIndex: 0,
-      indicatorWidth: 0,
-      indicatorLeft: 0,
-      isMobile: false,
-      lastActiveLink: null
     };
   },
   computed: {
     isHomeActive() {
       return this.$route.path === '/' && (!this.$route.hash || this.$route.hash === '');
     },
-    indicatorStyle() {
-      return {
-        width: `${this.indicatorWidth}px`,
-        left: `${this.indicatorLeft}px`,
-        opacity: this.indicatorWidth > 0 ? 1 : 0
-      };
-    }
   },
   methods: {
     isHashActive(hash) {
@@ -132,608 +116,352 @@ export default {
     },
     
     handleLinkClick(event, route) {
-      const link = event.currentTarget;
-      this.updateIndicator(link);
       this.closeMenu();
-      
-      // Adiciona efeito de clique
-      link.classList.add('clicked');
-      setTimeout(() => {
-        link.classList.remove('clicked');
-      }, 300);
-    },
-    
-    updateIndicator(activeLink) {
-      if (this.isMobile || !activeLink) return;
-      
-      const links = document.querySelectorAll('.nav-link');
-      const index = Array.from(links).indexOf(activeLink);
-      
-      if (index !== -1) {
-        this.activeLinkIndex = index;
-        const linkRect = activeLink.getBoundingClientRect();
-        const navRect = activeLink.parentElement.getBoundingClientRect();
-        
-        this.indicatorWidth = linkRect.width;
-        this.indicatorLeft = linkRect.left - navRect.left;
-      }
     },
     
     toggleMenu() {
       this.isOpen = !this.isOpen;
       document.body.style.overflow = this.isOpen ? 'hidden' : '';
-      
-      if (!this.isOpen) {
-        // Adiciona efeito de fechamento suave
-        setTimeout(() => {
-          const links = document.querySelectorAll('.nav-link');
-          links.forEach(link => link.classList.remove('menu-open'));
-        }, 300);
-      } else {
-        // Adiciona efeito de abertura sequencial
-        setTimeout(() => {
-          const links = document.querySelectorAll('.nav-link');
-          links.forEach((link, index) => {
-            setTimeout(() => {
-              link.classList.add('menu-open');
-            }, index * 50);
-          });
-        }, 100);
-      }
     },
     
     closeMenu() {
       if (this.isOpen) {
         this.isOpen = false;
         document.body.style.overflow = '';
-        
-        // Remove classes de animação
-        setTimeout(() => {
-          const links = document.querySelectorAll('.nav-link');
-          links.forEach(link => link.classList.remove('menu-open'));
-        }, 300);
-      }
-    },
-    
-    closeMenuOnOutsideClick(event) {
-      if (this.isOpen && event.target.classList.contains('nav')) {
-        this.closeMenu();
       }
     },
     
     handleScroll() {
-      this.isScrolled = window.scrollY > 20;
-      
-      // Atualiza o indicador baseado na posição da página
-      if (!this.isMobile) {
-        const links = document.querySelectorAll('.nav-link');
-        let activeLink = null;
-        
-        links.forEach(link => {
-          if (link.classList.contains('nav-link-active')) {
-            activeLink = link;
-          }
-        });
-        
-        if (activeLink) {
-          this.updateIndicator(activeLink);
-        }
-      }
+      this.isScrolled = window.scrollY > 50;
     },
-    
-    checkMobile() {
-      this.isMobile = window.innerWidth <= 768;
-      if (!this.isMobile) {
-        this.closeMenu();
-      }
-    },
-    
-    handleRouteChange() {
-      // Aguarda a renderização dos links
-      this.$nextTick(() => {
-        const links = document.querySelectorAll('.nav-link');
-        links.forEach(link => {
-          if (link.classList.contains('nav-link-active') && link !== this.lastActiveLink) {
-            this.updateIndicator(link);
-            this.lastActiveLink = link;
-          }
-        });
-      });
-    }
   },
   mounted() {
     window.addEventListener("scroll", this.handleScroll);
-    window.addEventListener("resize", this.checkMobile);
-    
-    // Inicializa o estado mobile
-    this.checkMobile();
-    
-    // Inicializa o indicador
-    this.$nextTick(() => {
-      const activeLink = document.querySelector('.nav-link-active');
-      if (activeLink) {
-        this.updateIndicator(activeLink);
-        this.lastActiveLink = activeLink;
-      }
-    });
-    
-    // Observa mudanças de rota
-    this.$watch(() => this.$route, this.handleRouteChange, { immediate: true });
+    this.handleScroll();
   },
   beforeUnmount() {
     window.removeEventListener("scroll", this.handleScroll);
-    window.removeEventListener("resize", this.checkMobile);
     document.body.style.overflow = '';
   }
 };
 </script>
 
 <style scoped>
-/* -------- VARIÁVEIS -------- */
-:root {
-  --color-black: #0a0a0a;
-  --color-white: #ffffff;
-  --color-purple: #8a2be2;
-  --color-light-purple: rgba(138, 43, 226, 0.1);
-  --gradient-blue: linear-gradient(90deg, rgb(171, 221, 243), rgba(70, 130, 180, 1));
-  --gradient-purple: linear-gradient(135deg, #8a2be2, #4a00e0);
-  --glass-bg: rgba(255, 255, 255, 0.05);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
-}
-
-/* -------- HEADER -------- */
 .header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px 5%;
   position: fixed;
-  width: 100%;
   top: 0;
+  left: 0;
+  right: 0;
   z-index: 1000;
+  padding: 20px 5%;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  background-color: transparent;
-  backdrop-filter: blur(0px);
 }
 
 .header.scrolled {
-  background: linear-gradient(135deg, #0a0a0a 0%, #0f172a 100%);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
-  padding: 15px 5%;
+  background: rgba(3, 7, 18, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+  padding: 12px 5%;
+}
+
+.header-container {
+  max-width: 1280px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .logo {
   font-size: 1.8rem;
-  font-weight: bold;
-  color: var(--color-purple);
-  cursor: pointer;
+  font-weight: 700;
+  color: var(--text-primary);
+  text-decoration: none;
   transition: transform 0.3s ease;
-  z-index: 1100;
-}
-
-.logo span {
-  background: var(--gradient-blue);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  display: inline-block;
-  position: relative;
 }
 
 .logo:hover {
-  transform: scale(1.05);
+  transform: scale(1.02);
 }
 
-.logo:hover span {
-  animation: gradientShift 2s ease infinite;
+.logo span {
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
 }
 
-@keyframes gradientShift {
-  0%, 100% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-}
-
-/* -------- NAVIGATION -------- */
 .nav {
   display: flex;
   align-items: center;
-  gap: 40px;
-  position: relative;
+  gap: 2rem;
 }
 
 .nav-links {
   display: flex;
-  background: #171718;
-  gap: 0;
-  padding: 0.4rem;
-  border: 1px solid var(--glass-border);
-  box-shadow: 0 0 32px 2px rgba(70, 130, 180, 1);
-  border-radius: 2rem;
-  backdrop-filter: blur(4px);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  position: relative;
-}
-
-.nav-links.scrolled {
-  box-shadow: 0 0 32px 2px rgba(70, 130, 180, 1);
-  border-radius: 2rem;
-  backdrop-filter: blur(8px);
-}
-
-/* Indicador de item ativo */
-.nav-indicator {
-  position: absolute;
-  bottom: -5px;
-  height: 3px;
-  background: var(--gradient-blue);
-  border-radius: 2px;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: 1;
-  pointer-events: none;
+  align-items: center;
+  gap: 4px;
+  background: var(--surface);
+  backdrop-filter: blur(10px);
+  padding: 6px;
+  border-radius: var(--radius-full);
+  border: 1px solid var(--border);
 }
 
 .nav-link {
-  color: var(--color-white);
-  text-decoration: none;
   position: relative;
-  font-weight: 500;
-  font-size: 0.95rem;
-  transition: all 0.3s ease;
-  border-radius: 999px;
-  padding: 0.6rem 1.2rem;
-  overflow: hidden;
-  z-index: 1;
-}
-
-/* Efeito de fundo animado */
-.nav-link::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: var(--gradient-blue);
-  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  z-index: -1;
-  border-radius: 999px;
-}
-
-.nav-link:hover::before {
-  left: 0;
-}
-
-.nav-link:hover {
-  color: var(--color-black);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 25px rgba(70, 130, 180, 0.4);
-}
-
-/* Efeito de clique */
-.nav-link.clicked {
-  animation: clickEffect 0.3s ease;
-  transform: scale(0.95);
-}
-
-@keyframes clickEffect {
-  0% { transform: scale(1); }
-  50% { transform: scale(0.95); }
-  100% { transform: scale(1); }
-}
-
-/* Link ativo */
-.nav-link-active {
-  background: var(--gradient-blue);
-  color: var(--color-black);
-  font-weight: 600;
-  box-shadow: 
-    0 6px 20px rgba(70, 130, 180, 0.45),
-    inset 0 0 0 1px rgba(255, 255, 255, 0.35);
-  animation: pulseActive 2s ease infinite;
-}
-
-@keyframes pulseActive {
-  0%, 100% { box-shadow: 0 6px 20px rgba(70, 130, 180, 0.45); }
-  50% { box-shadow: 0 6px 25px rgba(70, 130, 180, 0.6); }
-}
-
-/* Efeito de texto flutuante */
-.nav-link::after {
-  content: attr(data-text);
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
-  background: var(--gradient-blue);
-  color: var(--color-black);
-  border-radius: 999px;
-  transform: translateY(100%);
-  opacity: 0;
+  padding: 10px 18px;
+  border-radius: var(--radius-full);
+  color: var(--text-secondary);
+  font-weight: 500;
+  font-size: 0.9rem;
+  text-decoration: none;
   transition: all 0.3s ease;
-  font-weight: 600;
+  overflow: hidden;
 }
 
-.nav-link:hover::after {
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* -------- HEADER ACTIONS -------- */
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-}
-
-.lang-dropdown-desktop {
-  margin-left: 10px;
+.nav-link .link-text {
   transition: transform 0.3s ease;
 }
 
-.lang-dropdown-desktop:hover {
-  transform: translateY(-2px);
-}
-
-/* -------- WHATSAPP BUTTON -------- */
-.btn-whatsapp {
-  padding: 0.6rem 1.2rem;
-  background: linear-gradient(135deg, #25D366, #128C7E);
-  text-decoration: none;
-  border: none;
-  border-radius: 2rem;
-  color: white;
-  font-family: 'Inter', sans-serif;
-  font-weight: 600;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 0.5rem;
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-}
-
-.btn-whatsapp::before {
-  content: '';
+.nav-link .link-icon {
+  display: none;
   position: absolute;
-  top: 0;
-  left: -100%;
-  width: 100%;
-  height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  transition: 0.5s;
 }
 
-.btn-whatsapp:hover::before {
-  left: 100%;
+.nav-link:hover {
+  color: var(--text-primary);
 }
 
-.btn-whatsapp:hover {
-  transform: translateY(-3px) scale(1.05);
-  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.4);
+.nav-link:hover .link-text {
+  transform: translateY(-8px);
 }
 
-.btn-whatsapp:active {
-  transform: translateY(-1px) scale(1.02);
-}
-
-.btn-whatsapp i {
+.nav-link::before {
+  content: attr(data-text);
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0;
   transition: all 0.3s ease;
 }
 
-.btn-whatsapp:hover i {
-  transform: scale(1.2) rotate(10deg);
+.nav-link:hover::before {
+  opacity: 1;
 }
 
-.desktop {
+.nav-link.active {
+  background: var(--gradient-primary);
+  color: white;
+  box-shadow: 0 4px 15px rgba(14, 165, 233, 0.3);
+}
+
+.nav-link.active .link-text {
+  opacity: 0;
+}
+
+.nav-link.active .link-icon {
   display: flex;
+  animation: fadeIn 0.3s ease;
 }
 
-.mobile {
-  display: none;
+@keyframes fadeIn {
+  from { opacity: 0; transform: scale(0.8); }
+  to { opacity: 1; transform: scale(1); }
 }
 
-/* -------- HAMBURGER MENU -------- */
-.hamburger {
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lang-dropdown {
+  margin-right: 8px;
+}
+
+.btn-whatsapp {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 20px;
+  background: #25D366;
+  color: white;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+}
+
+.btn-whatsapp:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
+}
+
+.btn-whatsapp.desktop {
+  padding: 12px;
+  width: 44px;
+  height: 44px;
+}
+
+.btn-whatsapp i {
+  font-size: 1.2rem;
+}
+
+.btn-whatsapp span {
+  margin-left: 8px;
+}
+
+.menu-toggle {
   display: none;
   flex-direction: column;
-  gap: 5px;
-  background: none;
-  border: none;
+  justify-content: center;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
   cursor: pointer;
-  z-index: 1100;
-  padding: 8px;
-  border-radius: 50%;
-  transition: background 0.3s ease;
+  padding: 10px;
+  gap: 5px;
+  transition: all 0.3s ease;
 }
 
-.hamburger:hover {
-  background: rgba(255, 255, 255, 0.1);
-}
-
-.hamburger span {
-  width: 25px;
-  height: 3px;
-  background-color: var(--color-white);
-  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+.menu-toggle span {
+  width: 20px;
+  height: 2px;
+  background: var(--text-primary);
   border-radius: 2px;
-  transform-origin: center;
+  transition: all 0.3s ease;
 }
 
-.hamburger span.open:nth-child(1) {
-  transform: rotate(45deg) translate(6px, 6px);
+.menu-toggle:hover {
+  background: var(--surface-light);
 }
 
-.hamburger span.open:nth-child(2) {
+.menu-toggle.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.menu-toggle.open span:nth-child(2) {
   opacity: 0;
   transform: scaleX(0);
 }
 
-.hamburger span.open:nth-child(3) {
-  transform: rotate(-45deg) translate(6px, -6px);
+.menu-toggle.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(5px, -5px);
 }
 
-/* -------- RESPONSIVE DESIGN -------- */
+.nav-actions.mobile {
+  display: none;
+}
+
 @media (max-width: 1024px) {
   .nav-links {
-    gap: 15px;
+    gap: 2px;
+    padding: 4px;
+  }
+
+  .nav-link {
+    padding: 8px 14px;
+    font-size: 0.85rem;
   }
 }
 
 @media (max-width: 768px) {
   .header {
-    padding: 16px 20px;
+    padding: 16px 5%;
   }
 
-  .header-actions {
-    gap: 15px;
+  .header.scrolled {
+    padding: 12px 5%;
+  }
+
+  .logo {
+    font-size: 1.5rem;
   }
 
   .nav {
     position: fixed;
     top: 0;
     left: 0;
-    width: 100%;
-    height: 100vh;
-    background: linear-gradient(135deg, rgba(10, 10, 10, 0.98), rgba(20, 20, 40, 0.98));
+    right: 0;
+    bottom: 0;
+    background: rgba(3, 7, 18, 0.98);
     backdrop-filter: blur(20px);
     flex-direction: column;
-    justify-content: flex-start;
-    align-items: center;
-    gap: 0;
-    transform: translateY(-100%);
-    opacity: 0;
-    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
-    z-index: 1000;
-    padding-top: 100px;
-    overflow-y: auto;
+    justify-content: center;
+    padding: 20px;
+    transform: translateX(100%);
+    transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 999;
   }
 
   .nav.open {
-    transform: translateY(0);
-    opacity: 1;
+    transform: translateX(0);
   }
 
   .nav-links {
     flex-direction: column;
-    align-items: center;
-    gap: 10px;
-    width: 90%;
+    background: transparent;
+    border: none;
+    padding: 0;
+    width: 100%;
     max-width: 300px;
-    padding: 20px;
-    background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    border-radius: 20px;
-    margin-top: 20px;
   }
 
   .nav-link {
     width: 100%;
-    text-align: center;
-    border-radius: 12px;
-    padding: 15px 20px;
-    margin: 5px 0;
-    opacity: 0;
-    transform: translateY(20px);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    padding: 16px 24px;
+    font-size: 1.1rem;
+    border-radius: var(--radius-lg);
+    background: var(--surface);
+    margin-bottom: 8px;
+    border: 1px solid var(--border);
   }
 
-  .nav-link.menu-open {
-    opacity: 1;
-    transform: translateY(0);
+  .nav-link .link-text {
+    transform: none;
   }
 
-  .nav-link:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 10px 30px rgba(70, 130, 180, 0.3);
+  .nav-link .link-icon {
+    display: none !important;
   }
 
-  .nav-link-active {
-    animation: mobilePulse 2s ease infinite;
+  .nav-link:hover .link-text {
+    transform: none;
   }
 
-  @keyframes mobilePulse {
-    0%, 100% { box-shadow: 0 8px 25px rgba(70, 130, 180, 0.4); }
-    50% { box-shadow: 0 8px 30px rgba(70, 130, 180, 0.6); }
-  }
-
-  .nav-link::after {
+  .nav-link::before {
     display: none;
   }
 
-  .hamburger {
+  .nav-actions.mobile {
     display: flex;
+    margin-top: 2rem;
   }
 
-  .lang-dropdown-desktop {
-    display: none;
-  }
-
-  .desktop {
-    display: none;
-  }
-
-  .mobile {
-    display: flex;
-    margin: 30px 0;
-    width: 80%;
-    max-width: 250px;
+  .nav-actions.mobile .btn-whatsapp {
+    width: 100%;
     justify-content: center;
-    font-size: 1rem;
-    padding: 14px 24px;
-    opacity: 0;
-    transform: translateY(20px);
-    animation: fadeInUp 0.5s ease 0.8s forwards;
+    padding: 16px;
   }
 
-  @keyframes fadeInUp {
-    to {
-      opacity: 1;
-      transform: translateY(0);
-    }
+  .header-actions .btn-whatsapp.desktop,
+  .lang-dropdown {
+    display: none;
   }
 
-  /* Efeito de entrada sequencial para os links */
-  .nav-link:nth-child(1).menu-open { transition-delay: 0.1s; }
-  .nav-link:nth-child(2).menu-open { transition-delay: 0.2s; }
-  .nav-link:nth-child(3).menu-open { transition-delay: 0.3s; }
-  .nav-link:nth-child(4).menu-open { transition-delay: 0.4s; }
-  .nav-link:nth-child(5).menu-open { transition-delay: 0.5s; }
-  .nav-link:nth-child(6).menu-open { transition-delay: 0.6s; }
-}
-
-@media (max-width: 480px) {
-  .logo {
-    font-size: 1.5rem;
+  .menu-toggle {
+    display: flex;
   }
-
-  .nav-link {
-    padding: 14px 18px;
-    font-size: 1rem;
-  }
-
-  .mobile {
-    padding: 12px 20px;
-    font-size: 0.95rem;
-  }
-}
-
-/* Animações globais */
-.fade-enter-active,
-.fade-leave-active {
-  transition: opacity 0.3s ease;
-}
-
-.fade-enter-from,
-.fade-leave-to {
-  opacity: 0;
 }
 </style>

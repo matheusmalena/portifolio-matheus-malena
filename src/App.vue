@@ -6,7 +6,7 @@ import { ref, onMounted, onUnmounted } from 'vue';
 const showScrollButton = ref(false);
 
 const checkScroll = () => {
-  showScrollButton.value = window.scrollY > 300;
+  showScrollButton.value = window.scrollY > 400;
 };
 
 const scrollToTop = () => {
@@ -30,7 +30,6 @@ onUnmounted(() => {
   <router-view></router-view>
   <Footer />
   
-  <!-- Botão Voltar ao Topo -->
   <button 
     v-if="showScrollButton" 
     @click="scrollToTop" 
@@ -42,32 +41,41 @@ onUnmounted(() => {
 </template>
 
 <style scoped>
-/* Estilos do botão Voltar ao Topo */
 .scroll-to-top {
   position: fixed;
   bottom: 30px;
   right: 30px;
   width: 50px;
   height: 50px;
-  border-radius: 50%;
-  background: var(--gradient-blue);
-  color: linear-gradient(135deg, #0a0a0a 0%, #0f172a 100%);
+  background: var(--gradient-primary);
+  color: white;
   border: none;
+  border-radius: 50%;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   font-size: 1.2rem;
-  box-shadow: 0 6px 20px rgba(58, 153, 237, 0.4);
+  box-shadow: 0 4px 20px rgba(14, 165, 233, 0.4);
   z-index: 999;
-  opacity: 0.9;
   transition: all 0.3s ease;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .scroll-to-top:hover {
-  opacity: 1;
-  transform: translateY(-5px);
-  box-shadow: 0 6px 20px rgba(58, 153, 237, 0.6);
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 8px 30px rgba(14, 165, 233, 0.5);
 }
 
 .scroll-to-top i {
@@ -75,10 +83,9 @@ onUnmounted(() => {
 }
 
 .scroll-to-top:hover i {
-  transform: translateY(-3px);
+  transform: translateY(-2px);
 }
 
-/* Responsividade */
 @media (max-width: 768px) {
   .scroll-to-top {
     width: 45px;
