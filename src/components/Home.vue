@@ -60,13 +60,13 @@
 
           <div class="profile-section">
             <div class="profile-wrapper">
-              <div class="profile-ring"></div>
-              <div class="profile-ring ring-2"></div>
-              <div class="profile-glow"></div>
+              <!-- <div class="profile-ring"></div> -->
+              <!-- <div class="profile-ring ring-2"></div>
+              <div class="profile-glow"></div> -->
               <div class="profile-image-container">
                 <img src="../assets/img/perfil.jpeg" alt="Matheus Malena" class="profile-image" />
               </div>
-              <div class="floating-badge badge-1">
+              <!-- <div class="floating-badge badge-1">
                 <i class="fas fa-code"></i>
                 <span>Frontend</span>
               </div>
@@ -74,6 +74,11 @@
                 <i class="fas fa-server"></i>
                 <span>Backend</span>
               </div>
+
+              <div class="floating-badge badge-3">
+                <i class="fas fa-code"></i>
+                <span>Fullstack</span>
+              </div> -->
             </div>
           </div>
         </div>
@@ -444,7 +449,7 @@ export default {
 .profile-ring {
   position: absolute;
   inset: 0;
-  border: 2px solid var(--primary);
+  border: 2px solid rgba(255, 255, 255, 0.63);
   border-radius: 50%;
   animation: spin 20s linear infinite;
 }
