@@ -3,10 +3,9 @@
     <div class="footer-container">
       <div class="footer-brand">
         <a href="#" class="logo">
-          <span class="logo-icon"><i class="fas fa-code"></i></span>
-          <span class="logo-text">Matheus<span>Malena</span></span>
+          <img src="../assets/logo-nova.png" alt="Matheus Malena" class="logo-image" />
         </a>
-        <p class="footer-tagline">Desenvolvedor Full Stack criando experiências digitais inovadoras.</p>
+        <!-- <p class="footer-tagline">Desenvolvedor Full Stack criando experiências digitais inovadoras.</p> -->
       </div>
 
       <div class="footer-divider"></div>
@@ -42,36 +41,14 @@ export default {
 }
 
 .logo {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
+  display: inline-block;
   text-decoration: none;
   margin-bottom: 1rem;
 }
 
-.logo-icon {
-  width: 44px;
-  height: 44px;
-  background: var(--gradient-primary);
-  border-radius: var(--radius-md);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  font-size: 1.2rem;
-}
-
-.logo-text {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--text-primary);
-}
-
-.logo-text span {
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.logo-image {
+  height: 60px;
+  width: auto;
 }
 
 .footer-tagline {
@@ -105,13 +82,8 @@ export default {
     padding: 3rem 5% 1.5rem;
   }
 
-  .logo-icon {
-    width: 40px;
-    height: 40px;
-  }
-
-  .logo-text {
-    font-size: 1.3rem;
+  .logo-image {
+    height: 50px;
   }
 }
 </style>

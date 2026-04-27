@@ -1,7 +1,9 @@
 <template>
   <header :class="['header', { scrolled: isScrolled || isOpen }]">
     <div class="header-container">
-      <a href="#" class="logo">Portfo<span>lio</span></a>
+      <a href="#" class="logo">
+        <img src="../assets/logo-nova.png" alt="Matheus Malena" class="logo-image" />
+      </a>
 
       <nav :class="['nav', { open: isOpen }]">
         <div class="nav-links">
@@ -174,10 +176,7 @@ export default {
 }
 
 .logo {
-  font-size: 1.8rem;
-  font-weight: 700;
-  color: var(--text-primary);
-  text-decoration: none;
+  display: block;
   transition: transform 0.3s ease;
 }
 
@@ -185,11 +184,9 @@ export default {
   transform: scale(1.02);
 }
 
-.logo span {
-  background: var(--gradient-primary);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
+.logo-image {
+  height: 40px;
+  width: auto;
 }
 
 .nav {
@@ -385,8 +382,8 @@ export default {
     padding: 12px 5%;
   }
 
-  .logo {
-    font-size: 1.5rem;
+  .logo-image {
+    height: 35px;
   }
 
   .nav {
