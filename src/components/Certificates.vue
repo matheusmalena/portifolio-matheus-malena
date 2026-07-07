@@ -262,7 +262,7 @@ export default {
 
 .section-subtitle {
   font-size: 1.2rem;
-  color: rgba(24, 24, 24, 0.7);
+  color: rgba(255, 255, 255, 0.7);
   max-width: 600px;
   margin: 0 auto;
   line-height: 1.6;
