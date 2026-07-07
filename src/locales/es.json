@@ -127,11 +127,15 @@
       "14": {
         "title": "Libera Já - Gestoría",
         "description": "Sitio institucional moderno para la empresa de gestoría Libera Já."
+      },
+      "15": {
+        "title": "Yup Chat",
+        "description": "Lideré el desarrollo del front-end de la nueva plataforma de Yup Chat, contribuyendo también con el back-end de la aplicación."
       }
     }
   },
   "certificates": {
-    "title": "Mis",
+    "title": "Certificados",
     "highlight": "Logros",
     "certificates": "Certificados",
     "subtitle": "Certificados que reflejan mi dedicación al aprendizaje continuo",
@@ -140,12 +144,17 @@
   "timeline": {
     "title": "Trayectoria profesional",
     "description": "Sigue la evolución de mi trayectoria en el área de tecnología, desde mis estudios iniciales hasta mis experiencias profesionales más recientes.",
-    "current ": "Actual",
+    "current": "Actual",
     "jobs": {
+      "software_dev_pleno": {
+        "title": "Desarrollador de Software Semi Senior",
+        "company": "Yup Chat",
+        "description": "Fui promovido a Desarrollador de Software Semi Senior en Yup Chat, asumiendo mayor autonomía en el desarrollo de funcionalidades, decisiones técnicas y mentoría de compañeros, además de continuar contribuyendo con soluciones escalables e innovadoras para el producto."
+      },
       "software_dev": {
         "title": "Desarrollador de Software Junior",
         "company": "Yup Chat",
-        "description": "Trabajo como desarrollador Full-Stack en Yup Chat, contribuyendo al desarrollo de nuevas funcionalidades, corrección de errores, refactorización de código y mejoras de rendimiento. Colaboro en un equipo multidisciplinario enfocado en soluciones escalables e innovadoras."
+        "description": "Trabajé como desarrollador Full-Stack en Yup Chat, liderando el front-end de la nueva plataforma de la empresa y contribuyendo también con el back-end, además de la corrección de errores, refactorización de código y mejoras de rendimiento. Colaboré en un equipo multidisciplinario enfocado en soluciones escalables e innovadoras."
       },
       "support": {
         "title": "Soporte TI",

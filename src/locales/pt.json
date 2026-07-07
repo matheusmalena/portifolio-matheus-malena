@@ -127,11 +127,15 @@
       "14": {
         "title": "Libera Já - Despachante",
         "description": "Site instituicional moderno para a empresa de despachante Libera Já."
+      },
+      "15": {
+        "title": "Yup Chat",
+        "description": "Liderei o desenvolvimento do front-end da nova plataforma da Yup Chat, contribuindo também com o back-end da aplicação."
       }
     }
   },
   "certificates": {
-    "title": "Minhas",
+    "title": "Certificados",
     "highlight": "Conquistas",
     "certificates": "Certificados",
     "subtitle": "Certificados que refletem minha dedicação ao aprendizado contínuo",
@@ -140,12 +144,17 @@
   "timeline": {
     "title": "Trajetória de carreira",
     "description": "Acompanhe a evolução da minha trajetória na área de tecnologia, desde meus estudos iniciais até minhas experiências profissionais mais recentes.",
-    "current ": "Atual",
+    "current": "Atual",
     "jobs": {
+      "software_dev_pleno": {
+        "title": "Desenvolvedor Pleno",
+        "company": "Yup Chat",
+        "description": "Evoluí para a posição de Desenvolvedor Pleno na Yup Chat, assumindo maior autonomia no desenvolvimento de features, decisões técnicas e mentoria de colegas, além de continuar contribuindo com soluções escaláveis e inovadoras para o produto."
+      },
       "software_dev": {
         "title": "Software Junior Developer",
         "company": "Yup Chat",
-        "description": "Atuo como desenvolvedor Full-Stack na Yup Chat, contribuindo com desenvolvimento de novas features, correção de bugs, refatoração de código e melhorias de performance. Colaboro em equipe multidisciplinar focada em soluções escaláveis e inovadoras."
+        "description": "Atuei como desenvolvedor Full-Stack na Yup Chat, liderando o front-end da nova plataforma da empresa e contribuindo também com o back-end, além de correção de bugs, refatoração de código e melhorias de performance. Colaborei em equipe multidisciplinar focada em soluções escaláveis e inovadoras."
       },
       "support": {
         "title": "Suporte TI",

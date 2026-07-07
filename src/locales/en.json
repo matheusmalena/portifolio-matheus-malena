@@ -127,11 +127,15 @@
       "14": {
         "title": "Libera Já - Dispatch Services",
         "description": "Modern institutional website for the dispatch services company Libera Já."
+      },
+      "15": {
+        "title": "Yup Chat",
+        "description": "I led the front-end development of Yup Chat's new platform, also contributing to the back-end of the application."
       }
     }
   },
   "certificates": {
-    "title": "My",
+    "title": "Certificates",
     "highlight": "Achievements",
     "certificates": "Certificates",
     "subtitle": "Certificates that reflect my dedication to continuous learning",
@@ -140,12 +144,17 @@
   "timeline": {
     "title": "Career journey",
     "description": "Follow the evolution of my journey in tech, from my early studies to my most recent professional experiences.",
-    "current ": "Current",
+    "current": "Current",
     "jobs": {
+      "software_dev_pleno": {
+        "title": "Mid-Level Software Developer",
+        "company": "Yup Chat",
+        "description": "I was promoted to Mid-Level Software Developer at Yup Chat, taking on greater autonomy in feature development, technical decisions, and mentoring teammates, while continuing to contribute scalable and innovative solutions to the product."
+      },
       "software_dev": {
         "title": "Junior Software Developer",
         "company": "Yup Chat",
-        "description": "I work as a Full-Stack Developer at Yup Chat, contributing to new feature development, bug fixes, code refactoring, and performance improvements. I collaborate with a multidisciplinary team focused on scalable and innovative solutions."
+        "description": "I worked as a Full-Stack Developer at Yup Chat, leading the front-end development of the company's new platform while also contributing to the back-end, along with bug fixes, code refactoring, and performance improvements. I collaborated with a multidisciplinary team focused on scalable and innovative solutions."
       },
       "support": {
         "title": "IT Support",

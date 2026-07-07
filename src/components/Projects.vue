@@ -27,14 +27,18 @@
       </nav>
 
       <div class="projects-grid">
-        <article 
-          v-for="(project, index) in paginatedProjects" 
-          :key="project.id" 
+        <article
+          v-for="(project, index) in paginatedProjects"
+          :key="project.id"
           class="project-card"
+          @click="openModal(project)"
         >
           <div class="card-image">
             <img :src="project.image" :alt="project.title" class="project-image" />
             <div class="image-overlay"></div>
+            <div class="expand-hint">
+              <i class="fas fa-expand"></i>
+            </div>
           </div>
 
           <div class="card-content">
@@ -49,7 +53,7 @@
               </span>
             </div>
 
-            <div class="card-actions">
+            <div class="card-actions" @click.stop>
               <a v-if="project.demoUrl" :href="project.demoUrl" target="_blank" class="action-btn primary">
                 <i class="fas fa-external-link-alt"></i>
                 <span>Visitar</span>
@@ -67,6 +71,48 @@
 
       <Pagination v-if="filteredProjects.length > itemsPerPage" :current-page="currentPage" :total-pages="totalPages" @page-changed="changePage" />
     </div>
+
+    <Teleport to="body">
+      <Transition name="modal">
+        <div v-if="selectedProject" class="project-modal-overlay" @click.self="closeModal">
+          <div class="project-modal">
+            <button class="modal-close" @click="closeModal" aria-label="Fechar">
+              <i class="fas fa-times"></i>
+            </button>
+
+            <div class="modal-image">
+              <img :src="selectedProject.image" :alt="selectedProject.title" />
+              <div class="modal-image-overlay"></div>
+              <span class="modal-badge">{{ $t(`projects.categories.${categoryLabelKey(selectedProject)}`) }}</span>
+            </div>
+
+            <div class="modal-body">
+              <h3 class="modal-title">{{ selectedProject.title }}</h3>
+              <p class="modal-description">{{ selectedProject.description }}</p>
+
+              <div class="modal-techs">
+                <span v-for="tech in selectedProject.techs" :key="tech" class="tech-tag">
+                  {{ tech }}
+                </span>
+              </div>
+
+              <div class="modal-actions">
+                <a v-if="selectedProject.demoUrl" :href="selectedProject.demoUrl" target="_blank" class="action-btn primary">
+                  <i class="fas fa-external-link-alt"></i>
+                  <span>Visitar Projeto</span>
+                </a>
+                <a v-if="selectedProject.codeUrl" :href="selectedProject.codeUrl" target="_blank" class="action-btn secondary">
+                  <i class="fab fa-github"></i>
+                  <span>Ver Código</span>
+                </a>
+              </div>
+            </div>
+
+            <div class="modal-glow"></div>
+          </div>
+        </div>
+      </Transition>
+    </Teleport>
   </section>
 </template>
 
@@ -87,6 +133,7 @@ import imgGameMemorie from '../assets/img/game-memorie.png';
 import imgVieiraDias from '../assets/img/vieira-dias.png';
 import imgNgStone from '../assets/img/ng-stone.png';
 import gifVivaColorir from '../assets/img/gif-viva-colorir.gif';
+import imgYupChat from '../assets/img/yup-chat.png';
 
 export default {
   name: 'Projects',
@@ -96,6 +143,7 @@ export default {
       activeCategory: 'all',
       currentPage: 1,
       itemsPerPage: 9,
+      selectedProject: null,
       categories: [
         { id: 'all' },
         { id: 'web' },
@@ -104,6 +152,15 @@ export default {
         { id: 'game' },
       ],
       projects: [
+        {
+          id: 15,
+          title: this.$t('projects.list.15.title'),
+          description: this.$t('projects.list.15.description'),
+          image: imgYupChat,
+          demoUrl: 'https://yup.chat',
+          techs: ['Vue.js', 'Node.js', 'JavaScript'],
+          category: ['web', 'app']
+        },
         {
           id: 1,
           title: this.$t('projects.list.1.title'),
@@ -146,7 +203,7 @@ export default {
           description: this.$t('projects.list.5.description'),
           image: imgFokus,
           demoUrl: 'https://matheusmalena.github.io/Fokus/',
-          techs: ['JavaScript', 'CSS3'],
+          techs: [' HTML', 'CSS3', 'JavaScript'],
           category: ['tool']
         },
         {
@@ -267,6 +324,21 @@ export default {
     changePage(page) {
       this.currentPage = page;
       document.getElementById('projects')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    },
+    openModal(project) {
+      this.selectedProject = project;
+      document.body.style.overflow = 'hidden';
+    },
+    closeModal() {
+      this.selectedProject = null;
+      document.body.style.overflow = '';
+    },
+    categoryLabelKey(project) {
+      const category = project.category ?? project.categories;
+      return Array.isArray(category) ? category[0] : category;
+    },
+    handleKeydown(event) {
+      if (event.key === 'Escape') this.closeModal();
     }
   },
   watch: {
@@ -275,6 +347,13 @@ export default {
         this.currentPage = this.totalPages;
       }
     }
+  },
+  mounted() {
+    window.addEventListener('keydown', this.handleKeydown);
+  },
+  beforeUnmount() {
+    window.removeEventListener('keydown', this.handleKeydown);
+    document.body.style.overflow = '';
   }
 };
 </script>
@@ -433,6 +512,7 @@ export default {
   border: 1px solid var(--border);
   border-radius: var(--radius-xl);
   overflow: hidden;
+  cursor: pointer;
   transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
@@ -481,6 +561,32 @@ export default {
     rgba(3, 7, 18, 0.9) 100%
   );
   pointer-events: none;
+}
+
+.expand-hint {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: rgba(3, 7, 18, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  color: var(--text-primary);
+  font-size: 0.9rem;
+  opacity: 0;
+  transform: scale(0.7);
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.project-card:hover .expand-hint {
+  opacity: 1;
+  transform: scale(1);
 }
 
 .card-content {
@@ -596,6 +702,170 @@ export default {
   .filter-btn {
     padding: 10px 18px;
     font-size: 0.85rem;
+  }
+}
+
+/* -------- PROJECT MODAL -------- */
+.project-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  background: rgba(3, 7, 18, 0.75);
+  backdrop-filter: blur(12px);
+}
+
+.project-modal {
+  position: relative;
+  width: 100%;
+  max-width: 640px;
+  max-height: 88vh;
+  overflow-y: auto;
+  background: var(--background-card);
+  border: 1px solid var(--border-light);
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-lg), 0 0 60px rgba(14, 165, 233, 0.15);
+}
+
+.modal-glow {
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-xl);
+  background: var(--gradient-glow);
+  opacity: 0.5;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.modal-close {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(3, 7, 18, 0.6);
+  color: var(--text-primary);
+  font-size: 1rem;
+  cursor: pointer;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.modal-close:hover {
+  background: var(--gradient-primary);
+  border-color: transparent;
+  transform: rotate(90deg);
+}
+
+.modal-image {
+  position: relative;
+  aspect-ratio: 16/9;
+  overflow: hidden;
+  border-radius: var(--radius-xl) var(--radius-xl) 0 0;
+}
+
+.modal-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-image-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, transparent 50%, rgba(3, 7, 18, 0.95) 100%);
+}
+
+.modal-badge {
+  position: absolute;
+  bottom: 16px;
+  left: 24px;
+  background: var(--gradient-primary);
+  color: white;
+  font-size: 0.8rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  padding: 6px 16px;
+  border-radius: var(--radius-full);
+  box-shadow: 0 4px 15px rgba(14, 165, 233, 0.4);
+}
+
+.modal-body {
+  position: relative;
+  z-index: 1;
+  padding: 2rem;
+}
+
+.modal-title {
+  font-size: 1.75rem;
+  font-weight: 800;
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  margin-bottom: 1rem;
+}
+
+.modal-description {
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 1.5rem;
+}
+
+.modal-techs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 2rem;
+}
+
+.modal-actions {
+  display: flex;
+  gap: 12px;
+}
+
+.modal-enter-active,
+.modal-leave-active {
+  transition: opacity 0.3s ease;
+}
+
+.modal-enter-from,
+.modal-leave-to {
+  opacity: 0;
+}
+
+.modal-enter-active .project-modal,
+.modal-leave-active .project-modal {
+  transition: transform 0.35s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.3s ease;
+}
+
+.modal-enter-from .project-modal,
+.modal-leave-to .project-modal {
+  transform: scale(0.9) translateY(20px);
+  opacity: 0;
+}
+
+@media (max-width: 640px) {
+  .modal-body {
+    padding: 1.5rem;
+  }
+
+  .modal-title {
+    font-size: 1.4rem;
+  }
+
+  .modal-actions {
+    flex-direction: column;
   }
 }
 </style>

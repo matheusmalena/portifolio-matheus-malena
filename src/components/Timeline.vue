@@ -7,12 +7,30 @@
     </div>
 
     <div class="timeline-items">
+      <!-- Yup Chat - Software Pleno Developer -->
+      <div class="timeline-item">
+        <div class="timeline-date">2026 - {{ $t("timeline.current") }}</div>
+        <div class="timeline-content">
+          <h3>{{ $t("timeline.jobs.software_dev_pleno.title") }}</h3>
+          <div class="company">{{ $t("timeline.jobs.software_dev_pleno.company") }}</div>
+          <p>{{ $t("timeline.jobs.software_dev_pleno.description") }}</p>
+          <div class="skills">
+            <span class="skill-tag">Vue.js</span>
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">PHP</span>
+            <span class="skill-tag">Scrum</span>
+            <span class="skill-tag">Kanban</span>
+            <span class="skill-tag">{{ $t("skills.agile_methodologies") }}</span>
+          </div>
+        </div>
+      </div>
+
       <!-- Yup Chat - Software Junior Developer -->
       <div class="timeline-item">
-        <div class="timeline-date">
-          2025 -
-          {{ $t("timeline.jobs.software_dev.title") ? "Atual" : $t("timeline.current") }}
-        </div>
+        <div class="timeline-dot"></div>
+        <div class="timeline-date">2025 - 2026</div>
         <div class="timeline-content">
           <h3>{{ $t("timeline.jobs.software_dev.title") }}</h3>
           <div class="company">{{ $t("timeline.jobs.software_dev.company") }}</div>

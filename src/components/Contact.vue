@@ -21,8 +21,8 @@
             </div>
             <div class="card-info">
               <span class="card-label">{{ $t('contact.email_label') }}</span>
-              <a href="mailto:matheusmalena28@gmail.com" class="card-value">
-                matheusmalena28@gmail.com
+              <a href="mailto:matheusmalenadev@gmail.com" class="card-value">
+                matheusmalenadev@gmail.com
               </a>
             </div>
           </div>
