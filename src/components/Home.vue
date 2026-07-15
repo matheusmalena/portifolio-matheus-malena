@@ -64,7 +64,7 @@
               <!-- <div class="profile-ring ring-2"></div>
               <div class="profile-glow"></div> -->
               <div class="profile-image-container">
-                <img src="../assets/img/perfil.jpeg" alt="Matheus Malena" class="profile-image" />
+                <img src="../assets/img/perfil.jpeg" alt="Matheus Malena" class="profile-image" fetchpriority="high" width="380" height="380" decoding="async" />
               </div>
               <!-- <div class="floating-badge badge-1">
                 <i class="fas fa-code"></i>

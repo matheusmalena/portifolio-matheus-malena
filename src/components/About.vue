@@ -10,7 +10,7 @@
         <div class="about-image">
           <div class="image-wrapper">
             <div class="image-frame"></div>
-            <img src="../assets/img/perfil-2.jpeg" alt="Matheus Malena" class="profile-image" />
+            <img src="../assets/foto-perfil.jpeg" alt="Matheus Malena" class="profile-image" loading="lazy" />
             <div class="image-overlay"></div>
           </div>
           <div class="experience-badge">

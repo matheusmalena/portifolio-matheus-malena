@@ -34,7 +34,7 @@
           @click="openModal(project)"
         >
           <div class="card-image">
-            <img :src="project.image" :alt="project.title" class="project-image" />
+            <img :src="project.image" :alt="project.title" class="project-image" loading="lazy" />
             <div class="image-overlay"></div>
             <div class="expand-hint">
               <i class="fas fa-expand"></i>

@@ -163,7 +163,6 @@ export default {
   background: rgba(3, 7, 18, 0.9);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
   padding: 12px 5%;
 }
 

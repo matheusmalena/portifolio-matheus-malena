@@ -59,6 +59,8 @@
 
 html {
   scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
@@ -104,6 +106,20 @@ button {
 img {
   max-width: 100%;
   height: auto;
+  content-visibility: auto;
+}
+
+@supports (content-visibility: auto) {
+  .services-section,
+  .about-section,
+  .skills,
+  .projects-section,
+  .certificates-section,
+  .timeline-section,
+  .contact-section {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 500px;
+  }
 }
 
 .section-title {

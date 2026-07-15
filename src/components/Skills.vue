@@ -21,7 +21,7 @@
             class="skill-card"
           >
             <div class="skill-icon-wrapper">
-              <img :src="skill.icon" :alt="skill.name" class="skill-icon" />
+              <img :src="skill.icon" :alt="skill.name" class="skill-icon" loading="lazy" />
             </div>
             <span class="skill-name">{{ skill.name }}</span>
             <div class="skill-glow"></div>
