@@ -4,6 +4,10 @@
       <div>
         <div class="badge">Admin</div>
         <h1 class="title">Projetos</h1>
+        <p class="subtitle" v-if="!loading && projects.length">
+          {{ projects.length }} {{ projects.length === 1 ? 'projeto cadastrado' : 'projetos cadastrados' }}
+          <span class="subtitle-hint">· arraste pelo <i class="fas fa-grip-vertical"></i> para reordenar</span>
+        </p>
       </div>
       <div class="header-actions">
         <button class="btn primary" @click="openCreateForm">
@@ -18,37 +22,60 @@
     </header>
 
     <p v-if="loadError" class="error banner">{{ loadError }}</p>
+    <p v-if="reorderError" class="error banner">{{ reorderError }}</p>
 
-    <div v-if="loading" class="state-message">Carregando projetos...</div>
+    <div v-if="loading" class="state-message">
+      <i class="fas fa-circle-notch fa-spin"></i>
+      <span>Carregando projetos...</span>
+    </div>
     <div v-else-if="!projects.length" class="state-message">
-      Nenhum projeto cadastrado ainda. Clique em "Novo projeto" para começar.
+      <i class="fas fa-folder-open"></i>
+      <span>Nenhum projeto cadastrado ainda. Clique em "Novo projeto" para começar.</span>
     </div>
 
-    <div v-else class="projects-table">
-      <div v-for="project in projects" :key="project.id" class="project-row">
-        <img
-          :src="project.image_url || placeholderImage"
-          :alt="project.title"
-          class="row-thumb"
-        />
-        <div class="row-info">
-          <h3>{{ project.title }}</h3>
-          <p>{{ project.description_pt }}</p>
-          <div class="row-meta">
-            <span v-for="tech in project.techs" :key="tech" class="tag">{{ tech }}</span>
-            <span v-for="cat in project.categories" :key="cat" class="tag tag-cat">{{ cat }}</span>
+    <draggable
+      v-else
+      v-model="projects"
+      item-key="id"
+      handle=".drag-handle"
+      animation="220"
+      ghost-class="ghost-card"
+      drag-class="dragging-card"
+      class="projects-grid"
+      @end="handleReorder"
+    >
+      <template #item="{ element: project, index }">
+        <article class="project-card">
+          <span class="drag-handle" title="Arrastar para reordenar">
+            <i class="fas fa-grip-vertical"></i>
+          </span>
+          <span class="order-badge">{{ index + 1 }}</span>
+
+          <div class="card-thumb">
+            <img :src="project.image_url || placeholderImage" :alt="project.title" loading="lazy" />
           </div>
-        </div>
-        <div class="row-actions">
-          <button class="icon-btn" title="Editar" @click="openEditForm(project)">
-            <i class="fas fa-pen"></i>
-          </button>
-          <button class="icon-btn danger" title="Excluir" @click="confirmDelete(project)">
-            <i class="fas fa-trash"></i>
-          </button>
-        </div>
-      </div>
-    </div>
+
+          <div class="card-body">
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.description_pt }}</p>
+
+            <div class="card-meta">
+              <span v-for="tech in project.techs" :key="tech" class="tag">{{ tech }}</span>
+              <span v-for="cat in project.categories" :key="cat" class="tag tag-cat">{{ cat }}</span>
+            </div>
+          </div>
+
+          <div class="card-actions">
+            <button class="icon-btn" title="Editar" @click="openEditForm(project)">
+              <i class="fas fa-pen"></i>
+            </button>
+            <button class="icon-btn danger" title="Excluir" @click="confirmDelete(project)">
+              <i class="fas fa-trash"></i>
+            </button>
+          </div>
+        </article>
+      </template>
+    </draggable>
 
     <!-- Form panel -->
     <Teleport to="body">
@@ -156,12 +183,14 @@
 </template>
 
 <script>
+import draggable from 'vuedraggable'
 import {
   fetchProjects,
   createProject,
   updateProject,
   deleteProject,
   uploadProjectImage,
+  reorderProjects,
 } from '../../lib/projectsApi'
 import { signOut } from '../../lib/auth'
 
@@ -179,11 +208,13 @@ const emptyForm = () => ({
 
 export default {
   name: 'AdminProjects',
+  components: { draggable },
   data() {
     return {
       projects: [],
       loading: true,
       loadError: '',
+      reorderError: '',
       showForm: false,
       editingProject: null,
       form: emptyForm(),
@@ -303,6 +334,19 @@ export default {
         this.saving = false
       }
     },
+    async handleReorder() {
+      this.reorderError = ''
+      const orderedIds = this.projects.map((p) => p.id)
+      try {
+        await reorderProjects(orderedIds)
+        this.projects.forEach((p, index) => {
+          p.sort_order = index
+        })
+      } catch (err) {
+        this.reorderError = 'Não foi possível salvar a nova ordem. Tente novamente.'
+        await this.loadProjects()
+      }
+    },
     confirmDelete(project) {
       this.deletingProject = project
     },
@@ -333,18 +377,33 @@ export default {
 <style scoped>
 .admin-projects {
   min-height: 100vh;
-  padding: 48px 5%;
+  padding: 64px 5% 96px;
   background: var(--gradient-dark);
 }
 
 .admin-header {
-  max-width: 1100px;
-  margin: 0 auto 2rem;
+  max-width: 1280px;
+  margin: 0 auto 3rem;
   display: flex;
-  align-items: center;
+  align-items: flex-end;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1.5rem;
+}
+
+.subtitle {
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-top: 6px;
+}
+
+.subtitle-hint {
+  color: var(--text-muted);
+}
+
+.subtitle-hint i {
+  font-size: 0.75rem;
+  margin: 0 2px;
 }
 
 .badge {
@@ -362,9 +421,13 @@ export default {
 }
 
 .title {
-  font-size: 2rem;
+  font-size: 2.25rem;
   font-weight: 800;
-  color: var(--text-primary);
+  background: var(--gradient-primary);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.5px;
 }
 
 .header-actions {
@@ -413,14 +476,26 @@ export default {
 }
 
 .state-message {
-  max-width: 1100px;
-  margin: 3rem auto;
+  max-width: 1280px;
+  margin: 4rem auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
   text-align: center;
   color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.state-message i {
+  font-size: 1.75rem;
+  color: var(--primary-light);
+  opacity: 0.7;
 }
 
 .error.banner {
-  max-width: 1100px;
+  max-width: 1280px;
   margin: 0 auto 1.5rem;
   padding: 12px 16px;
   border-radius: var(--radius-md);
@@ -429,53 +504,127 @@ export default {
   color: #f87171;
 }
 
-.projects-table {
-  max-width: 1100px;
+.projects-grid {
+  max-width: 1280px;
   margin: 0 auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.75rem;
+}
+
+.project-card {
+  position: relative;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
-}
-
-.project-row {
-  display: flex;
-  align-items: center;
-  gap: 1.25rem;
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  padding: 1rem;
-}
-
-.row-thumb {
-  width: 100px;
-  height: 70px;
-  object-fit: cover;
-  border-radius: var(--radius-md);
-  flex-shrink: 0;
-}
-
-.row-info {
-  flex: 1;
-  min-width: 0;
-}
-
-.row-info h3 {
-  font-size: 1.05rem;
-  color: var(--text-primary);
-  margin-bottom: 4px;
-}
-
-.row-info p {
-  font-size: 0.85rem;
-  color: var(--text-secondary);
+  border-radius: var(--radius-xl);
   overflow: hidden;
-  text-overflow: ellipsis;
-  white-space: nowrap;
-  margin-bottom: 8px;
+  transition: border-color var(--transition-base), transform var(--transition-base), box-shadow var(--transition-base);
 }
 
-.row-meta {
+.project-card:hover {
+  border-color: rgba(14, 165, 233, 0.3);
+  box-shadow: var(--shadow-md);
+}
+
+.ghost-card {
+  opacity: 0.35;
+}
+
+.dragging-card {
+  cursor: grabbing !important;
+  box-shadow: var(--shadow-lg), 0 0 0 1px var(--primary);
+}
+
+.drag-handle {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+  z-index: 2;
+  width: 34px;
+  height: 34px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  background: rgba(3, 7, 18, 0.55);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  color: var(--text-primary);
+  cursor: grab;
+  transition: all var(--transition-fast);
+}
+
+.drag-handle:hover {
+  color: var(--primary-light);
+  border-color: var(--primary);
+}
+
+.drag-handle:active {
+  cursor: grabbing;
+}
+
+.order-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  z-index: 2;
+  min-width: 28px;
+  height: 28px;
+  padding: 0 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-full);
+  background: rgba(3, 7, 18, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(8px);
+  color: var(--text-secondary);
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.card-thumb {
+  aspect-ratio: 16/10;
+  overflow: hidden;
+}
+
+.card-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform var(--transition-slow);
+}
+
+.project-card:hover .card-thumb img {
+  transform: scale(1.05);
+}
+
+.card-body {
+  padding: 1.25rem 1.25rem 0.5rem;
+  flex: 1;
+}
+
+.card-body h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 6px;
+}
+
+.card-body p {
+  font-size: 0.85rem;
+  line-height: 1.55;
+  color: var(--text-secondary);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  margin-bottom: 12px;
+}
+
+.card-meta {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
@@ -485,7 +634,7 @@ export default {
   background: rgba(14, 165, 233, 0.1);
   border: 1px solid rgba(14, 165, 233, 0.2);
   color: var(--primary-light);
-  padding: 2px 10px;
+  padding: 3px 10px;
   border-radius: var(--radius-full);
   font-size: 0.7rem;
   font-weight: 600;
@@ -497,10 +646,10 @@ export default {
   color: var(--secondary-light);
 }
 
-.row-actions {
+.card-actions {
   display: flex;
   gap: 8px;
-  flex-shrink: 0;
+  padding: 1rem 1.25rem 1.25rem;
 }
 
 .icon-btn {

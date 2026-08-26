@@ -41,6 +41,15 @@ export async function deleteProject(id) {
   if (error) throw error
 }
 
+export async function reorderProjects(orderedIds) {
+  const updates = orderedIds.map((id, index) =>
+    supabase.from(TABLE).update({ sort_order: index }).eq('id', id)
+  )
+  const results = await Promise.all(updates)
+  const failed = results.find((r) => r.error)
+  if (failed) throw failed.error
+}
+
 export async function uploadProjectImage(file) {
   const ext = file.name.split('.').pop()
   const path = `${crypto.randomUUID()}.${ext}`
