@@ -26,7 +26,10 @@
         </button>
       </nav>
 
-      <div class="projects-grid">
+      <div v-if="loading" class="state-message">{{ $t('projects.loading') }}</div>
+      <div v-else-if="loadError" class="state-message">{{ loadError }}</div>
+
+      <div v-else class="projects-grid">
         <article
           v-for="(project, index) in paginatedProjects"
           :key="project.id"
@@ -118,22 +121,7 @@
 
 <script>
 import Pagination from './Pagination.vue';
-
-import imgSweetGiftfy from '../assets/img/sweetgift.png';
-import imgPrevisaoDoTempo from '../assets/img/previsao-web.png';
-import imgEscola from '../assets/img/escola.png';
-import imgCookinUp from '../assets/img/cookin-up.jpeg';
-import imgFokus from '../assets/img/fokus.png';
-import imgTasklist from '../assets/img/task-list.png';
-import imgCafe from '../assets/img/cafe.png';
-import imgAdivinha from '../assets/img/jogonumero.png';
-import imgDipemat from '../assets/img/dipemat2.jpeg';
-import imgLiberaja from '../assets/img/liberaja.png';
-import imgGameMemorie from '../assets/img/game-memorie.png';
-import imgVieiraDias from '../assets/img/vieira-dias.png';
-import imgNgStone from '../assets/img/ng-stone.png';
-import gifVivaColorir from '../assets/img/gif-viva-colorir.gif';
-import imgYupChat from '../assets/img/yup-chat.png';
+import { fetchProjects } from '../lib/projectsApi';
 
 export default {
   name: 'Projects',
@@ -144,6 +132,8 @@ export default {
       currentPage: 1,
       itemsPerPage: 9,
       selectedProject: null,
+      loading: true,
+      loadError: '',
       categories: [
         { id: 'all' },
         { id: 'web' },
@@ -151,162 +141,30 @@ export default {
         { id: 'tool' },
         { id: 'game' },
       ],
-      projects: [
-        {
-          id: 15,
-          title: this.$t('projects.list.15.title'),
-          description: this.$t('projects.list.15.description'),
-          image: imgYupChat,
-          demoUrl: 'https://yup.chat',
-          techs: ['Vue.js', 'Node.js', 'JavaScript'],
-          category: ['web', 'app']
-        },
-        {
-          id: 1,
-          title: this.$t('projects.list.1.title'),
-          description: this.$t('projects.list.1.description'),
-          image: imgSweetGiftfy,
-          demoUrl: 'https://sweetgiftfy.com',
-          techs: ['Vue.js', 'Supabase', 'Bootstrap'],
-          category: ['web']
-        },
-        {
-          id: 14,
-          title: this.$t('projects.list.14.title'),
-          description: this.$t('projects.list.14.description'),
-          image: imgLiberaja,
-          demoUrl: 'https://liberajadespachante.com.br/',
-          techs: ['Vue.js'],
-          categories: ["web", "institutional"],
-        },
-        {
-          id: 3,
-          title: this.$t('projects.list.2.title'),
-          description: this.$t('projects.list.2.description'),
-          image: imgEscola,
-          demoUrl: 'https://arvoredavidaperuibe.com.br',
-          techs: ['Vue.js', 'JavaScript'],
-          categories: ["web", "institutional"],
-        },
-        {
-          id: 4,
-          title: this.$t('projects.list.12.title'),
-          description: this.$t('projects.list.12.description'),
-          image: imgNgStone,
-          demoUrl: 'https://ngstonemarmoresperuibe.com.br',
-          techs: ['Vue.js', 'Node.js', 'Bootstrap'],
-          categories: ["web", "institutional"],
-        },
-        {
-          id: 5,
-          title: this.$t('projects.list.5.title'),
-          description: this.$t('projects.list.5.description'),
-          image: imgFokus,
-          demoUrl: 'https://matheusmalena.github.io/Fokus/',
-          techs: [' HTML', 'CSS3', 'JavaScript'],
-          category: ['tool']
-        },
-        {
-          id: 2,
-          title: this.$t('projects.list.9.title'),
-          description: this.$t('projects.list.9.description'),
-          image: imgDipemat,
-          demoUrl: 'https://dipemat.com/',
-          techs: ['Vue.js'],
-          categories: ["web", "institutional"],
-        },
-        {
-          id: 6,
-          title: this.$t('projects.list.11.title'),
-          description: this.$t('projects.list.11.description'),
-          image: imgVieiraDias,
-          demoUrl: 'https://vieira-dias-advogadas.vercel.app/',
-          techs: ['Vue.js', 'Node.js', 'Blog CMS'],
-          categories: ["web", "institutional"],
-        },
-        {
-          id: 13,
-          title: this.$t('projects.list.13.title'),
-          description: this.$t('projects.list.13.description'),
-          image: gifVivaColorir,
-          demoUrl: 'https://vivacolorirbiblia.vercel.app/',
-          techs: ['Vue JS', 'JavaScript'],
-          category: ['web', 'institutional']
-        },
-        {
-          id: 7,
-          title: this.$t('projects.list.3.title'),
-          description: this.$t('projects.list.3.description'),
-          image: imgPrevisaoDoTempo,
-          demoUrl: 'https://matheusmalena.github.io/AppPrevisaoDoTempo/',
-          techs: ['JavaScript', 'API REST'],
-          category: ['app', 'tool']
-        },
-        {
-          id: 8,
-          title: this.$t('projects.list.4.title'),
-          description: this.$t('projects.list.4.description'),
-          image: imgCookinUp,
-          demoUrl: 'https://cookin-up-website.vercel.app/',
-          techs: ['Vue.js', 'Node.js'],
-          category: ['app']
-        },
-        {
-          id: 9,
-          title: this.$t('projects.list.6.title'),
-          description: this.$t('projects.list.6.description'),
-          image: imgTasklist,
-          demoUrl: 'https://task-list-surf.vercel.app',
-          techs: ['Vue.js', 'LocalStorage'],
-          category: ['tool']
-        },
-        {
-          id: 10,
-          title: this.$t('projects.list.7.title'),
-          description: this.$t('projects.list.7.description'),
-          image: imgAdivinha,
-          demoUrl: 'https://jogo-numero-secreto-voz-three.vercel.app/',
-          techs: ['JavaScript', 'Web Speech API'],
-          category: ['game']
-        },
-        {
-          id: 11,
-          title: this.$t('projects.list.8.title'),
-          description: this.$t('projects.list.8.description'),
-          image: imgGameMemorie,
-          demoUrl: 'https://matheusmalena.github.io/memorie-love-game/',
-          techs: ['HTML5', 'CSS3', 'JavaScript'],
-          category: ['game']
-        },
-        {
-          id: 12,
-          title: this.$t('projects.list.10.title'),
-          description: this.$t('projects.list.10.description'),
-          image: imgCafe,
-          demoUrl: 'https://matheusmalena.github.io/landing-page_cafeteria/',
-          techs: ['HTML5', 'CSS3'],
-          categories: ["web", "institutional"],
-        },
-      ]
+      rawProjects: [],
     };
   },
   computed: {
+    projects() {
+      const locale = this.$i18n.locale;
+      return this.rawProjects.map((project) => ({
+        id: project.id,
+        title: project.title,
+        description:
+          project[`description_${locale}`] || project.description_pt || '',
+        image: project.image_url,
+        demoUrl: project.demo_url,
+        codeUrl: project.code_url,
+        techs: project.techs || [],
+        category: project.categories || [],
+      }));
+    },
     filteredProjects() {
       if (this.activeCategory === 'all') return this.projects;
 
-      return this.projects.filter(project => {
-        if (project.category) {
-          return Array.isArray(project.category)
-            ? project.category.includes(this.activeCategory)
-            : project.category === this.activeCategory;
-        }
-
-        if (project.categories) {
-          return project.categories.includes(this.activeCategory);
-        }
-
-        return false;
-      });
+      return this.projects.filter(project =>
+        project.category.includes(this.activeCategory)
+      );
     },
     paginatedProjects() {
       const start = (this.currentPage - 1) * this.itemsPerPage;
@@ -334,11 +192,21 @@ export default {
       document.body.style.overflow = '';
     },
     categoryLabelKey(project) {
-      const category = project.category ?? project.categories;
-      return Array.isArray(category) ? category[0] : category;
+      return project.category?.[0];
     },
     handleKeydown(event) {
       if (event.key === 'Escape') this.closeModal();
+    },
+    async loadProjects() {
+      this.loading = true;
+      this.loadError = '';
+      try {
+        this.rawProjects = await fetchProjects();
+      } catch (err) {
+        this.loadError = this.$t('projects.load_error');
+      } finally {
+        this.loading = false;
+      }
     }
   },
   watch: {
@@ -350,6 +218,7 @@ export default {
   },
   mounted() {
     window.addEventListener('keydown', this.handleKeydown);
+    this.loadProjects();
   },
   beforeUnmount() {
     window.removeEventListener('keydown', this.handleKeydown);
@@ -498,6 +367,13 @@ export default {
 @keyframes fadeIn {
   from { opacity: 0; transform: scale(0.8); }
   to { opacity: 1; transform: scale(1); }
+}
+
+.state-message {
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 1rem;
+  padding: 4rem 0;
 }
 
 .projects-grid {

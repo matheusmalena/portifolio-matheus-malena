@@ -7,6 +7,9 @@ import Projects from '../components/Projects.vue'
 import Skills from '../components/Skills.vue'
 import Certificates from '../components/Certificates.vue'
 import Timeline from '../components/Timeline.vue'
+import AdminLogin from '../components/admin/AdminLogin.vue'
+import AdminProjects from '../components/admin/AdminProjects.vue'
+import { getSession } from '../lib/auth'
 
 const routes = [
   {
@@ -49,6 +52,17 @@ const routes = [
     name: 'Timeline',
     component: Timeline,
   },
+  {
+    path: '/admin',
+    name: 'AdminLogin',
+    component: AdminLogin,
+  },
+  {
+    path: '/admin/projetos',
+    name: 'AdminProjects',
+    component: AdminProjects,
+    meta: { requiresAuth: true },
+  },
 ]
 
 const router = createRouter({
@@ -63,6 +77,16 @@ const router = createRouter({
     }
     return { top: 0 }
   },
+})
+
+router.beforeEach(async (to) => {
+  if (!to.meta.requiresAuth) return true
+
+  const session = await getSession()
+  if (!session) {
+    return { path: '/admin' }
+  }
+  return true
 })
 
 export default router

@@ -60,6 +60,8 @@
   "projects": {
     "section_title": "Mis Proyectos",
     "section_subtitle": "Trabajos que demuestran mi evolución como desarrollador",
+    "loading": "Cargando proyectos...",
+    "load_error": "No se pudieron cargar los proyectos. Inténtalo de nuevo más tarde.",
     "visit_demo": "Visitar",
     "view_code": "Código",
     "categories": {

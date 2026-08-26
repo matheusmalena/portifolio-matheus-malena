@@ -60,6 +60,8 @@
   "projects": {
     "section_title": "My Projects",
     "section_subtitle": "Work that showcases my growth as a developer",
+    "loading": "Loading projects...",
+    "load_error": "Could not load projects. Please try again later.",
     "visit_demo": "Visit",
     "view_code": "Code",
     "categories": {
