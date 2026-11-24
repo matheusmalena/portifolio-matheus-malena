@@ -9,6 +9,10 @@ import Certificates from '../components/Certificates.vue'
 import Timeline from '../components/Timeline.vue'
 import AdminLogin from '../components/admin/AdminLogin.vue'
 import AdminProjects from '../components/admin/AdminProjects.vue'
+import AdminLayout from '../components/admin/AdminLayout.vue'
+import AdminDashboard from '../components/admin/AdminDashboard.vue'
+import AdminInternalProjects from '../components/admin/AdminInternalProjects.vue'
+import AdminClients from '../components/admin/AdminClients.vue'
 import { getSession } from '../lib/auth'
 
 const routes = [
@@ -58,11 +62,18 @@ const routes = [
     component: AdminLogin,
   },
   {
-    path: '/admin/projetos',
-    name: 'AdminProjects',
-    component: AdminProjects,
+    path: '/admin/painel',
+    component: AdminLayout,
     meta: { requiresAuth: true },
+    children: [
+      { path: '', name: 'AdminDashboard', component: AdminDashboard },
+      { path: 'meus-projetos', name: 'AdminInternalProjects', component: AdminInternalProjects },
+      { path: 'clientes', name: 'AdminClients', component: AdminClients },
+      { path: 'portfolio', name: 'AdminProjects', component: AdminProjects },
+    ],
   },
+  // rota antiga
+  { path: '/admin/projetos', redirect: '/admin/painel/portfolio' },
 ]
 
 const router = createRouter({

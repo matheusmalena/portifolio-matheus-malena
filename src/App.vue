@@ -1,7 +1,11 @@
 <script setup>
 import Header from "./components/Header.vue";
 import Footer from "./components/Footer.vue";
-import { ref, onMounted, onUnmounted } from 'vue';
+import { ref, computed, onMounted, onUnmounted } from 'vue';
+import { useRoute } from 'vue-router';
+
+const route = useRoute();
+const isAdmin = computed(() => route.path.startsWith('/admin'));
 
 const showScrollButton = ref(false);
 
@@ -26,12 +30,12 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <Header />
+  <Header v-if="!isAdmin" />
   <router-view></router-view>
-  <Footer />
+  <Footer v-if="!isAdmin" />
   
   <button 
-    v-if="showScrollButton" 
+    v-if="showScrollButton && !isAdmin" 
     @click="scrollToTop" 
     class="scroll-to-top"
     aria-label="Voltar ao topo"

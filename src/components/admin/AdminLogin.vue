@@ -3,7 +3,7 @@
     <div class="login-card">
       <div class="badge">Admin</div>
       <h1 class="title">Entrar</h1>
-      <p class="subtitle">Acesse para gerenciar os projetos do portfólio.</p>
+      <p class="subtitle">Acesse o painel interno.</p>
 
       <form @submit.prevent="handleSubmit">
         <label class="field">
@@ -45,7 +45,7 @@ export default {
       this.loading = true
       try {
         await signIn(this.email, this.password)
-        this.$router.push('/admin/projetos')
+        this.$router.push('/admin/painel')
       } catch (err) {
         this.error = 'E-mail ou senha inválidos.'
       } finally {

@@ -1,6 +1,6 @@
 # Painel Admin — Setup
 
-O painel fica em `/admin` (login) e `/admin/projetos` (CRUD). Ele usa [Supabase](https://supabase.com)
+O painel fica em `/admin` (login) e `/admin/painel` (visão geral, projetos, clientes e vitrine do site). Ele usa [Supabase](https://supabase.com)
 como backend (banco de dados + autenticação + armazenamento de imagens), grátis para esse volume de uso.
 
 ## 1. Criar o projeto no Supabase
@@ -64,3 +64,10 @@ uma vez, para rodar o script de migração.
 - Em `/admin/projetos` você cria, edita e exclui projetos: título, descrição (PT/EN/ES), imagem, link do
   demo, link do código, tecnologias e categorias.
 - As mudanças aparecem no site imediatamente (a seção de Projetos busca os dados direto do Supabase).
+
+## Painel interno (projetos, clientes, hospedagem)
+
+1. No SQL Editor do Supabase, rode `supabase/internal_panel.sql` (cria `clients` e `internal_projects`, **sem leitura pública**).
+2. Opcional: rode `supabase/internal_panel_seed.sql` para já cadastrar Portfólio, Wappix e MatChat.
+3. **Importante:** em *Authentication > Providers > Email* desative "Allow new users to sign up". As políticas liberam
+   qualquer usuário autenticado; sem isso, alguém poderia criar uma conta pela API e ler seus dados.
