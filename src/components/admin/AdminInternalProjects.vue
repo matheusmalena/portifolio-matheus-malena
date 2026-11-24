@@ -3,6 +3,7 @@ import { ref, computed, onMounted } from 'vue'
 import {
   internalProjectsApi, clientsApi, STATUS, HOSTING_SUGGESTIONS, brl, daysUntil, fmtDate,
 } from '../../lib/panelApi'
+import AdminCombo from './AdminCombo.vue'
 
 const projects = ref([])
 const clients = ref([])
@@ -46,6 +47,8 @@ onMounted(load)
 
 const clientName = (id) => clients.value.find((c) => c.id === id)?.name
 const hostings = computed(() => [...new Set(projects.value.map((p) => p.hosting_provider).filter(Boolean))].sort())
+
+const hostingOptions = computed(() => [...new Set([...hostings.value, ...HOSTING_SUGGESTIONS])])
 
 const filtered = computed(() => {
   const q = search.value.trim().toLowerCase()
@@ -237,8 +240,7 @@ const domainWarn = (p) => {
           <label class="ap-field full"><span>Descrição</span><textarea v-model="form.description" class="ap-textarea" rows="2"></textarea></label>
 
           <label class="ap-field"><span>Hospedagem</span>
-            <input v-model="form.hosting_provider" class="ap-input" list="hosting-list" placeholder="VPS, Vercel..." />
-            <datalist id="hosting-list"><option v-for="h in HOSTING_SUGGESTIONS" :key="h" :value="h" /></datalist>
+            <AdminCombo v-model="form.hosting_provider" :options="hostingOptions" placeholder="VPS, Vercel..." />
           </label>
           <label class="ap-field"><span>Detalhes da hospedagem</span><input v-model="form.hosting_details" class="ap-input" placeholder="/opt/app · Docker · conta" /></label>
 
