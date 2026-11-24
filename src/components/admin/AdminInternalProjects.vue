@@ -4,6 +4,7 @@ import {
   internalProjectsApi, clientsApi, STATUS, HOSTING_SUGGESTIONS, brl, daysUntil, fmtDate,
 } from '../../lib/panelApi'
 import AdminCombo from './AdminCombo.vue'
+import AdminProjectDrawer from './AdminProjectDrawer.vue'
 
 const projects = ref([])
 const clients = ref([])
@@ -132,6 +133,21 @@ async function remove(p) {
   }
 }
 
+const selectedId = ref(null)
+const selected = computed(() => projects.value.find((p) => p.id === selectedId.value) || null)
+const selectedClient = computed(() => (selected.value ? clients.value.find((c) => c.id === selected.value.client_id) || null : null))
+function editFromDrawer() {
+  const p = selected.value
+  selectedId.value = null
+  if (p) openEdit(p)
+}
+async function removeFromDrawer() {
+  const p = selected.value
+  if (!p) return
+  await remove(p)
+  if (!projects.value.some((x) => x.id === p.id)) selectedId.value = null
+}
+
 const pill = (color) => ({ color, borderColor: color + '55', background: color + '14' })
 const domainWarn = (p) => {
   const d = daysUntil(p.domain_expires_on)
@@ -175,7 +191,7 @@ const domainWarn = (p) => {
     </div>
 
     <div v-else class="cards">
-      <article v-for="p in filtered" :key="p.id" class="ap-card proj">
+      <article v-for="p in filtered" :key="p.id" class="ap-card proj" tabindex="0" @click="selectedId = p.id" @keydown.enter="selectedId = p.id">
         <div class="top">
           <div class="title">
             <h2>{{ p.name }}</h2>
@@ -191,7 +207,7 @@ const domainWarn = (p) => {
 
         <dl>
           <div v-if="p.hosting_provider"><dt><i class="fas fa-server"></i></dt><dd>{{ p.hosting_provider }}<small v-if="p.hosting_details">{{ p.hosting_details }}</small></dd></div>
-          <div v-if="p.url"><dt><i class="fas fa-link"></i></dt><dd><a :href="p.url" target="_blank" rel="noopener" class="ap-link">{{ p.url.replace(/^https?:\/\//, '') }}</a></dd></div>
+          <div v-if="p.url"><dt><i class="fas fa-link"></i></dt><dd><a :href="p.url" target="_blank" rel="noopener" class="ap-link" @click.stop>{{ p.url.replace(/^https?:\/\//, '') }}</a></dd></div>
           <div v-if="p.domain_expires_on"><dt><i class="fas fa-calendar-day"></i></dt><dd :style="domainWarn(p) ? 'color:#fbbf24' : ''">Domínio vence {{ fmtDate(p.domain_expires_on) }}</dd></div>
           <div v-if="p.monthly_fee || p.project_value"><dt><i class="fas fa-coins"></i></dt><dd>
             <span v-if="p.project_value">{{ brl(p.project_value) }}</span>
@@ -203,13 +219,18 @@ const domainWarn = (p) => {
         <div v-if="p.stack?.length" class="chips"><span v-for="t in p.stack" :key="t" class="ap-chip">{{ t }}</span></div>
 
         <div class="actions">
-          <a v-if="p.repo_url" :href="p.repo_url" target="_blank" rel="noopener" class="ap-btn sm"><i class="fab fa-github"></i> Repo</a>
+          <a v-if="p.repo_url" :href="p.repo_url" target="_blank" rel="noopener" class="ap-btn sm" @click.stop><i class="fab fa-github"></i> Repo</a>
           <span class="spacer"></span>
-          <button class="ap-btn sm" @click="openEdit(p)"><i class="fas fa-pen"></i> Editar</button>
-          <button class="ap-btn sm danger" @click="remove(p)" aria-label="Excluir"><i class="fas fa-trash"></i></button>
+          <button class="ap-btn sm" @click.stop="openEdit(p)"><i class="fas fa-pen"></i> Editar</button>
+          <button class="ap-btn sm danger" @click.stop="remove(p)" aria-label="Excluir"><i class="fas fa-trash"></i></button>
         </div>
       </article>
     </div>
+
+    <AdminProjectDrawer
+      v-if="selected" :project="selected" :client="selectedClient"
+      @close="selectedId = null" @edit="editFromDrawer" @delete="removeFromDrawer"
+    />
 
     <!-- formulário -->
     <div v-if="showForm" class="ap-overlay" @mousedown.self="showForm = false">
@@ -277,8 +298,9 @@ const domainWarn = (p) => {
 
 <style scoped>
 .cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
-.proj { display: flex; flex-direction: column; gap: 12px; transition: border-color var(--transition-fast), transform var(--transition-fast); }
-.proj:hover { border-color: var(--border-light); transform: translateY(-2px); }
+.proj { cursor: pointer; outline: none; display: flex; flex-direction: column; gap: 12px; transition: border-color var(--transition-fast), transform var(--transition-fast); }
+.proj:focus-visible { border-color: #38bdf8; }
+.proj:hover { border-color: rgba(96,165,250,.4); transform: translateY(-2px); }
 .top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
 .title h2 { font: 700 1.1rem var(--font-primary); color: var(--text-primary); }
 .title small { color: var(--text-muted); font-size: .78rem; }
