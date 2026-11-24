@@ -1,16 +1,19 @@
 # Serve o build estático dentro do container. O HTTPS é feito pelo proxy de borda (rede "edge").
 :80 {
-	root * /srv/portfolio
 	encode zstd gzip
 
 	handle /health {
 		respond "ok" 200
 	}
 
-	@assets path /assets/*
-	header @assets Cache-Control "public, max-age=31536000, immutable"
+	handle {
+		root * /srv/portfolio
 
-	# SPA (vue-router history mode)
-	try_files {path} /index.html
-	file_server
+		@assets path /assets/*
+		header @assets Cache-Control "public, max-age=31536000, immutable"
+
+		# SPA (vue-router history mode)
+		try_files {path} /index.html
+		file_server
+	}
 }
