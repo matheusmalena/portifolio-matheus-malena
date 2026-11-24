@@ -1,0 +1,25 @@
+# Portfólio — produção (VPS com proxy de borda compartilhado, rede Docker "edge").
+#   cp .env.example .env   (preencha VITE_SUPABASE_*)
+#   docker compose up -d --build
+name: portfolio
+
+services:
+  web:
+    build:
+      context: .
+      args:
+        VITE_SUPABASE_URL: ${VITE_SUPABASE_URL:?defina VITE_SUPABASE_URL}
+        VITE_SUPABASE_ANON_KEY: ${VITE_SUPABASE_ANON_KEY:?defina VITE_SUPABASE_ANON_KEY}
+    restart: unless-stopped
+    networks:
+      edge:
+        aliases: [portfolio-web]
+    healthcheck:
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1/health >/dev/null || exit 1"]
+      interval: 15s
+      timeout: 5s
+      retries: 5
+
+networks:
+  edge:
+    external: true

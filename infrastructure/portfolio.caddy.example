@@ -1,0 +1,6 @@
+# No servidor: copie para <edge>/sites/portfolio.caddy ajustando o domínio e recarregue:
+#   docker compose exec caddy caddy reload --config /etc/caddy/Caddyfile
+seudominio.com, www.seudominio.com {
+	encode zstd gzip
+	reverse_proxy portfolio-web:80
+}
