@@ -44,8 +44,9 @@ onUnmounted(() => { document.removeEventListener('keydown', onKey); document.bod
 <template>
   <div class="dr-overlay" @mousedown.self="emit('close')">
     <aside class="dr" role="dialog" aria-label="Detalhes do projeto">
-      <header class="dr-head">
-        <button class="dr-x" @click="emit('close')" aria-label="Fechar"><i class="fas fa-xmark"></i></button>
+      <button class="dr-x" @click="emit('close')" aria-label="Fechar"><i class="fas fa-xmark"></i></button>
+      <div v-if="project.image_url" class="hero"><img :src="project.image_url" :alt="project.name" /></div>
+      <header class="dr-head" :class="{ withHero: project.image_url }">
         <span class="tile" :style="tile">{{ project.name[0] }}</span>
         <div class="who">
           <h2>{{ project.name }}</h2>
@@ -150,7 +151,12 @@ onUnmounted(() => { document.removeEventListener('keydown', onKey); document.bod
 @keyframes fade { from { opacity: 0; } to { opacity: 1; } }
 
 .dr-head { position: relative; display: flex; gap: 16px; align-items: center; padding: 28px 24px 20px; background: radial-gradient(400px 160px at 20% 0%, rgba(56, 189, 248, .16), transparent 70%); }
-.dr-x { position: absolute; right: 14px; top: 14px; width: 36px; height: 36px; border-radius: 11px; border: 1px solid rgba(148, 163, 184, .2); background: rgba(148, 163, 184, .08); color: #cbd5e1; cursor: pointer; }
+.dr { position: relative; }
+.hero { aspect-ratio: 16 / 9; overflow: hidden; flex-shrink: 0; position: relative; background: #0a1226; }
+.hero img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.hero::after { content: ''; position: absolute; inset: auto 0 0 0; height: 60%; background: linear-gradient(0deg, #0c1836, transparent); }
+.dr-head.withHero { margin-top: -34px; position: relative; z-index: 1; padding-top: 0; }
+.dr-x { z-index: 5; backdrop-filter: blur(8px); background: rgba(3, 7, 18, .55) !important; position: absolute; right: 14px; top: 14px; width: 36px; height: 36px; border-radius: 11px; border: 1px solid rgba(148, 163, 184, .2); background: rgba(148, 163, 184, .08); color: #cbd5e1; cursor: pointer; }
 .dr-x:hover { color: #fff; background: rgba(148, 163, 184, .18); }
 .tile { width: 60px; height: 60px; border-radius: 18px; flex-shrink: 0; display: grid; place-items: center; color: #fff; font: 800 1.5rem var(--font-primary); box-shadow: 0 8px 24px rgba(0, 0, 0, .4); }
 .who { min-width: 0; padding-right: 36px; }

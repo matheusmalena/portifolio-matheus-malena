@@ -28,6 +28,7 @@ create table if not exists public.internal_projects (
   domain text,
   domain_expires_on date,
   stack text[] not null default '{}',
+  image_url text,
   monthly_fee numeric(12, 2),
   project_value numeric(12, 2),
   started_on date,

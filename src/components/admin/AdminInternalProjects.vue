@@ -5,6 +5,7 @@ import {
 } from '../../lib/panelApi'
 import AdminCombo from './AdminCombo.vue'
 import AdminProjectDrawer from './AdminProjectDrawer.vue'
+import { uploadProjectImage } from '../../lib/projectsApi'
 
 const projects = ref([])
 const clients = ref([])
@@ -22,6 +23,65 @@ const formError = ref('')
 const editingId = ref(null)
 const form = ref(blank())
 const stackText = ref('')
+
+// imagem de capa
+const fileInput = ref(null)
+const imageFile = ref(null)
+const imagePreview = ref('')
+const imageRemoved = ref(false)
+const generating = ref(false)
+const dragOver = ref(false)
+const imageError = ref('')
+const MAX_IMG = 6 * 1024 * 1024
+
+function setImage(file) {
+  imageError.value = ''
+  if (!file || !file.type.startsWith('image/')) { imageError.value = 'Escolha um arquivo de imagem.'; return }
+  if (file.size > MAX_IMG) { imageError.value = 'Imagem muito grande (máx. 6 MB).'; return }
+  imageFile.value = file
+  imageRemoved.value = false
+  imagePreview.value = URL.createObjectURL(file)
+}
+const onFile = (e) => { setImage(e.target.files?.[0]); e.target.value = '' }
+const onDrop = (e) => { dragOver.value = false; setImage(e.dataTransfer?.files?.[0]) }
+function clearImage() {
+  imageFile.value = null
+  imagePreview.value = ''
+  imageRemoved.value = true
+  imageError.value = ''
+}
+
+// Gera o preview a partir da URL pública do site (serviço externo, só quando você clica).
+async function generateFromSite() {
+  const url = form.value.url.trim()
+  if (!url) return
+  imageError.value = ''
+  generating.value = true
+  const enc = encodeURIComponent(url)
+  const sources = [
+    `https://api.microlink.io/?url=${enc}&screenshot=true&meta=false&embed=screenshot.url&viewport.width=1280&viewport.height=800`,
+    `https://image.thum.io/get/width/1280/crop/800/noanimate/${url}`,
+  ]
+  try {
+    let blob = null
+    for (const src of sources) {
+      try {
+        const ctrl = new AbortController()
+        const t = setTimeout(() => ctrl.abort(), 45000)
+        const res = await fetch(src, { signal: ctrl.signal })
+        clearTimeout(t)
+        const b = await res.blob()
+        if (res.ok && b.type.startsWith('image/')) { blob = b; break }
+      } catch { /* tenta a próxima fonte */ }
+    }
+    if (!blob) throw new Error('sem resposta')
+    setImage(new File([blob], 'preview.png', { type: blob.type }))
+  } catch {
+    imageError.value = 'Não consegui gerar o preview. Confira se a URL está no ar ou envie uma foto.'
+  } finally {
+    generating.value = false
+  }
+}
 
 function blank() {
   return {
@@ -64,11 +124,20 @@ const filtered = computed(() => {
   })
 })
 
+function resetImage(url) {
+  imageFile.value = null
+  imagePreview.value = url
+  imageRemoved.value = false
+  imageError.value = ''
+  generating.value = false
+}
+
 function openCreate() {
   editingId.value = null
   form.value = blank()
   stackText.value = ''
   formError.value = ''
+  resetImage('')
   showForm.value = true
 }
 
@@ -79,6 +148,7 @@ function openEdit(p) {
   form.value = f
   stackText.value = (p.stack || []).join(', ')
   formError.value = ''
+  resetImage(p.image_url || '')
   showForm.value = true
 }
 
@@ -112,6 +182,10 @@ async function save() {
 
   saving.value = true
   try {
+    // image_url só vai no payload quando muda (assim o painel segue salvando antes da migração da coluna)
+    if (imageFile.value) payload.image_url = await uploadProjectImage(imageFile.value)
+    else if (imageRemoved.value) payload.image_url = null
+
     if (editingId.value) await internalProjectsApi.update(editingId.value, payload)
     else await internalProjectsApi.create(payload)
     showForm.value = false
@@ -148,7 +222,14 @@ async function removeFromDrawer() {
   if (!projects.value.some((x) => x.id === p.id)) selectedId.value = null
 }
 
-const pill = (color) => ({ color, borderColor: color + '55', background: color + '14' })
+const pillGlass = (c) => ({ color: c, borderColor: c + '66', background: `linear-gradient(${c}2e, ${c}2e), rgba(3, 7, 18, .72)` })
+const PH = ['#2563eb', '#7c3aed', '#0891b2', '#db2777', '#16a34a', '#ea580c']
+const phBg = (name) => {
+  let h = 0
+  for (const ch of name) h = (h * 31 + ch.charCodeAt(0)) % PH.length
+  const c = PH[h]
+  return { background: `radial-gradient(circle at 25% 20%, ${c}66, transparent 55%), linear-gradient(135deg, ${c}33, #0a1226)` }
+}
 const domainWarn = (p) => {
   const d = daysUntil(p.domain_expires_on)
   return d !== null && d <= 30
@@ -191,38 +272,41 @@ const domainWarn = (p) => {
     </div>
 
     <div v-else class="cards">
-      <article v-for="p in filtered" :key="p.id" class="ap-card proj" tabindex="0" @click="selectedId = p.id" @keydown.enter="selectedId = p.id">
-        <div class="top">
-          <div class="title">
-            <h2>{{ p.name }}</h2>
-            <small>
-              <i class="fas" :class="p.kind === 'cliente' ? 'fa-briefcase' : 'fa-user'"></i>
-              {{ p.kind === 'cliente' ? clientName(p.client_id) || 'Cliente' : 'Projeto pessoal' }}
-            </small>
-          </div>
-          <span class="ap-badge" :style="pill(STATUS[p.status].color)">{{ STATUS[p.status].label }}</span>
+      <article v-for="p in filtered" :key="p.id" class="proj" tabindex="0" @click="selectedId = p.id" @keydown.enter="selectedId = p.id">
+        <div class="thumb">
+          <img v-if="p.image_url" :src="p.image_url" :alt="p.name" loading="lazy" />
+          <div v-else class="ph" :style="phBg(p.name)"><span>{{ p.name[0] }}</span></div>
+          <span class="ap-badge st" :style="pillGlass(STATUS[p.status].color)">{{ STATUS[p.status].label }}</span>
+          <span v-if="p.hosting_provider" class="host"><i class="fas fa-server"></i> {{ p.hosting_provider }}</span>
         </div>
 
-        <p v-if="p.description" class="desc">{{ p.description }}</p>
+        <div class="body">
+          <h3>{{ p.name }}</h3>
+          <small class="who">
+            <i class="fas" :class="p.kind === 'cliente' ? 'fa-briefcase' : 'fa-user'"></i>
+            {{ p.kind === 'cliente' ? clientName(p.client_id) || 'Cliente' : 'Projeto pessoal' }}
+          </small>
 
-        <dl>
-          <div v-if="p.hosting_provider"><dt><i class="fas fa-server"></i></dt><dd>{{ p.hosting_provider }}<small v-if="p.hosting_details">{{ p.hosting_details }}</small></dd></div>
-          <div v-if="p.url"><dt><i class="fas fa-link"></i></dt><dd><a :href="p.url" target="_blank" rel="noopener" class="ap-link" @click.stop>{{ p.url.replace(/^https?:\/\//, '') }}</a></dd></div>
-          <div v-if="p.domain_expires_on"><dt><i class="fas fa-calendar-day"></i></dt><dd :style="domainWarn(p) ? 'color:#fbbf24' : ''">Domínio vence {{ fmtDate(p.domain_expires_on) }}</dd></div>
-          <div v-if="p.monthly_fee || p.project_value"><dt><i class="fas fa-coins"></i></dt><dd>
-            <span v-if="p.project_value">{{ brl(p.project_value) }}</span>
-            <span v-if="p.project_value && p.monthly_fee"> · </span>
-            <span v-if="p.monthly_fee">{{ brl(p.monthly_fee) }}/mês</span>
-          </dd></div>
-        </dl>
+          <p v-if="p.description" class="desc">{{ p.description }}</p>
 
-        <div v-if="p.stack?.length" class="chips"><span v-for="t in p.stack" :key="t" class="ap-chip">{{ t }}</span></div>
+          <div v-if="p.stack?.length" class="chips">
+            <span v-for="t in p.stack.slice(0, 4)" :key="t" class="tag">{{ t }}</span>
+            <span v-if="p.stack.length > 4" class="tag tag-more">+{{ p.stack.length - 4 }}</span>
+          </div>
 
-        <div class="actions">
-          <a v-if="p.repo_url" :href="p.repo_url" target="_blank" rel="noopener" class="ap-btn sm" @click.stop><i class="fab fa-github"></i> Repo</a>
+          <div class="facts">
+            <span v-if="p.domain_expires_on" :class="{ warn: domainWarn(p) }"><i class="fas fa-calendar-day"></i> vence {{ fmtDate(p.domain_expires_on) }}</span>
+            <span v-if="p.monthly_fee"><i class="fas fa-rotate"></i> {{ brl(p.monthly_fee) }}/mês</span>
+            <span v-else-if="p.project_value"><i class="fas fa-coins"></i> {{ brl(p.project_value) }}</span>
+          </div>
+        </div>
+
+        <div class="acts">
+          <a v-if="p.url" :href="p.url" target="_blank" rel="noopener" class="icon-btn" title="Abrir site" @click.stop><i class="fas fa-arrow-up-right-from-square"></i></a>
+          <a v-if="p.repo_url" :href="p.repo_url" target="_blank" rel="noopener" class="icon-btn" title="Repositório" @click.stop><i class="fab fa-github"></i></a>
           <span class="spacer"></span>
-          <button class="ap-btn sm" @click.stop="openEdit(p)"><i class="fas fa-pen"></i> Editar</button>
-          <button class="ap-btn sm danger" @click.stop="remove(p)" aria-label="Excluir"><i class="fas fa-trash"></i></button>
+          <button class="icon-btn" title="Editar" @click.stop="openEdit(p)"><i class="fas fa-pen"></i></button>
+          <button class="icon-btn danger" title="Excluir" @click.stop="remove(p)"><i class="fas fa-trash"></i></button>
         </div>
       </article>
     </div>
@@ -242,6 +326,23 @@ const domainWarn = (p) => {
 
         <div class="ap-modal-body">
           <label class="ap-field full"><span>Nome *</span><input v-model="form.name" class="ap-input" required /></label>
+
+          <div class="ap-field full">
+            <span>Imagem de capa</span>
+            <div class="drop" :class="{ over: dragOver }" @dragover.prevent="dragOver = true" @dragleave="dragOver = false" @drop.prevent="onDrop">
+              <img v-if="imagePreview" :src="imagePreview" alt="Prévia" />
+              <div v-else class="drop-empty"><i class="fas fa-image"></i><b>Arraste uma imagem aqui</b><small>ou use os botões abaixo</small></div>
+              <div v-if="generating" class="drop-loading"><i class="fas fa-circle-notch fa-spin"></i> Gerando preview do site...</div>
+            </div>
+            <input ref="fileInput" type="file" accept="image/*" hidden @change="onFile" />
+            <div class="img-btns">
+              <button type="button" class="ap-btn sm" @click="fileInput.click()"><i class="fas fa-upload"></i> Enviar foto</button>
+              <button type="button" class="ap-btn sm" :disabled="!form.url.trim() || generating" @click="generateFromSite"><i class="fas fa-wand-magic-sparkles"></i> Gerar a partir do site</button>
+              <button v-if="imagePreview" type="button" class="ap-btn sm danger" @click="clearImage"><i class="fas fa-xmark"></i> Remover</button>
+            </div>
+            <small v-if="imageError" style="color:#f87171">{{ imageError }}</small>
+            <small v-else>"Gerar a partir do site" usa um serviço externo (microlink.io) que acessa a URL pública do projeto. Preencha a "URL no ar" antes.</small>
+          </div>
 
           <label class="ap-field"><span>Tipo</span>
             <select v-model="form.kind" class="ap-select"><option value="pessoal">Pessoal</option><option value="cliente">De cliente</option></select>
@@ -297,22 +398,54 @@ const domainWarn = (p) => {
 </template>
 
 <style scoped>
-.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(340px, 1fr)); gap: 16px; }
-.proj { cursor: pointer; outline: none; display: flex; flex-direction: column; gap: 12px; transition: border-color var(--transition-fast), transform var(--transition-fast); }
-.proj:focus-visible { border-color: #38bdf8; }
-.proj:hover { border-color: rgba(96,165,250,.4); transform: translateY(-2px); }
-.top { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
-.title h2 { font: 700 1.1rem var(--font-primary); color: var(--text-primary); }
-.title small { color: var(--text-muted); font-size: .78rem; }
-.title small i { margin-right: 4px; }
-.desc { color: var(--text-secondary); font-size: .88rem; line-height: 1.5; }
-dl { display: flex; flex-direction: column; gap: 8px; }
-dl > div { display: flex; gap: 10px; font-size: .86rem; color: var(--text-secondary); }
-dt { width: 16px; text-align: center; color: var(--primary-light); flex-shrink: 0; padding-top: 2px; }
-dd { min-width: 0; word-break: break-word; }
-dd small { display: block; color: var(--text-muted); font-size: .76rem; }
-.chips { display: flex; flex-wrap: wrap; gap: 6px; }
-.actions { display: flex; gap: 8px; align-items: center; margin-top: auto; padding-top: 12px; border-top: 1px solid var(--border); }
+.cards { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 24px; }
+.proj {
+  display: flex; flex-direction: column; overflow: hidden; cursor: pointer; outline: none;
+  background: linear-gradient(160deg, rgba(15, 26, 54, .92), rgba(8, 14, 30, .95));
+  border: 1px solid rgba(96, 165, 250, .14); border-radius: 22px;
+  transition: border-color .25s ease, transform .25s ease, box-shadow .25s ease;
+}
+.proj:hover { border-color: rgba(56, 189, 248, .45); transform: translateY(-4px); box-shadow: 0 18px 40px rgba(0, 0, 0, .45), 0 0 0 1px rgba(56, 189, 248, .12); }
+.proj:focus-visible { border-color: #38bdf8; box-shadow: 0 0 0 3px rgba(56, 189, 248, .25); }
+
+.thumb { position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: #0a1226; }
+.thumb img { width: 100%; height: 100%; object-fit: cover; object-position: top; transition: transform .6s ease; }
+.proj:hover .thumb img { transform: scale(1.06); }
+.thumb::after { content: ''; position: absolute; inset: auto 0 0 0; height: 55%; background: linear-gradient(0deg, rgba(8, 14, 30, .85), transparent); pointer-events: none; }
+.ph { width: 100%; height: 100%; display: grid; place-items: center; }
+.ph span { font: 800 3.6rem var(--font-primary); color: rgba(255, 255, 255, .85); text-shadow: 0 6px 30px rgba(0, 0, 0, .5); }
+.st { position: absolute; top: 14px; right: 14px; z-index: 2; backdrop-filter: blur(8px); }
+.host { position: absolute; left: 14px; bottom: 12px; z-index: 2; display: inline-flex; align-items: center; gap: 7px; padding: 5px 11px; border-radius: 99px; font-size: .74rem; font-weight: 600; color: #e2e8f0; background: rgba(3, 7, 18, .6); border: 1px solid rgba(255, 255, 255, .14); backdrop-filter: blur(8px); }
+.host i { color: #38bdf8; font-size: .7rem; }
+
+.body { flex: 1; padding: 18px 20px 6px; display: flex; flex-direction: column; gap: 8px; }
+.body h3 { font: 700 1.12rem var(--font-primary); color: #f8fafc; }
+.who { color: #7f93b5; font-size: .78rem; }
+.who i { margin-right: 5px; }
+.desc { font-size: .86rem; line-height: 1.55; color: #94a3b8; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 2px; }
+.tag { background: rgba(14, 165, 233, .1); border: 1px solid rgba(14, 165, 233, .22); color: #7dd3fc; padding: 3px 10px; border-radius: 99px; font-size: .7rem; font-weight: 600; }
+.tag-more { background: rgba(99, 102, 241, .12); border-color: rgba(99, 102, 241, .25); color: #a5b4fc; }
+.facts { display: flex; flex-wrap: wrap; gap: 6px 14px; font-size: .78rem; color: #7f93b5; margin-top: 2px; }
+.facts i { margin-right: 5px; color: #38bdf8; }
+.facts .warn { color: #fbbf24; }
+.facts .warn i { color: #fbbf24; }
+
+.acts { display: flex; gap: 8px; align-items: center; padding: 14px 20px 18px; }
 .spacer { flex: 1; }
+.icon-btn { width: 38px; height: 38px; display: grid; place-items: center; border-radius: 12px; border: 1px solid rgba(148, 163, 184, .2); background: rgba(15, 26, 54, .8); color: #e2e8f0; cursor: pointer; text-decoration: none; transition: all .15s ease; }
+.icon-btn:hover { border-color: #38bdf8; color: #7dd3fc; transform: translateY(-1px); }
+.icon-btn.danger:hover { border-color: #ef4444; color: #ef4444; }
+
+/* upload de imagem no formulario */
+.drop { position: relative; aspect-ratio: 16 / 7; border-radius: 16px; overflow: hidden; border: 1.5px dashed rgba(148, 163, 184, .3); background: rgba(8, 14, 30, .7); display: grid; place-items: center; transition: all .18s ease; }
+.drop.over { border-color: #38bdf8; background: rgba(56, 189, 248, .08); box-shadow: 0 0 0 4px rgba(56, 189, 248, .12); }
+.drop img { width: 100%; height: 100%; object-fit: cover; object-position: top; }
+.drop-empty { display: flex; flex-direction: column; align-items: center; gap: 4px; color: #7f93b5; }
+.drop-empty i { font-size: 1.8rem; color: #38bdf8; margin-bottom: 6px; }
+.drop-empty b { color: #cbd5e1; font-size: .9rem; }
+.drop-empty small { font-size: .76rem; }
+.drop-loading { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; gap: 10px; background: rgba(5, 11, 26, .78); backdrop-filter: blur(3px); color: #e2e8f0; font-weight: 600; font-size: .9rem; }
+.img-btns { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 4px; }
 @media (max-width: 480px) { .cards { grid-template-columns: 1fr; } }
 </style>
